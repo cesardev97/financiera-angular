@@ -32,9 +32,7 @@ Luego de cargar la base de datos, configure la conexión en el archivo `wp-confi
 
 ## Servicios REST
 
-A continuación se mostraran los servicios construidos desde el backend, situados en `<root>\wp-content\themes\pro-empresa-theme\rest.php`.
-
-Url Repositorio: `https://bitbucket.org/soleramobile/proempresa-landing-server`.
+A continuación se mostraran los servicios construidos desde el backend.
 
 
 - Servicio para obtener menu ( slug ):
