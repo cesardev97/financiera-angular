@@ -4,17 +4,17 @@
 
 export const environment = {
   production: false,
-  wordpressWS: 'http://proempresa.test/proempresa-server',
+  wordpressWS: '',
   proempresaFormsWS: {
-    URL: 'https://gw-qa-wso2.proempresa.com.pe:443',
-    tokenURL: 'https://token-dev-wso2.proempresa.com.pe:443',
+    URL: '',
+    tokenURL: '',
     credentials: {
-      cliend_id: 'RnDui5KkwHKiJP3hz9sOjAzFQkAa',
-      client_secret: '_noJl8QPLh13jb3f00vAiq_txNca'
+      cliend_id: '',
+      client_secret: ''
     }
   },
   recaptcha: {
-    siteKey: '6LfKNi0cAAAAACeYwFRY9_d_qjGhpiwYUo5gNW5-',
+    siteKey: '',
   }
 };
 
