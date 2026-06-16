@@ -1,0 +1,69 @@
+@import "mixins";
+
+.cookies_about {
+    padding-top: 18px;
+    padding-bottom: 38px;
+    .title {
+        margin-bottom: 3.5rem;
+    }
+    @include mq-min($md) {
+        padding-top: 7.4rem;
+    }
+    @include mq-min($lg) {
+        .container {
+            margin: 0 auto;
+            max-width: 78%;
+            align-items: center;
+        }
+        .cookie-img {
+            margin-right: 10.6rem;
+        }
+        article {
+            max-width: 48%;
+        }
+    }
+}
+
+.cookies_use {
+    padding-top: 32px;
+    padding-bottom: 24px;
+    @include mq-min($md) {
+        padding-top: 6.2rem;
+        padding-bottom: 11.2rem;
+    }
+    @include mq-min($lg) {
+        .container {
+            margin: 0 auto;
+            max-width: 76%;
+        }
+        .decorated-img {
+            margin-left: 7.5rem;
+        }
+    }
+    
+}
+
+.cookies_deactivate {
+    padding-top: 24px;
+    padding-bottom: 48px;
+    
+    @include mq-min($md) {
+        padding-top: 13.5rem;
+        padding-bottom: 9.6rem;
+    }
+    @include mq-min($lg) {
+        .container {
+            margin: 0 auto;
+            max-width: 74%;
+        }
+        .cookie-img {
+            margin-right: 10.5rem;
+        }
+    }
+}
+
+.cookie_block {
+    @include mq-min($lg) {
+        margin-bottom: 12rem;
+    }
+}

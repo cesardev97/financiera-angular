@@ -1,0 +1,129 @@
+@import "mixins";
+
+.transfers_definition {
+    padding: 24px 0;
+    .title {
+        margin-bottom: 30px;
+    }
+    .paragraph_wrap {
+        .btn {
+            margin-top: 4rem;
+        }
+    }
+    @include mq-min($md) {
+        padding: 4.8rem 0;
+    }
+    @include mq-min($lg) {
+        .container {
+            margin:  0 auto;
+            max-width: 76%;
+        }
+        .title {
+            margin-bottom: 4rem;
+            max-width: 60%;
+        }
+        .definition_image img {
+            margin-right: 4rem;
+        }
+    }
+}
+
+.transfer_block {
+    margin-bottom: 48px;
+    @include mq-min($md) {
+        margin-top: 4rem;
+        margin-bottom: 5.8rem;
+    }
+}
+
+.transfers_steps {
+    padding: 32px 0;
+    .title {
+        margin-bottom: 3.2rem;
+    }
+    .steps-slider .card .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    } 
+    @include mq-min($md) {
+        padding: 6.4rem 0;
+        .card-title {
+            min-height: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    @include mq-min($lg2) {
+        .container {
+            margin: 0 auto;
+            max-width: 76%;
+        }
+    }
+}
+
+.transfers_video {
+    padding-top: 32px;
+    .title {
+        margin-bottom: 5rem;
+    }
+    @include mq-min($md) {
+        padding-top: 7rem;
+        padding-bottom: 8.2rem;
+    }
+}
+
+.transfers_simulator {
+    padding: 24px 0;
+    .title {
+        margin-bottom: 3.6rem;
+    }
+    @include mq($md) {
+        margin-top: 32px;
+    }
+    @include mq-min($md) {
+        padding: 6.4rem 0;
+    }
+}
+
+.transfers_doubts {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    .form-req-wrap {
+        .title {
+            margin-bottom: 1.6rem;
+        }
+        .mat-radio-group {
+            margin-top: 32px;
+            margin-bottom: 16px;
+            .mat-radio-button {
+                margin-bottom: 16px;
+            }
+        }
+    }
+    .doubts-image img {
+        margin-top: 10rem;
+        max-height: 33.6rem;
+    }
+    @include mq($lg) {
+        .doubts-image {
+            display: none;
+        }
+    }
+    @include mq-min($lg) {
+        padding-top: 6.4rem;
+        padding-bottom: 9.5rem;
+        .container {
+            margin: 0 auto;
+            max-width: 76%;
+        }
+        .form-req-wrap {
+            width: 62%;
+            margin-right: 2rem;
+            .mat-radio-group {
+                margin: 3.2rem 0;
+            }
+        }
+    }
+}

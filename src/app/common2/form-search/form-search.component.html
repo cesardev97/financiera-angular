@@ -1,0 +1,48 @@
+<form (ngSubmit)="filterInmuebles()">
+    <div class="form-group" [ngClass]="{'gray': hasBtn}">
+        <label>Tipo de inmueble</label>
+        <mat-form-field class="wrap-mat-select" appearance="outline">
+            <mat-label>Seleccione</mat-label>
+            <mat-select [(ngModel)]="select1" name="sel1">
+                <mat-option *ngFor="let item of categories[0]?.children " 
+                    [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </mat-form-field> 
+    </div>
+    <div class="form-group">
+        <label>Departamento</label>
+        <mat-form-field class="wrap-mat-select" appearance="outline">
+            <mat-label>Seleccione</mat-label>
+            <mat-select [(ngModel)]="select2" name="sel2" (selectionChange)="childrenOne()">
+                <mat-option>-Seleccione-</mat-option>
+                <mat-option *ngFor="let item of categories[1]?.children" 
+                    [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </mat-form-field> 
+    </div>
+    <div class="form-group">
+        <label>Provincia</label>
+        <mat-form-field class="wrap-mat-select" appearance="outline" name="sel3">
+            <mat-label>Seleccione</mat-label>
+            <mat-select [(ngModel)]="select3" name="sel3" (selectionChange)="childrenTwo()">
+                <mat-option>-Seleccione-</mat-option>
+                <mat-option *ngFor="let item of privinceFiltered" 
+                    [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </mat-form-field> 
+    </div> 
+    <div class="form-group">
+        <label>Distrito</label>
+        <mat-form-field class="wrap-mat-select" appearance="outline">
+            <mat-label>Seleccione</mat-label>
+            <mat-select [(ngModel)]="select4" name="sel4">
+                <mat-option>-Seleccione-</mat-option>
+                <mat-option *ngFor="let item of districtFiltered" 
+                    [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+        </mat-form-field> 
+    </div>
+    <div class="wrap-se-btn" [ngClass]="{'s-loading': isSearching}" *ngIf="hasBtn">
+        <button class="btn gnrl" [disabled]="!select1 || !select2">Buscar</button>
+    </div>
+</form>

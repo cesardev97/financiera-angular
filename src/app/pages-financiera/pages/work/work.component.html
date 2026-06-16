@@ -1,0 +1,78 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="why_join_section">
+    <div class="container max">
+        <h2 class="title center">{{acf.title_work_question}}</h2>
+        <div class="c-flex">
+            <app-video
+                [videoImage]="acf.video_image"
+                [videoUrl]="acf.video_url"
+            ></app-video>
+            <div class="paragraph_wrap">
+                <div class="paragraph" [innerHTML]="acf.description_work">
+                </div>
+                <a class="btn gnrl" [routerLink]="urlForm">
+                    {{acf.button_description_text}}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="experience_section">
+    <div class="container">
+        <h2 class="title center">{{acf.title_experience}}</h2>
+
+        <div class="experience_slider">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="configExperience">
+                    <ng-template swiperSlide *ngFor="let item of acf.list_experience">
+                        <div class="experience_item card card-2">
+                            <img class="card-img-1" [src]="item.image" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                                <div class="card-text"><p>{{item.text}}</p></div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper> 
+            </div>
+            <div class="experience-slider swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="join_section">
+    <div class="container">
+        <div class="titles center">
+            <h2 class="title">{{acf.title_join}}</h2>
+            <h5 class="subtitle_2">{{acf.subtitle_join}}</h5>
+        </div>
+    
+        <div class="join_slider">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="configJoin">
+                    <ng-template swiperSlide *ngFor="let item of acf.list_join">
+                        <div class="join_item card card-2">
+                            <img class="card-img-1" [src]="item.image" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                                <div class="card-text"><p>{{item.text}}</p></div>
+                                <app-link
+                                    classUrl="btn gnrl"
+                                    [labelBtn]="item.button_text"
+                                    [typeUrl]="item.type_url"
+                                    [urls]="[item.internal_url,item.external_url]"
+                                >
+                                </app-link>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="join-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>

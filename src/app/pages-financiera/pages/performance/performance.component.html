@@ -1,0 +1,56 @@
+<app-banner-page [bannerFields]="acf" class="perf_banner"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="performance_first">
+    <div class="container min">
+        <h2 class="title_perform title center">{{acf.title_performance}}</h2>
+        <div class="c-flex j-end">
+            <app-video
+                [videoImage]="acf.img_video"
+                [videoUrl]="acf.url_video"
+            ></app-video>
+            <div class="paragraph_wrap gnrl">
+                <div class="paragraph" [innerHtml]="acf.text_performance">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="performance_results bg-gray">
+    <div class="container min">
+        <h2 class="title">{{acf.results_title}}</h2>
+        <div class="swiper-card">
+            <swiper [config]="carrouselConfig">
+                <ng-template swiperSlide *ngFor="let list of cardItems; index as ind1;">
+                    <div class="result-grid-items">
+                        <ng-container *ngFor="let item of list; index as ind;">
+                            <div class="result-item-ctn" [ngClass]="{first: ind==0 && ind1==0}">
+                                <div class="result-item card box-2">
+                                    <span class="result-image">
+                                        <img [src]="item.icon">
+                                    </span>
+                                    <h4>{{item.title}}</h4>
+                                    <p>{{item.text}}</p>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-template>
+            </swiper>
+        </div>
+        <div class="btns-slider-group gnrl">
+            <div class="results-prev swiper-navigation icon-left-arrow"></div>
+            <div class="results-pagination swiper-pagination"></div>
+            <div class="results-next swiper-navigation icon-right-arrow"></div>
+        </div>
+    </div>
+</section>
+
+<section class="tabs_sect">
+    <app-tabs
+        [title]="acf.reports_title"
+        [listTabs]="acf.information_tabs"
+    ></app-tabs>
+</section>

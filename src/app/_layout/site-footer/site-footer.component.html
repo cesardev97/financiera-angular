@@ -1,0 +1,84 @@
+<footer id="footer">
+    <div class="footer-wrap">
+        <div class="footer_main">
+            <div class="footer_menu menu_desktop">
+                <div class="column_options" *ngFor="let item of menu">
+                    <h5>{{item.title}}</h5>
+                    <ul>
+                        <li *ngFor="let child of item.child_items">
+                            <a *ngIf="child.target == '_blank'; else routerTemplate"
+                                [href]="child.url" target="_blank">
+                                {{child.title}}
+                            </a>
+                            <ng-template #routerTemplate>
+                                <a [routerLink]="child.url">{{child.title}}</a>
+                            </ng-template>
+                        </li>
+                    </ul>    
+                </div>
+            </div>
+            <div class="footer_menu_mob menu_mob">
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor="let item of menu">
+                        <mat-expansion-panel-header class="panel-header-1">
+                            <mat-panel-title>{{item.title}}</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ng-container *ngFor="let child of item.child_items">
+                            <a class="panel-link" *ngIf="child.target == '_blank'; else routerTemplate"
+                                [href]="child.url" target="_blank" (click)="closePanelItems()">
+                                {{child.title}}
+                            </a>
+                            <ng-template #routerTemplate>
+                                <a class="panel-link" [routerLink]="child.url" (click)="closePanelItems()">
+                                    {{child.title}}
+                                </a>
+                            </ng-template>
+                        </ng-container>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div class="footer_right">
+                <div class="column_options">
+                    <div>
+                        <h5>{{options.title_contact}}</h5>
+                        <div *ngFor="let item of options.schedule_list" class="schedule_option">
+                            <span>{{item.schedule}}</span>
+                            <div class="number-icon">
+                                <img [src]="item.icon">
+                                <strong class="number">{{item.phone}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social_links_wrap">
+                        <h5>{{options.title_social_links}}</h5>
+                        <div class="social_links">
+                            <a *ngFor="let item of options.social_links"
+                                [href]="item.url" target="_blank">
+                                <img [src]="item.icon" [alt]="item.type | titlecase">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <a [routerLink]="" class="logo">
+                <img [src]="options.logo" alt="ProEmpresa">
+            </a>
+            <span class="copyrigtht_text">{{options.copyright_text}}</span>
+            <div class="f-shortcodes">
+                <ng-container *ngFor="let item of options.shortcuts">
+                    <a [routerLink]="item.url_internal" *ngIf="item.type_url == 'internal'"> 
+                        <img [src]="item.image">
+                    </a>
+                    <a [href]="item.url_external" target="_blank" *ngIf="item.type_url == 'external'"> 
+                        <img [src]="item.image">
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+

@@ -1,0 +1,197 @@
+<div class="select_form_contact">
+    <mat-radio-group  [(ngModel)]="typeTaxPayerForm"
+        [ngModelOptions]="{standalone: true}">
+        <mat-radio-button value="N" [checked]="true">Soy persona natural</mat-radio-button>
+        <mat-radio-button value="J">Represento a una Empresa</mat-radio-button>
+    </mat-radio-group>
+</div>
+<div class="form-tabs-ctn">
+    <div [ngClass]="{'show': typeTaxPayerForm === 'N'}" class="contact-form">
+        <form (ngSubmit)="send(f)" [formGroup]="FormPersonG" #f="ngForm">
+            <div class="form-group">
+                <label>Nombre completo</label>
+                <mat-form-field appearance="outline">
+                    <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                        matInput type="text" formControlName="names" maxlength="25">
+                </mat-form-field>
+            </div>
+            <div class="form-group min">
+                <label>Apellido paterno</label>
+                <mat-form-field appearance="outline">
+                    <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                    matInput type="text" formControlName="lastname1" maxlength="25">
+                </mat-form-field>
+            </div>
+            <div class="form-group min">
+                <label>Apellido materno</label>
+                <mat-form-field appearance="outline">
+                    <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                    matInput type="text" formControlName="lastname2" maxlength="25">
+                </mat-form-field>
+            </div>
+            <div class="form-group min">
+                <label>Tipo de documento</label>
+                <mat-form-field class="wrap-mat-select" appearance="outline">
+                    <mat-label>Selecciona</mat-label>
+                    <mat-select formControlName="document_type">
+                        <mat-option *ngFor="let item of utils.personDocuments" [value]="item"
+                        >{{item.desDocumento}}</mat-option>          
+                    </mat-select>
+                </mat-form-field>  
+            </div>
+            <div class="form-group min">
+                <label>Número de documento</label>
+                <mat-form-field appearance="outline">
+                    <input placeholder="Ingrese" (keypress)="hService.onlyNumbers($event)"
+                    matInput type="text" formControlName="document_number" maxlength="25">
+                </mat-form-field>
+            </div>
+            <div class="form-group min">
+                <label>Email</label>
+                <mat-form-field appearance="outline">
+                    <input placeholder="Ingrese" matInput type="email" formControlName="email" maxlength="50">
+                </mat-form-field>
+            </div>
+            <div class="form-group min">
+                <label>Número telefónico</label>
+                <mat-form-field appearance="outline">
+                    <input placeholder="Ingrese" (keypress)="hService.onlyNumbers($event)"
+                        matInput type="text" formControlName="phone_number" maxlength="9">
+                </mat-form-field>
+            </div>
+            <div class="recaptcha-wrap">
+                <re-captcha formControlName="recaptcha">
+                </re-captcha>
+            </div>
+            <span class="protection-policy">
+                <mat-checkbox formControlName="accept_policies">
+                    <p>Acepto la <a href="/transparencia/politica-de-proteccion-de-datos-personales" target="_blank">
+                        Política de protección de datos Personales</a>
+                    </p>
+                </mat-checkbox>
+            </span>
+            <span class="term-conditions">
+                <mat-checkbox formControlName="terms">
+                    <p>He leído y acepto recibir información sobre los otros productos y servicios de Financiera ProEmpresa, 
+                        y otras finalidades adicionales informadas.
+                    </p>
+                </mat-checkbox>
+            </span>
+            <div class="wrap-se-btn" [ngClass]="{'s-loading': isSending}">
+                <button class="btn gnrl" [disabled]="FormPersonG.invalid">{{btnLabel}}</button>
+            </div>
+        </form> 
+    </div>
+
+    <div [ngClass]="{'show': typeTaxPayerForm === 'J'}" class="contact-form">
+        <form (ngSubmit)="send(f2)" [formGroup]="FormBusinessG" #f2="ngForm">
+            <div class="form-group">
+                <label>Nombre completo</label>
+                <mat-form-field appearance="outline">
+                    <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                        matInput type="text" formControlName="names" maxlength="25">
+                </mat-form-field>
+            </div>
+            <div class="form-group min">
+                <label>Apellido paterno</label>
+                <mat-form-field appearance="outline">
+                    <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                    matInput type="text" formControlName="lastname1" maxlength="25">
+                </mat-form-field>
+            </div>
+            <div class="form-group min">
+                <label>Apellido materno</label>
+                <mat-form-field appearance="outline">
+                    <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                    matInput type="text" formControlName="lastname2" maxlength="25">
+                </mat-form-field>
+            </div>
+            <ng-container *ngIf="isTransfer">
+                <div class="form-group min">
+                    <label>Cargo en la empresa</label>
+                    <mat-form-field appearance="outline">
+                        <input placeholder="Ingrese" matInput type="text" formControlName="position_company" maxlength="25">
+                    </mat-form-field>
+                </div>
+                <div class="form-group min">
+                    <label>Número de contacto</label>
+                    <mat-form-field appearance="outline">
+                        <input placeholder="Ingrese" matInput type="text" formControlName="phone_number" maxlength="25">
+                    </mat-form-field>
+                </div>
+                <div class="form-group min">
+                    <label>RUC</label>
+                    <mat-form-field appearance="outline">
+                        <input placeholder="Ingrese" matInput type="text" formControlName="ruc" maxlength="11"
+                            (keypress)="hService.onlyNumbers($event)">
+                    </mat-form-field>
+                </div>
+                <div class="form-group min">
+                    <label>Razón social</label>
+                    <mat-form-field appearance="outline">
+                        <input placeholder="Ingrese" matInput type="text" formControlName="business_name" maxlength="50">
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <mat-form-field appearance="outline">
+                        <input placeholder="Ingrese" matInput type="text" formControlName="email" maxlength="50">
+                    </mat-form-field>
+                </div> 
+            </ng-container>
+            <ng-container *ngIf="!isTransfer">
+                <div class="form-group min">
+                    <label>Número de RUC</label>
+                    <mat-form-field appearance="outline">
+                        <input placeholder="Ingrese" matInput type="text" formControlName="ruc" maxlength="11"
+                            (keypress)="hService.onlyNumbers($event)">
+                    </mat-form-field>
+                </div>
+                <div class="form-group min">
+                    <label>Razón social</label>
+                    <mat-form-field appearance="outline">
+                        <input placeholder="Ingrese" matInput type="text" formControlName="business_name" maxlength="50">
+                    </mat-form-field>
+                </div>
+                <div class="form-group min">
+                    <label>Email</label>
+                    <mat-form-field appearance="outline">
+                        <input placeholder="Ingrese" matInput type="text" formControlName="email" maxlength="50">
+                    </mat-form-field>
+                </div> 
+                <div class="form-group min">
+                    <label>Número telefónico</label>
+                    <mat-form-field appearance="outline">
+                        <input placeholder="Ingrese" matInput type="text" formControlName="phone_number" maxlength="9">
+                    </mat-form-field>
+                </div>
+            </ng-container>
+            
+            <div class="recaptcha-wrap">
+                <re-captcha formControlName="recaptcha">
+                </re-captcha>
+            </div>
+            <span class="protection-policy">
+                <mat-checkbox formControlName="accept_policies">
+                    <p>Acepto la <a href="/transparencia/politica-de-proteccion-de-datos-personales" target="_blank">
+                        Política de protección de datos Personales</a>
+                    </p>
+                </mat-checkbox>
+            </span>
+            <span class="term-conditions">
+                <mat-checkbox formControlName="terms">
+                    <p>He leído y acepto recibir información sobre los otros productos y servicios de Financiera ProEmpresa, 
+                        y otras finalidades adicionales informadas.
+                    </p>
+                </mat-checkbox>
+            </span>
+            <div class="wrap-se-btn" [ngClass]="{'s-loading': isSending}">
+                <button class="btn gnrl" [disabled]="FormBusinessG.invalid">{{btnLabel}}</button>
+            </div>
+        </form> 
+    </div>
+</div>
+
+<div *ngIf="respStatus" class="error">
+    {{respStatus}}
+</div>

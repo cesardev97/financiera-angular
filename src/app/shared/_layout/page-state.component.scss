@@ -1,0 +1,57 @@
+@import "mixins";
+
+.page-estate {
+    margin: 24px 0;
+    .description {
+        .subtitle {
+            font-size: 16px;
+        }
+        .btn {
+            margin-top: 4rem;
+            width: fit-content !important;
+        }
+    }
+    .figure img {
+        max-height: 38rem;
+    }
+    .img_mobile {
+        margin-top: 24px;
+        width: 90%;
+        max-width: 40rem;
+        margin: 0 auto;
+        padding-top: 24px;
+        img {
+            width: 100%;
+        }
+    }
+    .img_desktop {
+        display: none;
+    } 
+    @include mq($md) {
+        .title, .subtitle {
+            text-align: left !important;
+        }
+    }
+    @include mq-min($lg) {
+        margin: 10rem 0;
+        .img_mobile {
+            display: none;
+        } 
+        .img_desktop {
+            display: block;
+        } 
+        .description {
+            margin-top: 6rem;
+            padding-right: 6rem;
+            .title {
+                font-size: 4.8rem;
+                line-height: 1.2;
+            }
+            .subtitle {
+                font-size: 2rem;
+                font-size: 16px;
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,78 @@
+<div class="header-menu-mob menu_mob" *ngIf="device=='mobile'; else menuDesktop">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let item of menu">
+            <mat-expansion-panel-header class="panel-header-1">
+                <mat-panel-title>{{item.title}}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-accordion *ngIf="item.child_items" class="menu-mob-child">
+                <ng-container *ngFor="let child of item.child_items">
+                    <mat-expansion-panel *ngIf="child.child_items; else noChilds">
+                        <mat-expansion-panel-header class="panel-header-2" [class]="child?.classes">
+                            <mat-panel-title (click)="goRoute(child.url, child.type)">
+                                <span class="link-image" *ngIf="child.image">
+                                    <img [src]="child.image">
+                                </span>
+                                {{child.title}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div *ngIf="child.child_items" class="menu-mob-child2">
+                            <ng-container *ngFor="let child2 of child.child_items">
+                                <span class="panel-link panel-header-3" (click)="goRoute(child.url, child.type)">
+                                    {{child2.title}}
+                                </span>
+                                <a class="panel-link sub-links" *ngFor="let child3 of child2.child_items" (click)="hideMenuMob()" 
+                                    [routerLink]="child3.url">
+                                    {{child3.title}}
+                                </a>
+                            </ng-container>
+                        </div>
+                        
+                    </mat-expansion-panel>
+                    <ng-template #noChilds>
+                        <a class="panel-link" [routerLink]="child.url | safe" (click)="hideMenuMob()"
+                            [class]="child?.classes">
+                            <span class="link-image" *ngIf="child.image">
+                                <img [src]="child.image">
+                            </span>
+                            {{child.title}}
+                        </a>
+                    </ng-template>
+                </ng-container>
+            </mat-accordion>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<ng-template #menuDesktop>
+    <div class="header-menu-wrap menu_desktop">
+        <ul class="h_fisrt_menu">
+            <li hover-class="open-submenu" class="h_fisrt_menu__item"   *ngFor="let item of menu">
+                <a class="h_fisrt_menu__item--link" href="javascript:void(0);">{{item.title}}</a>
+                <ul class="h_second_menu" *ngIf="item.child_items">
+                    <li class="h_second_menu__item" *ngFor="let child of item.child_items"
+                        [class]="child?.classes">
+                        <span class="h_second_menu__item--link" (click)="goRoute(child.url, child.type)"
+                            [ngClass]="{'is-link': child.type!=='custom'}">
+                            <span class="link-image" *ngIf="child.image">
+                                <img [src]="child.image">
+                            </span>
+                            {{child.title}}
+                        </span>
+                        <ul class="h_third_menu" *ngIf="child.child_items">
+                            <li class="h_third_menu__item" *ngFor="let child2 of child.child_items">
+                                <span class="h_third_menu__item--link">{{child2.title}}</span>
+                                <ul class="h_last_menu" *ngIf="child2.child_items">
+                                    <li *ngFor="let child3 of child2.child_items">
+                                        <a class="nav-item-link" (click)="hideSubmenu()"  
+                                        [routerLink]="child3.url">{{child3.title}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</ng-template>
+

@@ -1,0 +1,23 @@
+<div class="modal-ctn member-ctn">
+    <span class="icon-close" (click)="onNoClick()"></span>
+    <div class="modal-body">
+        <h2 class="title center">{{data.title}}</h2>
+        <div class="directory-ctn">
+            <app-image className="dir-image img_mobile" [imageUrl]="data.image"></app-image>
+            <div class="paragraph_wrap">
+                <div class="paragraph scroll">
+                <h4 class="member_name">{{data.name}}</h4>
+                    <ol *ngIf="data.posit2">
+                        <li *ngIf="data.posit2">{{data.posit2}}</li>
+                    </ol>
+                    <div [innerHtml]="data.description">
+                    </div>
+                </div>
+            </div>
+            <app-image className="dir-image img_desktop" [imageUrl]="data.image"></app-image>
+        </div>
+        <div class="wrap-button">
+            <span class="btn gnrl return" (click)="onNoClick()">{{data.labelClose}}</span>
+        </div>
+    </div>
+</div>

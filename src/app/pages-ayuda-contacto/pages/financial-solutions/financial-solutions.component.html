@@ -1,0 +1,84 @@
+<app-banner-page [bannerFields]="acf" [internalUrl]="internalUrl"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="definition">
+    <div class="container">
+        <h2 class="title center">{{acf.definition_title}}</h2>
+        <div [innerHtml]="acf.definition_text | safeHtml"></div>
+    </div>
+</section>
+
+<section class="requirements bg-gray">
+    <div class="container">
+        <h2 class="title">{{acf.requirements_title}}</h2>
+        <div class="c-flex r-reverse j-center items-center">
+            <div>
+                <img class="characteristic-img" [src]="acf.requirements_image" alt="">
+            </div>
+            <div class="description">
+                <div class="paragraph_wrap">
+                    <div class="paragraph" [innerHtml]="acf.requirements_description"></div>
+                    <a class="btn gnrl" [routerLink]="internalUrl">
+                        {{acf.requirements_btn}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="process">
+    <div class="container">
+        <div class="titles center">
+            <h2 class="title">{{acf.process_title}}</h2>
+            <h4 class="subtitle_2">{{acf.process_subtitle}}</h4>
+        </div>
+        <div class="process_swiper">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="processSwiper">
+                    <ng-template swiperSlide *ngFor="let item of acf.process_list">
+                        <div class="card card-2">
+                            <img class="card-img-1" [src]="item.image" [alt]="item.title">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                                <div class="card-text">
+                                    <p>{{item.text}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="process-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="tabs_sect">
+    <app-tabs
+        [listTabs]="acf.information_tabs"
+    ></app-tabs>
+</section>
+
+<section class="transfers_block mb-4">
+    <div class="container max">
+        <div class="block_link_wrap b-3 bg-2">
+            <app-block-url
+                [titleBloq]="acf.faq_title || opt.faq_title"
+                [subtitleBlock]="acf.faq_subtitle || opt.faq_subtitle"
+                [imageBlock]="acf.faq_image || opt2.faq_image"
+                [textBtnBlock]="acf.faq_btn_txt || opt.faq_btn_txt"
+                [urlBlock]="acf.faq_url || opt2.faq_url"    
+            >
+            </app-block-url>    
+        </div>
+    </div>
+</section>
+
+<app-links-interest *ngIf="acf.has_interest_links"
+    className="t-2"
+    [titleLinks]="opt2.title_link_interest"
+    [listLinks]="acf.interest_links"
+>
+</app-links-interest>

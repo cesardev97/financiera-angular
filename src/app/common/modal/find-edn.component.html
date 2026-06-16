@@ -1,0 +1,33 @@
+<div class="modal-ctn modal-find-edn">
+    <span class="icon-close border" (click)="closeDialog()"></span>
+    <article class="modal-body">
+        <h2 class="title">Hola, {{data.client.name}}</h2>
+        <h4 class="subtitle">Estos son los productos</h4>
+        <div class="edn-container c-flex j-between">
+            <div class="column_left">
+                <h5>Tus productos:</h5>
+                <div class="product-titles">
+                    <a class="link" *ngFor="let item of data.products" 
+                        [routerLink]="item.url | safe" (click)="closeDialog()">
+                        {{item.name}}
+                    </a>
+                </div>
+            </div>
+            <div class="column_right">
+                <h5>Tu ejecutivo de negocio:</h5>
+                <div class="card-business c-flex">
+                    <figure>
+                        <img [src]="data.executive.image">
+                    </figure>
+                    <div>
+                        <h4>{{data.executive.name}}</h4>
+                        <span class="area">Area: {{data.executive.area}}</span>
+                        <div class="contact-item"><i class="icon-call-2"></i>{{data.executive.phone}}</div>
+                        <div class="contact-item"><i class="icon-add-mail"></i>{{data.executive.email}}</div>
+                    </div>
+                    <a class="btn gnrl" href="{{'mailto:' + data.executive.email}}">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>

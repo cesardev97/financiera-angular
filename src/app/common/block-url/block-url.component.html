@@ -1,0 +1,11 @@
+<div class="block_link_ctn">
+    <div class="img_wrap">
+        <img class="block_image" [src]="imageBlock">
+    </div>
+    <div class="block_titles">
+        <h2>{{titleBloq}}</h2>
+        <span>{{subtitleBlock}}</span>
+    </div>
+    <a [routerLink]="urlBlock" class="btn gnrl" *ngIf="typeUrl==='internal'">{{textBtnBlock}}</a>
+    <a [href]="urlBlock" target="_blank" class="btn gnrl" *ngIf="typeUrl==='external'">{{textBtnBlock}}</a>
+</div>

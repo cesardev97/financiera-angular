@@ -1,0 +1,37 @@
+
+:root {
+    --theme-font-size: 56%;
+    --f-primary: 'Montserrat';
+    --f-secondary: 'Comfortaa';
+    
+    --color-light: #FFFFFF;
+    --color-light-50: #F1F1F1;
+    --color-light-100: rgba(48, 142, 69, 0.1);
+    --color-pr-light: #44A75A;
+    --color-pr-50: #308E45;
+    --color-pr-100: #227743;
+    --color-pr-150: #01903E;
+    --color-sec-50: #FFC52F;
+    --color-sec-100: #F8DC06;
+    --color-sec-150: #FFDD00;
+    --color-gray-100: #9A9A9A;
+    --color-gray-200: #686868;
+
+    --padding-ctn: 16px;
+    --pading-content-mob: 16px;
+
+    @include mq-min($md) {
+        --padding-ctn: 50px;
+    }
+    @include mq-min($lg2) {
+        --padding-ctn: 8.8rem;
+    }
+    @include mq-min($xl){
+        --theme-font-size: 62.5%
+    }
+}
+
+:root {
+    --paragraph-size: 1.6rem
+    --paragraph-alt: 1.5;
+}

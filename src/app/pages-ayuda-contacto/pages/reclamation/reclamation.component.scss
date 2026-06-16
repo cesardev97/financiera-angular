@@ -1,0 +1,43 @@
+@import "mixins";
+
+.differences {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    .title {
+        margin-bottom: 6rem;
+    }
+    .differences_swiper {
+        
+        .card .card-text {
+            min-height: 10rem;
+        }
+    }
+    @include mq-min($md) {
+        padding-top: 3.6rem;
+        padding-bottom: 8.5rem;
+    }
+    @include mq-min($lg2) {
+        .container {
+            margin: 0 auto;
+            max-width: 76%;
+        }
+    }
+}
+
+.attention {
+    padding: 50px 0;
+    .titles {
+        margin-bottom: 3.2rem;
+    }
+    .attention_swiper {
+        .card .card-text {
+            min-height: 7.2rem;
+        }
+    }
+    @include mq-min($lg2) {
+        .container {
+            margin: 0 auto;
+            max-width: 90%;
+        }
+    }
+}

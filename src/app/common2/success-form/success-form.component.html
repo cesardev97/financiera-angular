@@ -1,0 +1,18 @@
+<section [ngClass]="styleClass">
+    <div class="success-ctn">
+        <div class="img-wrap" *ngIf="image">
+            <img [src]="image" alt="Mensaje Exitoso">
+        </div>
+        <div class="success-description">
+            <img class="check-img" src="/assets/images/utils/check.svg">
+            <h2>{{title}}</h2>
+            <div class="paragraph">
+                <p>{{description}}</p>
+            </div>
+            <div class="async-text" *ngIf="objResponse">
+                <p *ngIf="objResponse.mensajeLargo" [innerHtml]="objResponse.mensajeLargo"></p>
+                <p *ngIf="objResponse.mensajeCorto">{{objResponse.mensajeCorto}}</p>
+            </div>
+        </div>
+    </div>
+</section>

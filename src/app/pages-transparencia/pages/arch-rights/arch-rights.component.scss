@@ -1,0 +1,47 @@
+@import "mixins";
+
+.archs_list {
+    padding: 32px 0;
+    .title {
+        margin-bottom: 16px;
+    }
+    @include mq-min($md) {
+        padding-top: 7.7rem;
+        padding-bottom: 7.2rem;
+    }
+    @include mq-min($lg) {
+        .title {
+            margin-bottom: 6.6rem;
+        }
+    }
+    @include mq-min($lg2) {
+        .container {
+            margin: 0 auto;
+            max-width: 72%;
+        }
+    }
+}
+
+.archs_req {
+    padding-top: 26px;
+    padding-bottom: 82px;
+    .title {
+        margin-bottom: 24px;
+    }
+    @include mq-min($md) {
+        padding-top: 10rem;
+        padding-bottom: 9rem;
+        .title {
+            margin-bottom: 3rem;
+        }
+    }
+    @include mq-min($lg) {
+        .archs_req_wrap {
+            margin: 0 auto;
+            max-width: 76%;
+        }
+        .decorated-img {
+            margin-left: 13rem;
+        }
+    }
+}

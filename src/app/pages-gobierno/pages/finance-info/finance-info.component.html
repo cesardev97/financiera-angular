@@ -1,0 +1,44 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="information_first information bg-gray">
+    <div class="container max">
+        <h2 class="title center">{{acf.title_information}}</h2>
+        <div class="tabs_wrap documents-ctn">
+            <div class="tab_titles">
+                <h5 class="tab_title active">{{acf.auditados?.title}}</h5>
+            </div>
+            <div class="tab_items documents">
+                <a *ngFor="let item of acf.auditados?.documents"
+                    class="document_item" [href]="item.document.url" target="_blank"
+                >
+                    <h5 class="document_title">{{item.file_name}}</h5>
+                    <div class="type-document" *ngIf="item.document.subtype == 'pdf'">
+                        <i class="icon icon-adobe"></i>Adobe PDF
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="information_second information">
+    <div class="container max">
+        <div class="tabs_wrap documents-ctn">
+            <div class="tab_titles">
+                <h5 class="tab_title active">{{acf.risk_classification?.title}}</h5>
+            </div>
+            <div class="tab_items documents">
+                <a *ngFor="let item of acf.risk_classification?.documents"
+                    class="document_item" [href]="item.document.url" target="_blank"
+                >
+                    <h5 class="document_title">{{item.file_name}}</h5>
+                    <div class="type-document" *ngIf="item.document.subtype == 'pdf'">
+                        <i class="icon icon-adobe"></i>Adobe PDF
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

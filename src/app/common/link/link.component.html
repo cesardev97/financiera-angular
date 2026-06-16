@@ -1,0 +1,29 @@
+<a [ngClass]="classUrl" [routerLink]="urls[0]" *ngIf="typeUrl==='internal'">
+    <ng-container *ngIf="!isContent; else content">
+        {{labelBtn}}
+    </ng-container>
+</a>
+
+<a [ngClass]="classUrl" [href]="urls[1]" target="_blank" *ngIf="typeUrl==='external'">
+    <ng-container *ngIf="!isContent; else content">
+        {{labelBtn}}
+    </ng-container>
+</a>
+
+<a [ngClass]="classUrl" [href]="urls[2]" target="_blank" *ngIf="typeUrl==='download' && urls[2]">
+    {{labelBtn || 'Descargar'}}<i class="icon-download"></i>
+</a>
+
+<a [ngClass]="classUrl" routerLink="./" [fragment]="urls[3]" *ngIf="typeUrl==='section' && urls[3]">
+    {{labelBtn}}
+</a>
+
+
+<ng-container *ngIf="typeUrl==='none'">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+</ng-container>
+
+
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>

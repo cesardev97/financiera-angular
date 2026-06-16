@@ -1,0 +1,219 @@
+<app-simple-layout titlePage="Solicitud de derecho ARCO" [showMenuMob]="true">
+    <div class="arch_request" *ngIf="!successSubmit; else successForm">
+        <div class="form-content container max">
+            <div class="form-image">
+                <img src="assets/images/utils/image-ahorro-form.png">
+            </div>
+            <div class="form-req-wrap min">
+                <h4 class="label-form-2">Realiza tu solicitud completando el siguiente formulario</h4>
+                <h3 class="label-form-1">Datos del titular o datos personales</h3>
+                <div class="compl-form-wrap">
+                    <form #f="ngForm" (ngSubmit)="send(f)" [formGroup]="formG" [ngClass]="{'sending': isSending}">
+                        <div class="form-group">
+                            <label>Nombre completo</label>
+                            <mat-form-field appearance="outline">
+                                <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                    matInput formControlName="names" type="text" maxlength="25" />
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group min">
+                            <label>Apellido paterno</label>
+                            <mat-form-field appearance="outline">
+                                <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                    matInput formControlName="lastname1" type="text" maxlength="25" />
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group min">
+                            <label>Apellido materno</label>
+                            <mat-form-field appearance="outline">
+                                <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                    matInput formControlName="lastname2" type="text" maxlength="25" />
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group min">
+                            <label>Tipo de documento</label>
+                            <mat-form-field class="wrap-mat-select" appearance="outline">
+                                <mat-label>Seleccione</mat-label>
+                                <mat-select formControlName="document_type">
+                                    <mat-option *ngFor="let item of utils.personDocuments" [value]="item"
+                                    >{{item.desDocumento}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>  
+                        </div>  
+                        <div class="form-group min">
+                            <label>Número documento</label>
+                            <mat-form-field appearance="outline">
+                                <input placeholder="Ingrese" (keypress)="hService.onlyNumbers($event)" 
+                                    matInput formControlName="document_number" type="text" maxlength="25" />
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                            <label>Adjuntar documentos</label>
+                            <mat-form-field class="wrap-input-file" appearance="outline">
+                                <input matInput readonly placeholder="Seleccionar un archivo" (click)="fileInput.click()" 
+                                    formControlName="documents"
+                                    [value]="f.value['documents']?.name" 
+                                />
+                                <input hidden (change)="onFileSelected($event, 'documents')" 
+                                    #fileInput type="file" id="file"
+                                    accept=".pdf"
+                                />
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                            <label>Domicilio</label>
+                            <mat-form-field  appearance="outline">
+                                <input placeholder="Ingrese su dirección" matInput formControlName="address" type="text" maxlength="100" />
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <mat-form-field  appearance="outline">
+                                <input placeholder="Ingrese" matInput formControlName="email" type="email" maxlength="50" />
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                            <label>¿Es un representante legal?</label>
+                            <mat-radio-group formControlName="legal_representative" 
+                                (change)="isRepresentative()">
+                                <mat-radio-button value="S">Si</mat-radio-button>
+                                <mat-radio-button value="N" [checked]="true">No</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="form-divider"></div>
+                        <div class="conditional-form-groups" *ngIf="formG.value['legal_representative'] == 'S'">
+                            <h3 class="label-form-1">Datos del representante legal del titular de los datos personales</h3>
+                            <div class="form-group">
+                                <label>Nombre completo</label>
+                                <mat-form-field appearance="outline">
+                                    <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                        matInput formControlName="repr_names" type="text" maxlength="25" />
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group min">
+                                <label>Apellido paterno</label>
+                                <mat-form-field appearance="outline">
+                                    <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                        matInput formControlName="repr_lastname1" type="text" maxlength="25" />
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group min">
+                                <label>Apellido materno</label>
+                                <mat-form-field appearance="outline">
+                                    <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                        matInput formControlName="repr_lastname2" type="text" maxlength="25" />
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group min">
+                                <label>Tipo de documento</label>
+                                <mat-form-field class="wrap-mat-select" appearance="outline">
+                                    <mat-label>Seleccione</mat-label>
+                                    <mat-select formControlName="repr_documentType">
+                                        <mat-option *ngFor="let item of utils.personDocuments" [value]="item"
+                                        >{{item.desDocumento}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>  
+                            </div>  
+                            <div class="form-group min">
+                                <label>Número documento</label>
+                                <mat-form-field appearance="outline">
+                                    <input placeholder="Ingrese" (keypress)="hService.onlyNumbers($event)" 
+                                        matInput formControlName="repr_documentNumber" type="text" maxlength="25" />
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <label>Adjuntar documentos</label>
+                                <mat-form-field class="wrap-input-file" appearance="outline">
+                                    <input matInput readonly placeholder="Seleccionar un archivo" (click)="fileInput2.click()" 
+                                        formControlName="repr_documents"
+                                        [value]="f.value['repr_documents']?.name" 
+                                    />
+                                    <input hidden (change)="onFileSelected($event, 'repr_documents')" 
+                                        #fileInput2 type="file" id="file2"
+                                        accept=".pdf"
+                                    />
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <label>Documento que acredite representación</label>
+                                <mat-form-field class="wrap-input-file" appearance="outline">
+                                    <input matInput readonly placeholder="Seleccionar un archivo" (click)="fileInput3.click()" 
+                                        formControlName="repr_document2"
+                                        [value]="f.value['repr_document2']?.name" 
+                                    />
+                                    <input hidden (change)="onFileSelected($event, 'repr_document2')" 
+                                        #fileInput3 type="file" id="file3"
+                                        accept=".pdf"
+                                    >
+                                </mat-form-field>
+                            </div>
+                            <div class="form-divider"></div>
+                        </div>
+        
+                        <h3 class="label-form-1">Petición</h3>
+                        <div class="form-group">
+                            <label>Tipo de petición</label>
+                            <mat-radio-group formControlName="request_type">
+                                <mat-radio-button value="INFO">Información</mat-radio-button>
+                                <mat-radio-button value="ACC">Acceso</mat-radio-button>
+                                <mat-radio-button value="REC">Rectificación</mat-radio-button>
+                                <mat-radio-button value="OPO">Oposición</mat-radio-button>
+                                <mat-radio-button value="CAN">Cancelación</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="form-group min">
+                            <label>Banco de datos relacionado</label>
+                            <mat-form-field class="wrap-mat-select" appearance="outline">
+                                <mat-label>Seleccione</mat-label>
+                                <mat-select formControlName="bank_data">
+                                    <mat-option *ngFor="let item of arcoService.bancoDatos" [value]="item"
+                                    >{{item.desBancoDatos}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>  
+                        </div>  
+                        <div class="form-group">
+                            <label>Descripción de la petición</label>
+                            <mat-form-field appearance="outline">
+                                <textarea placeholder="Ingrese"
+                                    matInput formControlName="description" type="text" rows="4" maxlength="600"></textarea>
+                            </mat-form-field>
+                        </div>
+
+                        <h3 class="title-field">Agrega documentos si asi lo deseas</h3>
+                        <div class="drop-file">
+                            <app-dropzone (outFiles)="onDropFile($event)">
+                            </app-dropzone>
+                        </div>
+
+                        <div class="recaptcha-wrap">
+                            <re-captcha formControlName="recaptcha">
+                            </re-captcha>
+                        </div>
+
+                        <span class="protection-policy">
+                            <mat-checkbox formControlName="accept_policies">
+                                <p>Acepto la <a href="/transparencia/politica-de-proteccion-de-datos-personales" target="_blank">
+                                    Política de protección de datos Personales</a>
+                                </p>
+                            </mat-checkbox>
+                        </span>
+        
+                        <button class="btn gnrl form-btn"
+                            [disabled]="formG.invalid">Enviar solicitud</button>
+                    </form>
+                    <div *ngIf="respStatus" class="error">
+                        {{respStatus}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #successForm>
+        <app-success-form
+            type="product"
+            [objResponse]="respData"
+            [email]="formG.value['email']"
+        >
+        </app-success-form>
+    </ng-template>
+</app-simple-layout>

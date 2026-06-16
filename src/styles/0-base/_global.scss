@@ -1,0 +1,129 @@
+@import "~swiper/swiper-bundle.css";
+
+body {
+    #header {
+        transition: height .25s ease-in-out;
+    }
+    .header_modules {
+        transition: .25s ease-in-out;
+        clip-path: inset(0 0 0 0);
+        transition-property: clip-path, height;
+    }
+    &.hide-header {
+        .header_modules, #header {
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+        }
+        .header_modules {
+            clip-path: inset(0 0 100% 0);
+        }
+    } 
+    &.hide-footer {
+        #footer {
+            display: none;
+        }
+    }
+}
+
+.logo {
+    max-width: 146px;
+    display: block;
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    @include mq-min($md){
+        max-width: 20.2rem;
+    }
+}
+
+.nav_simple {
+    display: flex;
+    align-items: center;
+    .nav-title {
+        font-weight: 600;
+        font-size: 1.6rem;
+        margin-left: 6rem;
+    }
+}
+
+.banner {
+    position: relative;
+    @include mq-min($lg) {
+        &::before{
+            content: '';
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            z-index: 1;
+            height: 100%;
+            left: 0;
+        }
+    }
+}
+
+.decorated-img {
+    max-height: 40.34rem;
+    @include mq-min($md) {
+        max-width: 38.326rem;
+    }
+}
+
+.characteristic-img {
+    @include mq-min($md) {
+        margin-left: 11rem;
+        margin-top: -5rem;
+    }
+}
+
+.img-wrap {
+    display: flex;
+    @include mq($md) {
+        margin-bottom: 15px;
+    }
+}
+
+.decorated-img, .characteristic-img, .img-wrap img {
+    max-width: 58%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    @include mq-min($md) {
+        max-width: 38.326rem;
+    }
+}
+
+.video-center .video_wrap{
+    margin: 0 auto;
+}
+
+.no-image {
+    background: #F9F9F9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        height: auto;
+        width: auto;
+    }
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
+}
+
+.mb-6 {
+    margin-bottom: 6.2rem;
+}
+
+

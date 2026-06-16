@@ -1,0 +1,12 @@
+<div class="modal-ctn success-modal-ctn">
+    <span class="icon-close" (click)="closeDialog()"></span>
+    <div class="modal-body">
+        <app-success-form
+            image=""
+            [email]="data.email"
+            [objResponse]="data.response"
+            styleClass="success-no-image-wrap"
+        >
+        </app-success-form>
+    </div>
+</div>

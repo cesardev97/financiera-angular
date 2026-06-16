@@ -1,0 +1,15 @@
+<div class="modal-ctn">
+    <span class="icon-close" (click)="onNoClick()"></span>
+    <div class="modal-body">
+        <h2 class="title center" *ngIf="data.title">{{data.title}}</h2>
+        <mat-dialog-content>
+            <div class="paragraph" *ngIf="data.description"
+                [innerHtml]="data.description">
+            </div>
+        </mat-dialog-content>
+    </div>
+</div>
+
+
+
+

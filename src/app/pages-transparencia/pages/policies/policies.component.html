@@ -1,0 +1,37 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="policies">
+    <div class="container">
+        <h2 class="title center">{{acf.policy_title}}</h2>
+        <div class="c-flex">
+            <div class="img-wrap">
+                <img class="decorated-img" [src]="acf.policy_image" alt="">
+            </div>
+            <div class="paragraph_wrap">
+                <div class="paragraph" [innerHtml]="acf.policy_description">
+                </div>
+                <app-link
+                    typeUrl="download"
+                    classUrl="btn border downld reverse"
+                    [labelBtn]="acf.policy_btn"
+                    [urls]="['', '', acf.policy_document]"
+                ></app-link>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container max mb-6">
+    <div class="block_link_wrap b-3 bg-1">
+        <app-block-url
+            [titleBloq]="acf.faq_title || opt.faq_title"
+            [subtitleBlock]="acf.faq_subtitle || opt.faq_subtitle"
+            [imageBlock]="acf.faq_image || opt.faq_image"
+            [textBtnBlock]="acf.faq_btn_txt || opt.faq_btn_txt"
+            [urlBlock]="acf.faq_url || opt.faq_url"    
+        >
+        </app-block-url>    
+    </div>
+</div>

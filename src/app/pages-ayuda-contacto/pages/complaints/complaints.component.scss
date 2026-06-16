@@ -1,0 +1,195 @@
+@import "mixins";
+
+.channels_descripcion {
+    padding-top: 24px;
+    padding-bottom: 40px;
+    .titles {
+        margin-bottom: 3.4rem;
+    }
+    .description_swiper {
+        .swiper-wrapper {
+            .card {
+                .card-title {
+                    min-height: 9rem;
+                    margin: 0 1rem;
+                }
+            }
+        }
+        @include mq-min($lg2) {
+            .swiper-wrapper { 
+                flex-wrap: wrap;
+                justify-content: center;
+                .swiper-slide {
+                    width: fit-content !important;
+                }
+                .card {
+                    width: 30rem;
+                    margin-bottom: 2.4rem;
+                }
+            }
+        }
+    }
+    @include mq-min($md) {
+        padding-top: 3.6rem;
+        padding-bottom: 8rem;
+    }
+    @include mq-min($lg2){
+        .container {
+            margin: 0 auto;
+            max-width: 68%;
+        }
+    }
+}
+
+.complaints {
+    padding-top: 24px;
+    padding-bottom: 20px;
+    .title {
+        margin-bottom: 16px;
+    }
+    .complaints_ctn {
+        @include mq-min($lg2){
+            margin: 0 auto;
+            max-width: 62%;
+        }
+    }
+    .complaints_wrap {
+        .complaint_channels {
+            padding-bottom: 24px;
+            @include mq($md) {
+                .column_right {
+                    margin-top: 16px;
+                }
+            }
+        }
+        .complaints_colors {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .column_left {
+                h3, span {
+                    color: var(--color-light);
+                }
+                img {
+                    max-height: 5rem;
+                }
+            }
+        }
+    }
+    .block {
+        border-radius: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        h3 {
+            font-weight: 600;
+            font-size: 2.8rem;
+            line-height: 30px;
+        }
+        .column_left {
+            display: flex;
+            align-items: center;
+            margin-right: 2rem;
+            img {
+                margin-right: 1.6rem;
+            }
+        }
+    }
+    @include mq-min($md) {
+        padding: 8.8rem 0;
+        .title {
+            margin-bottom: 5.2rem;
+        }
+        .block h3 {
+            line-height: 1.4;
+        }
+        .complaints_wrap .complaint_channels {
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #C4C4C4;
+            margin-bottom: 5rem;
+        }
+    }
+}
+
+.channel_item {
+    border: 2px solid #C2C2C2;
+    margin-bottom: 2.4rem;
+    padding: 24px 16px 24px 16px;
+    h3, h4, span {
+        color: #686868;
+    } 
+    img {
+        max-height: 6.2rem;
+    }
+    @include mq($sm) {
+        h3 {
+            font-size: 24px;
+        }
+    }
+    .column_right {
+        text-align: right;
+        h4, a {
+            font-weight: 600;
+            font-size: 20px;
+            text-align: inherit;
+            @include mq-min($md) {
+                font-size: 2.4rem;
+            }
+        }
+        h4 {
+            margin-bottom: 8px;
+        }
+        a {
+            color: #227743;
+            word-break: break-all;
+            letter-spacing: -0.6px;
+        }
+        @include mq($md) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+    @include mq-min($md) {
+        padding: 2.4rem 4rem;
+    }
+}
+
+.color_item {
+    padding: 18px 18px 18px 24px;
+    box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+    margin-bottom: 24px;
+    width: 100%;
+    @include mq($sm) {
+        .column_left {
+            img {
+                display: none;
+            }
+            h3 {
+                font-size: 20px;
+            }
+        }
+    }
+    @include mq-min($md) {
+        width: 49%;
+        padding: 2.4rem 4rem 2.4rem 2.4rem;
+    }
+}
+
+.recomendations {
+    padding-top: 24px;
+    padding-bottom: 16px;
+    .titles {
+        margin-bottom: 4rem;
+    }
+    @include mq-min($md) {
+        padding-top: 5rem;
+        padding-bottom: 6.5rem;
+    }
+    @include mq-min($lg2) {
+        .container {
+            margin: 0 auto;
+            max-width: 90%;
+        }
+    }
+}

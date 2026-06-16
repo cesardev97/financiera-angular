@@ -1,0 +1,19 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="links_sct bg-gray">
+    <div class="container max">
+        <h2 class="title center">{{acf.links_title}}</h2>
+        <div *ngFor="let item of acf.links_list" class="link_item c-flex">
+            <figure class="link_img_wrap">
+                <img [src]="item.imagen" alt="">
+            </figure>
+            <div class="description">
+                <h2 class="link_title">{{item.title}}</h2>
+                <div class="paragraph" [innerHtml]="item.description"></div>
+                <a class="btn gnrl" [href]="item.url" target="_blank">{{acf.label_btn}}</a>
+            </div>
+        </div>
+    </div>
+</section>

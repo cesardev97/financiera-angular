@@ -1,0 +1,219 @@
+<app-banner-page [bannerFields]="acf" [internalUrl]="productURL"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="product_definition" 
+    [ngClass]="{'bg-gray': !acf.has_characteristics && acf.has_benefits && acf.has_simluator}">
+    <div class="container">
+        <div class="definition">
+            <h2 class="title center">{{acf.title_definition}}</h2>
+            <div [innerHtml]="acf.text_definition"></div>
+        </div>
+    </div>
+</section>
+
+<div [ngClass]="{'c-flex c-reverse': productID === 1985}">
+    <section class="product_benefits" *ngIf="acf.has_benefits"
+        [ngClass]="{'bg-gray': acf.has_characteristics || acf.has_table}">
+        <div class="container">
+            <h2 class="title center">{{acf.title_benefits}}</h2>
+            <div class="c-flex">
+                <div class="img-wrap">
+                    <img class="decorated-img" [src]="acf.image_benefit" alt="">
+                </div>
+                <div class="paragraph_wrap">
+                    <div class="paragraph" [innerHtml]="acf.text_benefits"></div>
+                    <a class="btn gnrl" [routerLink]="productURL">{{acf.btn_text_request}}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="product_characteristic" *ngIf="acf.has_characteristics">
+        <div class="container">
+            <h2 class="title">{{acf.title_characteristics}}</h2>
+            <div class="c-flex r-reverse j-end">
+                <div>
+                    <img class="characteristic-img" [src]="opt2.image_characteristics" alt="">
+                </div>
+                <div class="paragraph_wrap">
+                    <div class="paragraph" [innerHtml]="acf.text_charasteristic"></div>
+                    <a class="btn gnrl" [routerLink]="productURL" *ngIf="acf.char_has_button">
+                        {{acf.btn_text_request}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="product_carrousel" *ngIf="acf.has_carrousel">
+    <div class="container max">
+        <div class="titles center">
+            <h2 class="title">{{acf.carrousel_title}}</h2>
+            <h4 class="subtitle_2">{{acf.carrousel_subtitle}}</h4>
+        </div>
+        <div class="swiper-card swiper-height-auto">
+            <swiper [config]="carrouselConfig">
+                <ng-template swiperSlide *ngFor="let item of acf.carrousel_list">
+                    <div class="product_carrousel_item card card-2">
+                        <img [src]="item.image" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">{{item.c_title}}</h4>
+                            <div class="text" [innerHtml]="item.text"></div>
+                        </div>
+                    </div>
+                </ng-template>
+            </swiper>
+            <div class="product-slider-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="product_table" *ngIf="acf.has_table"
+    [ngClass]="{'bg-gray': !acf.has_benefits}">
+    <div class="titles center">
+        <h2 class="title center">{{acf.title_table}}</h2>
+        <p>{{acf.subtitle_table}}</p>
+    </div>
+    <div class="table-wrap full" [ngClass]="{'table-desktop': acf.table_content?.header.length > 2}">
+        <table class="table-striped">
+            <thead *ngIf="acf.table_content?.header">
+                <tr>
+                    <th *ngFor="let head of acf.table_content?.header">{{head.c}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of acf.table_content?.body; index as ind;">
+                    <td *ngFor="let item of row; index as ind2;">
+                        <span *ngIf="acf.last_row_btns 
+                            && (acf.table_content?.body.length - 1) == ind  
+                            && item.c; else columnItem">
+                            <a class="btn gnrl" *ngIf="acf.table_content?.header.length > 2; else noParams"
+                                [routerLink]="productURL" [queryParams]="{opcion: ind2}">
+                                {{item.c}}
+                            </a>
+                            <ng-template #noParams>
+                                <a class="btn gnrl" [routerLink]="productURL">
+                                    {{item.c}}
+                                </a>
+                            </ng-template>
+                        </span>
+                        <ng-template #columnItem>
+                            {{item.c}}
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-wrap full table-mobile" *ngIf="acf.table_content?.header.length > 2">
+        <div class="table-h-mobile">
+            <label>{{acf.table_label_dropdown}}</label>
+            <mat-select [(value)]="selectedTableOption"
+                (selectionChange)="onSelectTable($event.value)" required>
+                <mat-option [value]="ind + 1" *ngFor="let option of listOptions; index as ind;">
+                    {{option}}
+                </mat-option> 
+            </mat-select>
+        </div>
+        <table class="table-striped">
+            <tbody>
+                <tr *ngFor="let rows of acf.table_content?.body; index as ind;">
+                    <td>
+                        {{rows[0].c}}
+                    </td>
+                    <td>
+                        <ng-container 
+                            *ngIf="acf.last_row_btns 
+                            && (acf.table_content?.body.length - 1) != ind;">
+                            {{arrayFilter[ind][0].c}}
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="wrap-button center">
+                <a class="btn gnrl"
+                [routerLink]="productURL" [queryParams]="{opcion: selectedTableOption}">
+                {{arrayFilter[acf.table_content?.body.length - 1][0].c}}
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="product_video" *ngIf="acf.has_video">
+    <div class="container">
+        <h2 class="title center">{{acf.video_title}}</h2>
+        <app-video
+            [videoImage]="acf.video_portrait"
+                [videoUrl]="acf.video_url"
+        ></app-video>
+    </div>
+</section>
+
+<section class="product_simulator bg-gray" *ngIf="acf.has_simluator" id="simulador">
+    <div class="titles center">
+        <h2 class="title">{{acf.title_simulator}}</h2>
+        <h4 class="subtitle_2">{{acf.subtitle_simulator}}</h4>
+    </div>
+    <div class="simulator_ctn">
+        <app-simulator-general [simulator]="simulator"></app-simulator-general>
+    </div>
+</section>
+
+<section class="product_types tabs_sect" *ngIf="acf.has_tab_types">
+    <div class="container max">
+        <h2 class="title">{{acf.title_types}}</h2>
+        <div class="tabs_wrap">
+            <mat-tab-group>
+                <mat-tab *ngFor="let item of acf.types_list; let ind = index"
+                    [label]="item.title">
+                    <ng-template matTabContent>
+                        <div class="tab_item">
+                            <div class="tab_column_info">
+                                <div class="paragraph" [innerHtml]="item.text"></div>
+                                <a class="btn gnrl" [routerLink]="productURL"   
+                                    [queryParams]="{opcion: ind + 1}">
+                                    {{acf.button_banner_text}}
+                                </a>
+                            </div>
+                            <div>
+                                <img class="tab_item_img" [src]="item.image">
+                            </div>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</section>
+
+<section class="tabs_sect" id="documentos">
+    <app-tabs
+        [listTabs]="acf.information_tabs"
+    ></app-tabs>
+</section>
+
+<section class="faq_link_product">
+    <div class="container max">
+        <div class="block_link_wrap b-3 bg-2">
+            <app-block-url
+                [titleBloq]="acf.faq_title || opt.faq_title"
+                [subtitleBlock]="acf.faq_subtitle || opt.faq_subtitle"
+                [imageBlock]="acf.faq_image || opt2.faq_image"
+                [textBtnBlock]="acf.faq_btn_txt || opt.faq_btn_txt"
+                [urlBlock]="acf.faq_url || opt2.faq_url"    
+            >
+            </app-block-url>    
+        </div>
+        
+    </div>
+</section>
+
+<app-links-interest *ngIf="acf.has_interest_links"
+    className="t-2"
+    [titleLinks]="opt2.title_link_interest"
+    [listLinks]="acf.interest_links"
+>
+</app-links-interest>

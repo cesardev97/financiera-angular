@@ -1,0 +1,67 @@
+<app-banner-page [bannerFields]="acf" [internalUrl]="urlForm"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="differences bg-gray">
+    <div class="container">
+        <h2 class="title center">{{acf.differences_title}}</h2>
+        <div class="differences_swiper">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="differencesSwiper">
+                    <ng-template swiperSlide *ngFor="let item of acf.differences_list">
+                        <div class="card card-2">
+                            <img class="card-img-2" [src]="item.image" [alt]="item.title">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                                <div class="card-text">
+                                    <p>{{item.text}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="differences-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="attention">
+    <div class="container">
+        <div class="titles center">
+            <h2 class="title">{{acf.attention_title}}</h2>
+            <div class="subtitle_2 paragraph" [innerHtml]="acf.attention_description"></div>
+        </div>
+        <div class="attention_swiper">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="attentionSwiper">
+                    <ng-template swiperSlide *ngFor="let item of acf.attention_list">
+                        <div class="card card-2">
+                            <img class="card-img-1" [src]="item.image" [alt]="item.title">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                                <div class="card-text">
+                                    <p>{{item.text}}</p>
+                                </div>
+                                <app-link
+                                    classUrl="btn gnrl"
+                                    [labelBtn]="item.btn_text"
+                                    [typeUrl]="item.type_url"
+                                    [urls]="[item.url_internal,item.url_external]"
+                                >
+                                </app-link>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="attention-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="tabs_sect">
+    <app-tabs
+        [listTabs]="acf.information_tabs"
+    ></app-tabs>
+</section>

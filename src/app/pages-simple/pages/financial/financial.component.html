@@ -1,0 +1,104 @@
+<app-simple-layout titlePage="Solicitud de reprogramación de deudas" 
+    [urlBack]="urlBack"
+    [hasBanner]="true">
+    <div class="financial_request container max" *ngIf="!successSubmit; else successForm">
+        <div class="form-content">
+            <div class="form-image">
+                <img src="assets/images/utils/reprogramacion.png">
+            </div>
+            <div class="form-req-wrap min">
+                <div class="mb-2">
+                    <p>
+                        Luego de haberte informado sobre las características y las condiciones que te ofrecemos, completa tu solicitud de reprogramación, para lo cual debes llenar el formulario virtual que ponemos a tu disposición, colocando todos los datos que te solicitamos.
+                    </p>
+                </div>
+                <form #f="ngForm" (ngSubmit)="send(f)" [formGroup]="formG" [ngClass]="{'sending': isSending}">
+                    <h3 class="label-form-2">Datos Personales</h3>
+                    <div class="form-group">
+                        <label>Nombre completo</label>
+                        <mat-form-field appearance="outline">
+                            <input placeholder="Ingrese" matInput formControlName="names" type="text" maxlength="25" />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group min">
+                        <label>Apellido paterno</label>
+                        <mat-form-field appearance="outline">
+                            <input placeholder="Ingrese" matInput formControlName="lastname1" type="text" maxlength="25" />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group min">
+                        <label>Apellido materno</label>
+                        <mat-form-field  appearance="outline">
+                            <input placeholder="Ingrese" matInput formControlName="lastname2" type="email" maxlength="25" />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group min">
+                        <label>Tipo de documento</label>
+                        <mat-form-field class="wrap-mat-select" appearance="outline">
+                            <mat-label>Seleccione</mat-label>
+                            <mat-select formControlName="type_document">
+                                <mat-option *ngFor="let item of utils.personDocuments" [value]="item"
+                                >{{item.desDocumento}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>  
+                    </div>      
+                    <div class="form-group min">
+                        <label>Número de documento</label>
+                        <mat-form-field appearance="outline">
+                            <input placeholder="Ingrese" (keypress)="hService.onlyNumbers($event)" 
+                                matInput formControlName="document_number" type="text" maxlength="25" />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <label>Seleccione un producto</label>
+                        <mat-form-field class="wrap-mat-select" appearance="outline">
+                            <mat-label>Seleccione</mat-label>
+                            <mat-select formControlName="product">
+                                <mat-option *ngFor="let item of utils.operaciones" [value]="item">
+                                    {{item.descripcion}}
+                                </mat-option> 
+                            </mat-select>
+                        </mat-form-field>  
+                    </div> 
+                    <div class="form-group min">
+                        <label>Email</label>
+                        <mat-form-field  appearance="outline">
+                            <input placeholder="Ingrese"
+                                matInput formControlName="email" type="email" maxlength="50" />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group min">
+                        <label>Número telefónico</label>
+                        <mat-form-field  appearance="outline">
+                            <input placeholder="Ingrese" (keypress)="hService.onlyNumbers($event)"
+                                matInput formControlName="phone_number" type="tel" maxlength="9" />
+                        </mat-form-field>
+                    </div>
+                    <div class="recaptcha-wrap">
+                        <re-captcha formControlName="recaptcha">
+                        </re-captcha>
+                    </div> 
+                    <div class="protection-policy">
+                        <mat-checkbox formControlName="policies">
+                            <p>Acepto la <a href="/transparencia/politica-de-proteccion-de-datos-personales" target="_blank">
+                                Política de protección de datos Personales</a>
+                            </p>
+                        </mat-checkbox>
+                    </div>
+                    <button class="btn gnrl form-btn" [disabled]="formG.invalid">Enviar</button>
+                </form>
+                <div *ngIf="respStatus" class="error">
+                    {{respStatus}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #successForm>
+        <app-success-form
+            type="financial"
+            [objResponse]="respData"
+            [email]="formG.value['email']"
+        >
+        </app-success-form>
+    </ng-template>
+</app-simple-layout>

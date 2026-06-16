@@ -1,0 +1,195 @@
+@import "mixins";
+
+
+.footer-wrap {
+    @include mq-min($lg) {
+        padding: 0 var(--padding-ctn);
+    }
+    @include mq($md) {
+        border-top: 0.8px solid #C2C2C2;
+    }
+}
+
+.footer_main {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    .column_options {
+        h5 {
+            font-weight: 700;
+            font-size: 16px;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+        ul li{
+            margin-bottom: 1.6rem;
+            list-style: none;
+            a {
+                font-weight: 600;
+                font-size: 1.4rem;
+                letter-spacing: -0.6px;
+                color: var(--color-gray-200);
+                display: block;
+                line-height: 1.4;
+            }
+        }
+        
+    }
+    .footer_menu {
+        display: none;
+    }
+    .footer_menu_mob {
+        margin-bottom: 44px;
+    }
+    @include mq($md) {
+        flex-direction: column;
+        .footer_right {
+            text-align: center;
+            padding: 0 var(--padding-ctn);
+        }
+    }
+    @include mq-min($md) {
+        padding-top: 4.4rem;
+        padding-bottom: 5.6rem;
+        border-bottom: 1px solid #C2C2C2;
+        .column_options {
+            h5 {
+                margin-bottom: 2.4rem;
+            }
+        }
+    }
+    @include mq-min($lg) {
+        .footer_menu {
+            display: flex;
+            width: 74%;
+            .column_options {
+                padding-right: 8rem;
+                margin-right: 2rem;
+                @include mq-min($lg) {
+                    width: 32%;
+                    padding-right: 8%;
+                }
+            }
+        }
+        .footer_right {
+            width: 26%;
+        }
+    }
+}
+
+.column_options {
+    .schedule_option {
+        margin-bottom: 24px;
+        span {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.6px;
+            color: var(--color-gray-200);
+            margin-bottom: 8px;
+            display: block;
+            @include mq-min($md) {
+                font-size: 1.4rem;
+            }
+        }
+        .number-icon {
+            display: inline-flex;
+            align-items: center;
+            img {
+                max-height: 2.65rem;
+                margin: 4.5px 2.5px;
+            }
+            .number {
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: -0.6px;
+                color: #000000;
+                margin-left: 8px;
+                @include mq-min($lg) {
+                    font-weight: 500;
+                    font-size: 2.8rem;
+                }
+            }
+        }
+    }
+    .social_links_wrap {
+        @include mq($md) {
+            padding-top: 20px;
+            .social_links {
+                justify-content: center;
+            }
+            h5 {
+                margin-bottom: 24px;
+            }
+        }
+    }
+    .social_links {
+        display: flex;
+        align-items: center;
+        a {
+            width: 24px;
+            height: 25px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            & + a {
+                margin-left: 24px;
+            }
+
+            img {
+                display: block;
+                width: 100%;
+            }
+            @include mq-min($md) {
+                height: 3.2rem;
+                width: 3.2rem;
+                & + a {
+                    margin-left: 1.6rem;
+                }
+            }
+        }
+        
+    }
+}
+
+.footer_bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 0;
+    .copyrigtht_text {
+        font-size: 1.4rem;
+        letter-spacing: -0.6px;
+        color: var(--color-gray-200);
+        margin-left: 1.2rem;
+        margin-right: 1.6rem;
+        line-height: 18px;
+        text-align: center;
+    }
+    .f-shortcodes {
+        display: flex;
+        a {
+            display: block;
+            img {
+                max-height: 7.6rem;
+            }
+            &:last-of-type {
+                margin-left: 3.2rem;
+            }
+        }
+    }
+    @include mq($md){
+        padding-left: var(--padding-ctn);
+        padding-right: var(--padding-ctn);
+        flex-direction: column;
+        .logo {
+            display: none;
+        }
+        .f-shortcodes {
+            margin-top: 16px;
+        }
+        .copyrigtht_text {
+            text-align: center;
+        }
+    }
+}
+

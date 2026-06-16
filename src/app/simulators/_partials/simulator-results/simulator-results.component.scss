@@ -1,0 +1,88 @@
+@import "mixins";
+
+.cuota-mensual {
+    margin: 0 auto;
+    padding: 16px 16px 33px 16px;
+    background-color: var(--color-light-50);
+    position: relative;
+    &.t1 {
+        max-width: 730px;
+    }
+    &.t2 {
+        max-width: 900px;
+        padding: 40px 25px;
+    }
+    .cuota-mensual-top {
+        margin-bottom: 25px;
+        @include mq($sm){
+            text-align: center;
+        }
+    }
+    @include mq($md) {
+        .btn_to_form {
+            margin-top: 14px;
+        }
+    }
+    @include mq-min($md) {
+        padding: 25px 50px 50px 50px;
+        .cuota-mensual-down {
+            padding-bottom: 10px;
+        }
+        .btn_to_form {
+            position: absolute;
+            top: 18%;
+            right: 56px;
+            width: 150px;
+        }
+    }
+    .notes {
+        margin-top: 15px;
+        span {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--color-gray-200);
+            display: block;
+        }
+    }
+}
+
+.cuota-mensual-head {
+    display: flex;
+    align-items: center;
+    column-gap: 76px;
+    margin-bottom: 26px;
+    span {
+        width: 20.5ch;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    strong {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+}
+
+.result-b-g {
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--color-pr-100);
+    margin-bottom: 28px;
+}
+
+.cuota-mensual-link {
+    font-size: 12px;
+    text-decoration: underline;
+    font-family: var(--f-primary);
+    font-weight: 500;
+    color: var(--color-pr-100);
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-top: 10px;
+    @include mq($sm) {
+        width: 100%;
+        margin-top: 24px;
+        margin-bottom: 10px;
+    }
+}

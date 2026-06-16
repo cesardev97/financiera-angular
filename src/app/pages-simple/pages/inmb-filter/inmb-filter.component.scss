@@ -1,0 +1,43 @@
+@import "mixins";
+
+.search_inmb2 {
+    padding: 5rem 0;
+}
+
+.inmb-search-wrap {
+    form .form-group {
+        &:not(:last-child) {
+            padding-bottom: 10px;
+            @include mq-min($lg){
+                padding-bottom: 0;
+                padding-right: 14px;
+            }
+        }
+    }
+    @include mq-min($md){
+        margin: 0 auto;
+        max-width: 80%;
+    }
+    @include mq-min($lg){
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.search-list-sect {
+    padding-top: 24px;
+    padding-bottom: 40px;
+    .inmb-count {
+        font-weight: 600;
+        font-size: 2.4rem;
+        color: #227743;
+        margin-bottom: 3rem;
+    }
+    @include mq-min($lg){
+        padding-top: 6.2rem;
+        padding-bottom: 7.4rem;
+    }
+}

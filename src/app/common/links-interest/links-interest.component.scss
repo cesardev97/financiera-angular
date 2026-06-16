@@ -1,0 +1,68 @@
+@import "mixins";
+
+.interest_links {
+    padding-top: 32px;
+    &.t-1 {
+        padding-bottom: 32px;
+        background: var(--color-light-100);
+        .titles {
+            margin-bottom: 4rem;
+        }
+    }
+    &.t-2 {
+        padding-bottom: 40px;
+        background: #F9F9F9;
+        .titles {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        @include mq-min($lg2) {
+            .swiper-wrapper {
+                justify-content: center;
+            }
+        }
+    }
+    @include mq-min($md) {
+        padding-top: 5rem;
+        &.t-1 {
+            padding-bottom: 5rem;
+        }
+        &.t-2 {
+            padding-bottom: 7rem;
+            .titles {
+                margin-bottom: 7.2rem;
+            }
+        }
+    }
+}
+
+.interest-link {
+    .interest-img {
+        height: 10.3rem;
+        width: 100%; 
+    }
+    .l-description-wrap {
+        max-height: 0;
+        transition: max-height 0.15s ease-out;
+        .l-description {
+            padding-top: 1.6rem;
+            p {
+                color: #FFFFFF;
+            }
+        }
+    }
+    
+    &.expand-link:hover {
+        .card-title {
+            color: #FFFFFF;
+        }
+        .l-description-wrap {
+            max-height: 90px;
+            transition: max-height 0.25s ease-in;
+        }
+        .card-body {
+            transition: all .3s ease-in-out;
+            background: var(--color-pr-50);
+        }
+    }
+}

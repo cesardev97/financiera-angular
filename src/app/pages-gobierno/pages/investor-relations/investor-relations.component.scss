@@ -1,0 +1,58 @@
+@import "mixins";
+
+.dividends {
+    padding-top: 24px;
+    padding-bottom: 26px;
+    .titles {
+        margin-bottom: 5rem;
+    }
+    @include mq-min($md) {
+        padding-top: 3.6rem;
+        padding-bottom: 9rem;
+    }
+}
+
+.info_shareholders {
+    margin-top: 24px;
+    margin-bottom: 40px;
+    .title {
+        margin-bottom: 24px;
+    }
+    .container {
+        max-width: 1300px !important;
+        margin: 0 auto;
+    }
+    .card {
+        .card-body {
+            padding-left: 1.75rem;
+            padding-right: 1.75rem;
+            .card-title {
+                min-height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include mq-min($md) {
+                    min-height: 7.5rem;
+                }
+            }
+        }
+        
+        img {
+            margin-top: 3.6rem;
+            margin-bottom: 2.4rem;
+        }
+    }
+    @include mq-min($md) {
+        margin: 6.6rem 0;
+        .title {
+            margin-bottom: 4.6rem;
+        }
+    }
+}
+
+.documents_shareholders {
+    padding: 6.4rem 0;
+    .title {
+        margin-bottom: 4rem;
+    }
+}

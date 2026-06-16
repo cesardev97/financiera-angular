@@ -1,0 +1,22 @@
+<div class="banner_page banner">
+    <figure class="banner_figure">
+        <picture>
+            <source media="(min-width: 860px)" [srcset]="bannerFields.image_banner">
+            <img [src]="bannerFields.image_mob_banner || bannerFields.image_banner">
+        </picture>
+    </figure>
+    <div class="banner_description">
+        <div>
+            <h1>{{bannerFields.title_banner}}</h1>
+            <h4 [innerHtml]="bannerFields.subtitle_banner"></h4>
+
+            <app-link *ngIf="bannerFields.type_url !== 'none'"
+                classUrl="btn yllw"
+                [labelBtn]="bannerFields.button_banner_text"
+                [typeUrl]="bannerFields.type_url"
+                [urls]="[internalUrl,bannerFields.b_ext_url, '', fragmentURL]"
+            >
+            </app-link>
+        </div>
+    </div>
+</div>

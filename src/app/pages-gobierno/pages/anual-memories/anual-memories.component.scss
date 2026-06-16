@@ -1,0 +1,21 @@
+@import "mixins";
+
+.memories {
+    margin-top: 5rem;
+    margin-bottom: 7.2rem;
+    .titles {
+        margin-bottom: 24px;
+        @include mq-min($md) {
+            margin-bottom: 4rem;
+        }
+    }
+    @include mq-min($lg) {
+        .container {
+            margin: 0 auto;
+            max-width: 85%;
+        }
+        .btns-slider-group {
+            padding-top: 10.4rem;
+        }
+    }
+}

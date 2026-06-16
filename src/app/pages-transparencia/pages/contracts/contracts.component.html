@@ -1,0 +1,46 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+
+<section class="ttc_documents">
+    <div class="container max">
+        <h2 class="title">{{acf.doc_title}}</h2>
+        <div class="c-flex">
+            <div class="ttc_tabs_wrap">
+                <mat-tab-group>
+                    <mat-tab *ngFor="let tab of acf.products_title_url" [label]="tab.tab_title">
+                        <ng-template matTabContent>
+                            <ul class="list_products">
+                                <li *ngFor="let prod of tab.products">
+                                    <a [routerLink]="prod.url | safe" fragment="documentos">
+                                        <span class="product-title">{{prod.title}}</span>
+                                        <span class="link">{{acf.doc_label_url}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+            <div class="ttc-image-wrap">
+                <img class="ttc-image" [src]="acf.doc_image">
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+<div class="container max mb-6">
+    <div class="block_link_wrap b-3 bg-1">
+        <app-block-url
+            [titleBloq]="acf.faq_title || opt.faq_title"
+            [subtitleBlock]="acf.faq_subtitle || opt.faq_subtitle"
+            [imageBlock]="acf.faq_image || opt.faq_image"
+            [textBtnBlock]="acf.faq_btn_txt || opt.faq_btn_txt"
+            [urlBlock]="acf.faq_url || opt.faq_url"    
+        >
+        </app-block-url>    
+    </div>
+</div>

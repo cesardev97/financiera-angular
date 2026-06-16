@@ -1,0 +1,93 @@
+@import "mixins";
+
+.cuota-mensual-grid {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    &.col-2 {
+        column-gap: 10px;
+        span {
+            min-width: 240px;
+        }
+        &.payment-top-right span {
+            min-width: 42%;
+        }
+    }
+    &.col-3 {
+        column-gap: 25px;
+        justify-content: space-between;
+        div {
+            min-width: 160px;
+        }
+        span {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+    span {
+        line-height: 1.4;
+        font-size: 14px;
+        font-family: var(--f-secondary);
+        color: var(--color-gray-200);
+    }
+    h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #828282;
+        margin-bottom: 8px;
+    }
+    .col_ctn {
+        div {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        @include mq($sm){
+            width: 100%;
+            div {
+                display: grid;
+                align-items: center;
+                grid-template-columns: 2fr 1fr;
+            }
+            span {
+                &:nth-child(2n) {
+                    margin-left: 20px;
+                    text-align: right;
+                }
+            }
+        }
+        @include mq-min($lg){
+            width: 30%;
+            &:first-child{
+                width: 225px;
+            }
+            &:last-child {
+                width: 300px;
+            }
+        }
+    }
+}
+
+
+.payment-title-cuota {
+    font-size: 20px;
+    font-family: var(--f-primary); 
+    font-weight: 500;
+    color: #000000;
+    line-height: 1.5;
+    strong{
+        font-size: 1.2em;
+        font-family: var(--f-primary);
+        font-weight: 600;
+    }
+    @include mq($sm) {
+        line-height: 1.2;
+    }
+}
+
+.payment-description-cuota {
+    font-size: 12px;
+    font-family: var(--f-secondary);
+    color: var(--color-gray-200);
+    margin-top: 16px;
+}

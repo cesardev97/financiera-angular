@@ -1,0 +1,40 @@
+<app-simple-layout titlePage="Venta de bienes" [showMenuMob]="true">
+    <breadcrumbs [breadcrumbs]="breadcrumbs">
+    </breadcrumbs>
+
+    <section class="search_inmb2 bg-gray">
+        <div class="inmb-search-wrap container">
+            <app-form-search>
+            </app-form-search>
+        </div>
+    </section>
+
+    <section class="search-list-sect cards-post-list" #listTop>
+        <div class="posts-list-wrap container">
+            <h4 class="inmb-count" [ngPlural]="totalSearch">
+                {{totalSearch}}
+                <ng-template ngPluralCase="1">Inmueble</ng-template>
+                <ng-template ngPluralCase="other">Inmuebles</ng-template> 
+            </h4>
+            <div class="swiper-card">
+                <swiper [config]="searchSwiper" (slideChange)="onSlideChange(listTop)">
+                    <ng-template swiperSlide *ngFor="let group of inmueblesList">
+                        <ng-container *ngFor="let item of group">
+                            <app-card-inmb-project 
+                                [post]="item" 
+                                [noImage]="objInmbs.noImage" 
+                                [labelBtn]="objInmbs.labelBtn"
+                            >
+                            </app-card-inmb-project>
+                        </ng-container>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="btns-slider-group gnrl custom-number">
+                <div class="search-prev swiper-navigation icon-left-arrow"></div>
+                <div class="search-pagination swiper-pagination number-pagination"></div>
+                <div class="search-next swiper-navigation icon-right-arrow"></div>
+            </div>
+        </div>
+    </section>
+</app-simple-layout>

@@ -1,0 +1,83 @@
+@import "mixins";
+
+.payments {
+    padding-bottom: 24px;
+    @include mq-min($md){
+        padding-bottom: 15rem;
+    }
+}
+
+.payments_swiper {
+    margin: 0 auto;
+    max-width: 90%;
+    .card {
+        .card-text {
+            min-height: 110px;
+            @include mq-min($md) {
+                min-height: 14rem;
+            }
+        }
+    }
+}
+
+.correspondent_agents {
+    .title {
+        margin-bottom: 2.4rem;
+    }
+    &.hide {
+        height: 0;
+        visibility: hidden;
+        overflow: hidden;
+    }
+    .agents_wrap {
+        padding-top: 58px;
+        padding-bottom: 48px;
+        .tabs_wrap {
+            .mat-tab-header {
+                border-bottom: 0;
+                .mat-tab-labels .mat-tab-label, 
+                .tab_titles .tab_title {
+                    width: fit-content;
+                }
+            }
+        }
+        @include mq-min($md) {
+            padding-top: 8rem;
+            padding-bottom: 6.4rem;
+        }
+        @include mq-min($lg) {
+            .payment_tab {
+                max-width: 70%;
+            }
+        }
+        @include mq-min($lg2) {
+            margin: 0 auto;
+            max-width: 78%;
+        }
+    }
+    .payment_rate {
+        padding-top: 5rem;
+        .title_rate {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #052320;
+            padding-bottom: 2rem;
+        }
+        table {
+            margin-top: 1rem;
+        }
+    }
+    .table-wrap {
+        max-width: 55.2rem;
+        table thead tr th:first-child,
+        table tbody tr td:first-child {
+            width: 35%;
+        }
+        &.hide {
+            display: none;
+        }
+        .btn {
+            margin-top: 2.4rem;
+        }
+    }
+}

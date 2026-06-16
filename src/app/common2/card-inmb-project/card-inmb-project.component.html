@@ -1,0 +1,67 @@
+<div class="{{type=='INMB'?'inmueble':'project'}}-card t1">
+    <span class="post-img-wrap">
+        <figure class="figure" *ngIf="post.thumbnail; else noImageT">
+            <img [src]="post.thumbnail">
+        </figure>
+        <ng-template #noImageT>
+            <img class="no-image" [src]="noImage">
+        </ng-template>
+    </span>
+    <div class="post-card-body">
+        <div class="post-description">
+            <ng-container *ngIf="type=='INMB'">
+                <div class="price">{{hService.getSymbolCurrency(post.fields.currency)}}
+                    <bdi>{{post.fields.price}}</bdi>
+                </div>
+                <h4 class="inmb-title">{{post.name}}</h4>
+                <div class="location icon-f">
+                    <i class="icon-locat-1 c1"></i><div>{{post.fields.location}}</div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="type=='PROJ'">
+                <h4 class="inmb-title">{{post.name}}</h4>
+                <div class="price">{{hService.getSymbolCurrency(post.fields.currency)}}
+                    <bdi>{{post.fields.price | number: '2.'}}</bdi>
+                </div>
+                <div class="short-description">
+                    <div>{{post.fields.short_description}}</div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="post-details">
+            <div class="inmb-details-list post-details-list" *ngIf="type=='INMB'">
+                <div class="terrain icon-f"><i class="icon-square c1"></i>
+                    <div>Área construida<span>{{post.fields.num_built_area}}</span></div>
+                </div>
+                <div class="terrain icon-f"><i class="icon-ruler c1"></i>
+                    <div>Área del terreno<span>{{post.fields.num_terrain_area}}</span></div>
+                </div>
+                <div class="inmb-serv" *ngIf="post.fields?.has_aditional">
+                    <div class="icon-f" *ngIf="post.fields.num_beds">
+                        <i class="icon-bed"></i>
+                        <div>{{post.fields.num_beds}}</div>
+                    </div>
+                    <div class="icon-f" *ngIf="post.fields.num_bathrooms">
+                        <i class="icon-bath"></i>
+                        <div>{{post.fields.num_bathrooms}}</div>
+                    </div>
+                    <div class="icon-f" *ngIf="post.fields.num_parking">
+                        <i class="icon-garage"></i>
+                        <div>{{post.fields.num_parking}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-details-list post-details-list" *ngIf="type=='PROJ'">
+                <div class="location icon-f"><i class="icon-locat-1 c1"></i>
+                    <div>{{post.fields.short_address}}</div>
+                </div>
+                <div class="terrain icon-f"><i class="icon-ruler c1"></i>
+                    <div>Area del terreno: <span>{{post.fields.num_terrain_area}}</span></div>
+                </div>
+            </div>
+            <div class="wrap-se-btn" [ngClass]="{'s-loading': isSearching}">
+                <a class="btn gnrl" (click)="searchInmbProject()">{{labelBtn}}</a>
+            </div>
+        </div>
+    </div>
+</div>

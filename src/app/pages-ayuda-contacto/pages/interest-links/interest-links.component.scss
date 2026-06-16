@@ -1,0 +1,81 @@
+@import "mixins";
+
+.links_sct {
+    padding: 24px 0;
+    .title {
+        margin-bottom: 24px;
+    }
+    @include mq-min($md) {
+        padding-top: 3.6rem;
+        padding-bottom: 8.4rem;
+        .title {
+            margin-bottom: 6.4rem;
+        }
+    }
+}
+
+.link_item {
+    display: flex;
+    align-items: center;
+    & + .link_item {
+        margin-top: 48px;
+        @include mq-min($md) {
+            margin-top: 8.5rem;
+        }
+    }
+    .link_img_wrap {
+        align-items: center;
+        border-radius: 16px;
+        overflow: hidden;
+        @include mq($md) {
+            margin-bottom: 24px;
+        }
+        @include mq-min($md) {
+            margin-right: 4.2rem;
+            width: 33.5rem;
+        }
+        @include mq-min($lg2) {
+            min-height: 29rem;
+        }
+    }
+    .description {
+        .link_title {
+            font-size: 16px;
+            font-weight: 700;
+            max-width: 34ch;
+            color: #686868;
+            margin-bottom: 24px;
+            @include mq($sm) {
+                text-align: center;
+            }
+            @include mq-min($md) {
+                font-size: 3.6rem;
+                margin-bottom: 1.6rem;
+            }
+        }
+        .paragraph {
+            p {
+                font-size: 1.5rem;
+                color: #686868;
+            }
+        }
+        .btn {
+            margin-top: 2.2rem;
+        }
+    }
+    @include mq-min($md) {
+        .link_img_wrap {
+            margin-right: 4.2rem;
+            width: 33.5rem;
+            img {
+                border-radius: 16px;
+            }
+        }
+        .description {
+            width: 72%;
+            .paragraph {
+                min-height: 10rem;
+            }
+        }
+    }
+}

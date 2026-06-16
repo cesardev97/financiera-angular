@@ -1,0 +1,27 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="faq_sct bg-gray">
+    <div class="tabs_wrap container max">
+        <h2 class="title">{{acf.faq_title}}</h2>
+        
+        <mat-tab-group>
+            <mat-tab *ngFor="let tab of acf.faq_list"
+                [label]="tab.tab_title">
+                <ng-template matTabContent>
+                    <div class="tab_column_info">
+                        <mat-accordion>
+                            <mat-expansion-panel *ngFor="let item2 of tab.questions_answers">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>{{item2.question}}</mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div  [innerHtml]="item2.answer"></div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</section>

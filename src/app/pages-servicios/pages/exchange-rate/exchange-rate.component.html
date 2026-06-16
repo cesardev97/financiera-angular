@@ -1,0 +1,107 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="exchange_information">
+    <div class="container c-flex j-end">
+        <div class="exchange_definition">
+            <h2 class="title">{{acf.title_info_simulator}}</h2>
+            <div class="paragraph"  [innerHtml]="acf.texto_descripcion_dimulador"></div>
+        </div>
+        <div class="exchange_form_wrap">
+            <h4>{{acf.title_simulator}}</h4>
+            <div class="exchange_values">
+                <span>{{acf.label_purchase}}: <bdi>{{acf.currency_symbol_pen}} {{acf.dollar_purchase}}</bdi></span>
+                <span>{{acf.label_sale}}: <bdi>{{acf.currency_symbol_pen}} {{acf.dollar_sale}}</bdi></span>
+            </div>
+            <form autocomplete="off">
+                <div class="exchange-items">
+                    <div class="exchange-group">
+                        <div class="type">
+                            <span class="code">{{codeSend}}</span> 
+                            <span class="symbol">{{symbolSend}}</span> 
+                        </div>
+                        <div class="input-group">
+                            <div class="title-amount"> Tengo {{labelSend}} 
+                                <img [src]="flagSend">
+                            </div>
+                            <div class="amount">
+                                <input type="tel" 
+                                    (keypress)="hService.onlyNumbers($event)"
+                                    name="send"
+                                    [(ngModel)]="sendAmount"
+                                    (input)="sendConvert()"
+                                    maxlength="8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="exchange-group">
+                        <div class="type">
+                            <span class="code">{{codeTake}}</span> 
+                            <span class="symbol">{{symbolTake}}</span> 
+                        </div>
+                        <div class="input-group">
+                            <div class="title-amount"> Recibo {{labelTake}}
+                                <img [src]="flagTake">
+                            </div>
+                            <div class="amount">
+                                <input type="tel" 
+                                    name="take"
+                                    (keypress)="hService.onlyNumbers($event)"
+                                    [(ngModel)]="takeAmount"
+                                    (input)="takeConvert()"
+                                    maxlength="8">
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="switcher" [ngClass]="{rotate: invertCurrency}" (click)="switcher()">
+                        <img src="assets/images/utils/change.png">
+                    </div>  
+                </div>
+                <a class="btn gnrl btn-exchange" [href]="acf.btn_url_simulator" target="_blank">
+                    {{acf.btn_text_simulator}}
+                </a>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="exchange_block">
+    <div class="container">
+        <div class="block_link_wrap b-2" [ngStyle]="{ 'background-color': acf.block_color }">
+            <div class="block_link_ctn c-flex">
+                <div class="img_wrap">
+                    <img class="block_image" [src]="acf.block_image">
+                </div>
+                <div>
+                    <div [innerHtml]="acf.block_text"></div>
+                    <a class="btn gnrl" [href]="acf.block_url_btn" target="_blank">
+                        {{acf.block_text_btn}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq-single">
+    <div class="container max">
+        <div class="faq-image-wrap">
+            <img class="faq-image" [src]="acf.s_faq_image" alt="">
+        </div>
+        <div class="faq-accordion">
+            <h2 class="title">{{acf.s_faq_title}}</h2>
+
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let acc of acf.s_list_accordion">
+                    <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{acc.question}}
+                    </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div  [innerHtml]="acc.answer"></div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+</section>

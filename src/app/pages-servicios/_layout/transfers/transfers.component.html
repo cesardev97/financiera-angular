@@ -1,0 +1,141 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="transfers_definition">
+    <div class="container">
+        <h2 class="title center">{{acf.definition_title}}</h2>
+        <div class="c-flex">
+            <div class="definition_image img-wrap">
+                <img class="decorated-img" [src]="acf.definition_image" alt="Definicion">
+            </div>
+            <div class="paragraph_wrap">
+                <div class="paragraph" [innerHtml]="acf.definition_text"></div>
+                <a class="btn gnrl" *ngIf="acf.definition_has_btn" (click)="hService.goLink(steps)">
+                    {{acf.definition_btn}}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="transfer_block" *ngIf="acf.has_block">
+    <div class="container c1">
+        <div class="block_link_wrap b-2" [ngStyle]="{ 'background-color': acf.block_color }">
+            <div class="block_link_ctn c-flex">
+                <div class="img_wrap">
+                    <img class="block_image" [src]="acf.block_image">
+                </div>
+                <div>
+                    <div [innerHtml]="acf.block_title"></div>
+                    <a class="btn gnrl" (click)="hService.goLink(steps)">{{acf.block_text_btn}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div #steps></div>
+<section class="transfers_steps">
+    <div class="container">
+        <h2 class="title center">{{acf.steps_title}}</h2>
+        <div class="steps-slider">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="config">
+                    <ng-template swiperSlide *ngFor="let item of acf.steps_list">
+                        <div class="card card-2">
+                            <img class="card-img-2" [src]="item.image" [alt]="item.title">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                                <div class="card-text"><p>{{item.text}}</p></div>
+                                <ng-container *ngIf="item.btn_type != 'none'">
+                                    <a class="btn gnrl" *ngIf="item.btn_type == 'simulator' && acf.has_simulator; else requestBtn"
+                                        (click)="hService.goLink(simulatorSection)">
+                                        {{item.btn_text}}
+                                    </a>
+                                    <ng-template #requestBtn>
+                                        <a class="btn gnrl" *ngIf="item.btn_type == 'request'; else noSectionBtn"
+                                            (click)="hService.goLink(requestSection)">
+                                            {{item.btn_text}}
+                                        </a>
+                                    </ng-template>
+                                    <ng-template #noSectionBtn>
+                                        <a class="btn gnrl" 
+                                            (click)="hService.goLink(item.btn_url || item.document, item.btn_type)">
+                                            {{item.btn_text}}
+                                            <i class="icon-download" *ngIf="item.btn_type == 'download'"></i>
+                                        </a>
+                                    </ng-template>
+                                </ng-container>
+                                
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>    
+            </div>
+            <div class="steps-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="transfers_video" *ngIf="acf.video_url">
+    <div class="container">
+        <h2 class="title center">{{acf.video_title}}</h2>
+        <app-video
+            [videoImage]="acf.video_cover"
+            [videoUrl]="acf.video_url"
+        ></app-video>
+    </div>
+</section>
+
+<div #simulatorSection></div>
+<section class="transfers_simulator bg-gray"  *ngIf="acf.has_simulator">
+    <div class="container">
+        <h2 class="title center">{{acf.simulator_title}}</h2>
+        <div class="simulator_ctn">
+            <app-simulator-general [simulator]="simulator" [isTransfer]="true">
+            </app-simulator-general>
+        </div>
+    </div>
+</section>
+
+<div #requestSection></div>
+<section class="transfers_doubts" id="form-request">
+    <div class="container c-flex">
+        <div class="form-req-wrap">
+            <h2 class="title">{{acf.contact_form_title}}</h2>
+            <p>{{acf.contact_form_definition}}</p>
+            <app-taxpayer-tabs
+                [productService]="serviceName"
+                [isTransfer]="true"
+                [responseType]="2"
+            >
+            </app-taxpayer-tabs>
+        </div> 
+        <div class="doubts-image">
+            <img [src]="acf.contact_form_image" alt="">
+        </div>   
+    </div>
+</section>
+
+<section class="tabs_sect">
+    <app-tabs
+        [listTabs]="acf.information_tabs"
+    ></app-tabs>
+</section>
+
+<section class="transfers_block mb-6">
+    <div class="container max">
+        <div class="block_link_wrap b-3 bg-2">
+            <app-block-url
+                [titleBloq]="acf.faq_title || opt.faq_title"
+                [subtitleBlock]="acf.faq_subtitle || opt.faq_subtitle"
+                [imageBlock]="acf.faq_image || opt2.faq_image"
+                [textBtnBlock]="acf.faq_btn_txt || opt.faq_btn_txt"
+                [urlBlock]="acf.faq_url || opt2.faq_url"    
+            >
+            </app-block-url>    
+        </div>
+    </div>
+</section>
+

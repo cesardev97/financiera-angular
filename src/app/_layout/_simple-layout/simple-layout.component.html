@@ -1,0 +1,18 @@
+<div class="simple-form-page">
+    <div class="form-header" *ngIf="!hideHeader">
+        <a routerLink="/" class="form-logo logo">
+            <img [src]="logoImage" alt="">
+        </a>
+        <h3 class="title-form-page">
+            {{ titlePage }}
+        </h3>
+    </div>
+
+    <div class="form-banner" *ngIf="hasBanner"
+        [ngStyle]="{'background-image': 'url(' + imageBanner + ')'}">
+        <a [routerLink]="urlBack" class="form-back-link icon-close"></a>
+    </div>
+
+    <ng-content></ng-content>
+
+</div>

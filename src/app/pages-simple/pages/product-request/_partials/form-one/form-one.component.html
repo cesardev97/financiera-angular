@@ -1,0 +1,144 @@
+<form [formGroup]="formG" (ngSubmit)="onSave()" autocomplete="off" [ngClass]="{'sending': isSending}">
+    <div *ngIf="requestForm?.options?.length > 0">
+        <h3 class="label-form-2">¿Que producto deseas solicitar?</h3>
+        <div class="form-group toggle-group">
+            <mat-button-toggle-group formControlName="option">
+                <mat-button-toggle *ngFor="let item of requestForm.options; index as ind"
+                    [checked]="ind == optionSelected ? true : false" 
+                    [value]="{id: ind + 1, value: item}">{{item}}
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </div>
+    <h3 class="label-form-2">Datos personales</h3>
+    <div class="form-group">
+        <label>Nombre completo</label>
+        <mat-form-field  appearance="outline">
+            <input matInput type="text" (keypress)=hService.onlyString($event)
+                placeholder="Ingrese" formControlName="names" maxlength="25" />
+        </mat-form-field>
+    </div>        
+    <div class="form-group min">
+        <label>Apellido paterno</label>
+        <mat-form-field  appearance="outline">
+            <input matInput type="text" (keypress)=hService.onlyString($event)
+                formControlName="lastname1" placeholder="Ingrese" maxlength="25" />
+        </mat-form-field>
+    </div>
+    <div class="form-group min">
+        <label>Apellido materno</label>
+        <mat-form-field  appearance="outline">
+            <input matInput type="text" (keypress)=hService.onlyString($event)
+                formControlName="lastname2" placeholder="Ingrese" maxlength="25"  />
+        </mat-form-field>
+    </div>
+    <ng-container *ngIf="!isNegocioModule">
+        <div class="form-group min">
+            <label>Tipo de documento</label>
+            <mat-form-field class="wrap-mat-select" appearance="outline">
+                <mat-label>Selecciona</mat-label>
+                <mat-select formControlName="document_type">
+                    <mat-option *ngFor="let item of utils.personDocuments" [value]="item"
+                    >{{item.desDocumento}}</mat-option>          
+                </mat-select>
+            </mat-form-field>   
+        </div>     
+        <div class="form-group min">
+            <label>Número de documento</label>
+            <mat-form-field  appearance="outline">
+                <input  matInput formControlName="document_number" placeholder="Ingrese" type="text"
+                    (keypress)="hService.onlyNumbers($event)" maxlength="25"  />
+            </mat-form-field>
+        </div>                      
+    </ng-container>
+    <div class="form-group min">
+        <label>Email</label>
+        <mat-form-field  appearance="outline">
+            <input matInput formControlName="email" placeholder="Ingrese" type="email" maxlength="50"/>
+        </mat-form-field>
+    </div>        
+    <div class="form-group min">
+        <label>Teléfono de contacto</label>
+        <mat-form-field  appearance="outline" >
+            <input matInput type="text" (keypress)="hService.onlyNumbers($event)"
+                formControlName="phone_number" placeholder="Ingrese"  maxlength="9"
+            />
+        </mat-form-field>            
+    </div> 
+    
+    <ng-container *ngIf="isNegocioModule">
+        <h3 class="label-form-2">Sobre la empresa</h3>
+        <div class="form-group min">
+            <label>Número de RUC</label>
+            <mat-form-field  appearance="outline" >
+                <input matInput type="text" (keypress)="hService.onlyNumbers($event)"
+                    formControlName="business_ruc" placeholder="Ingrese"  maxlength="11"
+                />
+            </mat-form-field>            
+        </div> 
+        <div class="form-group min">
+            <label>Razón social</label>
+            <mat-form-field  appearance="outline" >
+                <input matInput type="text" formControlName="business_rs" placeholder="Ingrese" maxlength="50"/>
+            </mat-form-field>            
+        </div> 
+        <h3 class="label-form-2">Dirección</h3>
+    </ng-container>
+    
+    <div class="form-group min">
+        <label>Departamento</label>
+        <mat-form-field class="wrap-mat-select" appearance="outline">
+            <mat-label>Selecciona</mat-label>
+            <mat-select formControlName="department" (selectionChange)="onSelectDepartment()">
+                <mat-option *ngFor="let item of ubigeo.departments" [value]="item">
+                    {{item.nomDepartamento}}
+                </mat-option>             
+            </mat-select>
+        </mat-form-field>        
+    </div>  
+    <div class="form-group min">
+        <label>Provincia</label>
+        <mat-form-field class="wrap-mat-select" appearance="outline">
+            <mat-label>Selecciona</mat-label>
+            <mat-select formControlName="province" (selectionChange)="onSelectProvince()">
+                <mat-option *ngFor="let item of ubigeo.provinces" [value]="item">
+                    {{item.nomProvincia}}
+                </mat-option>             
+            </mat-select>
+        </mat-form-field>        
+    </div>                  
+    <div class="form-group min">
+        <label>Distrito</label>
+        <mat-form-field class="wrap-mat-select" appearance="outline">
+            <mat-label>Selecciona</mat-label>
+            <mat-select formControlName="district">
+                <mat-option *ngFor="let item of ubigeo.districts" [value]="item">
+                    {{item.nomDistrito}}
+                </mat-option>           
+            </mat-select>
+        </mat-form-field>        
+    </div>      
+    <div class="recaptcha-wrap">
+        <re-captcha formControlName="recaptcha">
+        </re-captcha>
+    </div>             
+    <div class="protection-policy">
+        <mat-checkbox formControlName="accept_policies">
+            <p>Acepto la <a href="/transparencia/politica-de-proteccion-de-datos-personales" target="_blank">
+                Política de protección de datos Personales</a>
+            </p>
+        </mat-checkbox>
+    </div>
+    <div class="protection-policy">
+        <mat-checkbox formControlName="policies_productos">
+            <p>He leído y acepto recibir información sobre los otros productos y servicios de Financiera ProEmpresa, y otras finalidades adicionales informadas.</p>
+        </mat-checkbox>
+    </div>
+    <div class="wrap-button wrap-req-btn">
+        <button type="submit" class="btn gnrl">Solicitar</button>
+    </div>
+</form>
+
+<div *ngIf="respStatus" class="error" id="sendstatus">
+    {{respStatus}}
+</div>

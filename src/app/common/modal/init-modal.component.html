@@ -1,0 +1,13 @@
+<div class="modal-ctn campaign" *ngIf="data.image">
+    <span class="icon-close" (click)="closeModal()"></span>
+    <div class="modal-body-image">
+        <app-link
+            classUrl = ''
+            [isContent]="true"
+            [typeUrl]="data.typeUrl"
+            [urls]="[data.internalURL, data.externalURL]"
+        >
+            <img [src]="data.image">
+        </app-link>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<app-simple-layout [titlePage]="requestForm.title" [urlBack]="requestForm.urlBack" [hasBanner]="true">
+    <section class="product_request" *ngIf="!emailInput; else successForm">
+        <div class="container max">
+            <div class="form-content">
+                <div class="form-image">
+                    <img [src]="requestForm.images?.formImg" alt="">
+                </div>
+                <div class="form-req-wrap min">
+                    <form-request-one *ngIf="requestForm.type!=='other';"
+                        [requestForm]="requestForm"
+                        (emailOutput)="emailSent($event)"
+                        (responseOutput)="responseForm($event)"
+                    >
+                    </form-request-one>
+                    <form-request-two *ngIf="requestForm.type==='other'"
+                        [requestForm]="requestForm"
+                        (emailOutput)="emailSent($event)"
+                        (responseOutput)="responseForm($event)"
+                    >
+                    </form-request-two>
+                </div>
+            </div>
+        </div>
+    </section>
+    <ng-template #successForm>
+        <app-success-form
+            type="product"
+            [image]="requestForm.images.responseImg"
+            [objResponse]="respData"
+            [email]="emailInput"
+        >
+        </app-success-form>
+    </ng-template>
+</app-simple-layout>

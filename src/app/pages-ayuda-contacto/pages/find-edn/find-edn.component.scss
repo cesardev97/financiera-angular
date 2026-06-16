@@ -1,0 +1,81 @@
+@import "mixins";
+
+.find_edn_sect {
+    padding-top: 24px;
+    padding-bottom: 32px;
+    .title {
+        margin-bottom: 24px;
+    }
+    .description {
+        .instruction * {
+            font-size: 2rem;
+            margin-bottom: 4.2rem;
+            font-weight: 500;
+            color: #686868;
+            letter-spacing: -0.6px;
+            line-height: 1.4;
+        }
+    }
+    .find_edn_img_wrap {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+    .find_edn_image {
+        height: 36.4rem;
+        max-width: 32rem;
+    }
+    @include mq-min($md) {
+        padding: 6.4rem 0;
+    }
+    @include mq-min($lg) {
+        position: relative;
+        .find_edn_wrap {
+            margin: 0 auto;
+            max-width: 88%;
+        }
+        &::before {
+            left: unset;
+            right: 0;
+            top: 0;
+            width: 60rem;
+            z-index: -1;
+            background-image: url('../../../../assets/images/utils/banner-bg-3.png');
+        }
+        .title {
+            max-width: 20ch;
+            margin-bottom: 4rem;
+            font-size: 4.8rem;
+        }
+        .description {
+            width: 48%;
+            margin-right: 20rem;
+            .search-group {
+                min-width: 36rem;
+                margin-right: 2.4rem;
+            }
+        }
+        .find_edn_image {
+            margin-top: -8rem;
+        }
+    }
+}
+
+.search-edn-wrap {
+    min-height: 14rem;
+}
+
+.form_search_edn {
+    box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+    border-radius: 14px;
+    padding: 24px;
+    @include mq($md) {
+        .btn {
+            margin-top: 24px;
+        }
+    }
+    @include mq-min($lg) {
+        form {
+            display: flex;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+@import "mixins";
+
+.dir-image {
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    &.no-image {
+        img {
+            width: 4rem;
+            height: 4rem;
+        }
+        @include mq($md) {
+            min-height: 180px;
+        }
+    }
+    &.img_desktop {
+        width: 36rem;
+        min-height: 44rem;
+        img {
+            height: auto;
+        }
+        @include mq($lg) {
+            display: none;
+        }
+    }
+    &.img_mobile {
+        width: 82%;
+        margin: 0 auto 35px auto;
+        max-width: 40rem;
+        text-align: center;
+    }
+    @include mq-min($lg) {
+        &.img_mobile {
+            display: none;
+        }
+    }
+}    
+

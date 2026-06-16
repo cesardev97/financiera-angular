@@ -1,0 +1,32 @@
+<section [class]="[className, 'interest_links']">
+    <div class="container max">
+        <div class="titles" [ngClass]="{'center': subtitle}">
+            <h2 class="title">{{titleLinks}}</h2>
+            <h4 class="subtitle"  *ngIf="subtitle;">{{subtitle}}</h4>
+        </div>
+        <div class="links_slider">
+            <div class="swiper-card swp-2">
+                <swiper [config]="configIntLinks">
+                    <ng-template swiperSlide *ngFor="let item of listLinks">
+                        <a class="interest-link card card-1 box-2"
+                            [ngClass]="{'expand-link': item.description}" 
+                            [routerLink]="item.url_link_product">
+                            <app-image className="interest-img" [imageUrl]="item.image_link_product">
+                            </app-image>
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title_link}}</h4>
+                                <div class="l-description-wrap">
+                                    <div class="l-description" *ngIf="item.description">
+                                        <p>{{item.description}}</p>
+                                    </div>
+                                </div>
+                                <span class="card-label-arrow">{{item.button_link_product}}</span>
+                            </div>
+                        </a>
+                    </ng-template>  
+                </swiper>
+            </div>
+            <div class="interest-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>

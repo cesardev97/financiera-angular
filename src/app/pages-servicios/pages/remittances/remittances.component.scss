@@ -1,0 +1,17 @@
+@import "mixins";
+
+.remittances_blocks {
+    .block_link_wrap:last-child {
+        .btn {
+            background: var(--color-light);
+            color: #1192CA;
+
+        }
+    }
+    @include mq($sm) {
+        margin-top: 18px;
+        .block_link_wrap {
+            margin-bottom: 50px;
+        }
+    }
+}

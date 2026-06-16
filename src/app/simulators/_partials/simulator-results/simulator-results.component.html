@@ -1,0 +1,133 @@
+<div class="cuota-mensual t1" *ngIf="results.type=='credit'">
+    <div class="cuota-mensual-top">
+        <h4 class="payment-title-cuota">Cuota mensual
+            <div>
+                <strong>{{results.currSymb}}{{hpSer.toFloat(cuotaMensual)}}</strong><sub>(*)</sub>
+            </div>
+        </h4>
+        <div class="payment-description-cuota">(*)La cuota mostrada es referencial</div>
+    </div>
+    <div class="cuota-mensual-grid col-2">
+        <span>Monto crédito: {{results.currSymb}} {{hpSer.toFloat(results.amount)}}</span>
+        <span>Plazo del crédito: {{results.installments}} meses</span>
+        <span>TEA (Tasa efectiva anual): {{results.tea}}%</span>
+        <span>TCEA (Tasa de costo efectivo anual): {{hpSer.toFloat(tcea)}}%</span>
+    </div>
+    <button type="button" (click)="seePaymentSchedule()" class="cuota-mensual-link" *ngIf="results?.cronograma">
+        Ver cronograma de pagos
+    </button>
+
+    <a [routerLink]="results.form_url" class="btn gnrl btn_to_form" *ngIf="results.form_url">
+        Me interesa
+    </a>
+</div>
+
+<div class="cuota-mensual t1" *ngIf="results.type=='saving' && !results.has_apertura">
+    <div class="cuota-mensual-top">
+        <h4 class="payment-title-cuota">Tu saldo final en {{results.deadline_day}} días sería
+            <div>
+                <strong>{{results.currSymb}}
+                    {{hpSer.suma([results.amount, results.ws.montoInteresCalculado])}}
+                </strong>
+            </div>
+        </h4>
+    </div>
+    <div class="cuota-mensual-grid col-2">
+        <span>Monto inicial: {{results.currSymb}}{{hpSer.toFloat(results.amount)}}</span>
+        <span>Interés ganado: {{results.currSymb}}{{hpSer.toFloat(results.ws.montoInteresCalculado)}}</span>
+        <span>Tasa de interés: {{hpSer.toFloat(results.tasaInteres)}}%</span>
+        <span>TEA(%) expresada a 360 días</span>
+        <a [routerLink]="results.form_url" class="btn gnrl btn_to_form" *ngIf="results.form_url">
+            Solicitar
+        </a>
+    </div>
+</div>
+
+<div class="cuota-mensual t1" *ngIf="results.type=='other'">
+    <div class="cuota-mensual-head">
+        <span>Recibirás ahora (Adelanto)</span>
+        <strong>{{results.currSymb}}{{hpSer.toFloat(results.calc.rah)}}</strong>
+    </div>
+    <div class="cuota-mensual-head">
+        <span>Recibirás cuando tu cliente  pague (garantía*)</span>
+        <strong>{{results.currSymb}}{{hpSer.toFloat(results.calc.rcp)}}</strong>
+    </div>
+    <h3 class="result-b-g">Recibirás en total {{results.currSymb}}{{hpSer.toFloat(results.calc.rto)}} **</h3>
+    <div class="cuota-mensual-grid col-3">
+        <div>
+            <span>Comisión: {{results.currSymb}}{{hpSer.toFloat(results.calc.com)}}</span>
+            <span>TEA Referecial: {{hpSer.toPercent(results.calc.tea)}}%</span>
+        </div>
+        <div>
+            <span>Interés descontado: {{results.currSymb}}{{hpSer.toFloat(results.calc.itd)}}</span>
+            <span>TEM: {{hpSer.toPercent(results.calc.tem)}}%</span>
+        </div>
+        <div>
+            <span>Días de adelanto: {{results.calc.dad}}</span>
+        </div>
+    </div>
+    <div class="notes">
+        <span>*Si el pago se realiza en la fecha de vencimiento</span>
+        <span>** El monto mostrado es referencial</span>
+    </div>
+    <a [routerLink]="results.form_url" class="btn gnrl btn_to_form" *ngIf="results.form_url">
+        Me interesa
+    </a>
+</div>
+
+<div class="cuota-mensual t2" *ngIf="results.has_apertura">
+    <div class="cuota-mensual-top">
+        <h4 class="payment-title-cuota">Tu saldo final al vencimiento será
+            <div><strong>{{results.currSymb}}{{hpSer.suma([
+                results.ws.monTotalReprogramado, 
+                results.ws.interesCompensatorio,
+                results.ws.interesBonificatorio
+                ])}}</strong>
+            </div>
+        </h4>
+    </div>
+    <div class="cuota-mensual-grid col-3">
+        <div class="col_ctn">
+            <h4>Monto inicial: {{results.currSymb}}{{hpSer.toFloat(results.amount)}}</h4>
+            <div>
+                <span>F. primer depósito:</span><span>{{results.ws.fechaPrimerDeposito}}</span>
+                <span>F. último depósito:</span><span>{{results.ws.fechaUltimoDeposito}}</span>
+                <span>F. vencimiento:</span><span>{{results.ws.fechaVencimientoDeposito}}</span>
+            </div>
+        </div>
+        <div class="col_ctn">
+            <h4>Monto total cuotas: {{results.currSymb}}{{results.ws.mtotalCuotasReprog}}</h4>
+            <div>
+                <span>TEA compensatoria:</span><span>{{hpSer.toFloat(results.tasaInteres)}}%</span>
+                <span>Bonificación:</span><span>{{results.ws.tasaInteresBonif}}%</span>
+            </div>
+        </div>
+        <div class="col_ctn">
+            <h4>Interés ganado: {{results.currSymb}}{{hpSer.suma([results.ws.interesCompensatorio, results.ws.interesBonificatorio])}}</h4>
+            <div>
+                <span>Total interés compensatorio:</span><span>{{results.currSymb}}{{results.ws.interesCompensatorio}}</span>
+                <span>Total interés bonificación:</span><span>{{results.currSymb}}{{results.ws.interesBonificatorio}}</span>
+            </div>
+        </div>
+    </div>
+    <a [routerLink]="results.form_url" class="btn gnrl btn_to_form" *ngIf="results.form_url">
+        Solicitar
+    </a>
+</div>
+
+<div class="cuota-mensual t1" *ngIf="results.is_transfer">
+    <div class="cuota-mensual-top">
+        <h4 class="payment-title-cuota">IMPORTE TOTAL A CARGAR
+            <div><strong>{{results.currSymb}}{{hpSer.toFloat(results.total)}}</strong></div>
+        </h4>
+    </div>
+    <div class="cuota-mensual-grid col-2">
+        <span>Monto de transferencia: {{results.currSymb}}{{hpSer.toFloat(results.amount)}}</span> 
+        <span>Comisión: {{results.currSymb}}{{hpSer.toFloat(results.commission)}}</span>
+        <span>Costo SWIFT: {{results.currSymb}}{{hpSer.toFloat(results.swift)}}</span> 
+    </div>
+    <a [routerLink]="results.form_url" class="btn gnrl btn_to_form" (click)="goFormRequest()">
+        Me interesa
+    </a>
+</div>
+

@@ -1,0 +1,97 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="channels_descripcion bg-gray">
+    <div class="container">
+        <div class="titles center">
+            <h2 class="title">{{acf.report_title}}</h2>
+            <div class="subtitle_2" [innerHtml]="acf.report_description"></div>
+        </div>
+        <div class="description_swiper">
+            <div class="swiper-card">
+                <swiper [config]="descriptionSwiper">
+                    <ng-template swiperSlide *ngFor="let item of acf.report_list">
+                        <div class="card card-2">
+                            <img class="card-img-2" [src]="item.image" [alt]="item.title">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="description-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="complaints">
+    <div class="complaints_ctn container">
+        <h2 class="title center">{{acf.channels_title}}</h2>
+        <div class="complaints_wrap">
+            <div class="complaint_channels">
+                <div class="channel_item block" *ngFor="let item of acf.channels_list">
+                    <div  class="column_left">
+                        <img [src]="item.image">
+                        <div>
+                            <h3>{{item.title}}</h3>
+                            <span *ngIf="item.subtitle">{{item.subtitle}}</span>
+                        </div>
+                    </div>
+                    <div class="column_right">
+                        <h4>{{item.label_channel}}</h4>
+                        <a [href]="item.website" target="_blank" *ngIf="item.type == 'web'">{{item.url_text}}</a>
+                        <a href="{{'mailto:' + item.email}}" *ngIf="item.type == 'email'">{{item.email}}</a>
+                        <a href="{{'tel:' + item.website}}" *ngIf="item.type == 'phone'">{{item.phone}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="complaints_colors">
+                <a class="color_item block" *ngFor="let item of acf.blocks_list"
+                    [ngStyle]="{ 'background-color': item.color }" [href]="item.url" target="_blank">
+                    <div class="column_left">
+                        <img [src]="item.image" alt="item.title">
+                        <div>
+                            <h3>{{item.title}}</h3>
+                            <span>{{item.subtitle}}</span>
+                        </div>
+                    </div>
+                    <span class="btn yllw-2" >Aquí</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="recomendations bg-gray">
+    <div class="container">
+        <div class="titles center">
+            <h2 class="title">{{acf.recommendations_title}}</h2>
+            <h4 class="subtitle_2">{{acf.recommendations_subtitle}}</h4>
+        </div>
+        <div class="recomendations_swiper">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="recomendationsSwiper">
+                    <ng-template swiperSlide *ngFor="let item of acf.recommendations_list">
+                        <div class="card card-2">
+                            <img class="card-img-2" [src]="item.image" [alt]="item.title">
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <p>{{item.text}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="recomendations-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="tabs_sect">
+    <app-tabs
+        [listTabs]="acf.information_tabs"
+    ></app-tabs>
+</section>

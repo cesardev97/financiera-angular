@@ -1,0 +1,231 @@
+
+
+<app-simple-layout [titlePage]="headFields?.titlePage" [showMenuMob]="true">
+    <breadcrumbs [breadcrumbs]="headFields?.breadcrumbs">
+    </breadcrumbs>
+    
+    <section class="inmb-single-gallery">
+        <div class="single-gallery-wrap container max">
+            <div class="swiper-gallery" *ngIf="galleryItems.length > 0; else noGallery">
+                <swiper [config]="gallerySwiper">
+                    <ng-template swiperSlide *ngFor="let list of galleryItems; index as ind;">
+                        <div class="gallery-grid" [ngClass]="{'gallery-1': ind === 0}">
+                            <ng-container *ngFor="let image of list; index as ind2;">
+                                <div class="gallery-item" *ngIf="image; else noImage"
+                                    (click)="openGallery(ind * iterableGallery + ind2, ind)">
+                                    <img [src]="image">
+                                </div>
+                                <ng-template #noImage>
+                                    <div class="no-image">
+                                        <img src="assets/images/utils/no-image.png">
+                                    </div>
+                                </ng-template>
+                            </ng-container>
+                        </div>
+                    </ng-template>
+                </swiper>
+                <div class="gallery-prev swiper-navigation swiper-button-prev"></div>
+                <div class="gallery-pagination swiper-pagination"></div>
+                <div class="gallery-next swiper-navigation swiper-button-next"></div>
+            </div>
+            <ng-template #noGallery>
+                <div class="gallery-empty gallery-1">
+                    <div class="no-image">
+                        <img src="assets/images/utils/no-image.png">
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </section>
+    <section class="inmb-single-info">
+        <div class="single-info-wrap container max">
+            <div class="c-flex j-between">
+                <div class="single-info-left">
+                    <div class="inmueble-card">
+                        <div class="post-card-body">
+                            <div class="post-description">
+                                <div class="price">{{hService.getSymbolCurrency(obj.fields?.currency)}} 
+                                    <bdi>{{obj.fields?.price | number: '2.'}}</bdi>
+                                </div>
+                                <h4 class="inmb-title">{{obj.name}}</h4>
+                                <div class="location icon-f">
+                                    <i class="icon-locat-1 c1"></i>
+                                    <div>{{obj.fields?.location || obj.fields?.short_address}}</div>
+                                </div>
+                            </div>
+                            <div class="post-details">
+                                <div class="inmb-details-list">
+                                    <div class="terrain icon-f" *ngIf="type=='INMB'">
+                                        <i class="icon-square c1"></i>
+                                        <div>Área construida<span>{{obj.fields?.num_built_area}}</span></div>
+                                    </div>
+                                    <div class="terrain icon-f"><i class="icon-ruler c1"></i>
+                                        <div>Área del terreno<span>{{obj.fields?.num_terrain_area}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="btn gnrl" *ngIf="type=='PROJ'" (click)="sendProjectAmount()">
+                                Simula tu crédito
+                            </a>
+                        </div>
+                    </div>
+                    <div class="inmb-details2" *ngIf="type=='INMB'">
+                        <div class="icon-f">
+                            <i class="icon-calendar c1"></i>
+                            <div>Publicado hace: {{obj.published_time}}</div>
+                        </div>
+                        <div class="icon-f">
+                            <i class="icon-eye c1"></i>
+                            <div [ngPlural]="obj.views || 0">{{obj.views}}
+                                <ng-template ngPluralCase="1">visualización</ng-template>
+                                <ng-template ngPluralCase="other">visualizaciones</ng-template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inmb-details3">
+                        <h3>{{type=='INMB' ? 'Venta de inmueble' : 'Detalle del proyecto'}}
+                            <span *ngIf="obj.fields?.short_address && type=='INMB'">en {{obj.fields.short_address}}</span>
+                        </h3>
+                        <div class="inmb-serv" *ngIf="obj.fields?.has_aditional && type=='INMB'">
+                            <div class="icon-f" *ngIf="obj.fields?.num_beds">
+                                <i class="icon-bed"></i>
+                                <div [ngPlural]="obj.fields?.num_beds">{{obj.fields?.num_beds}} 
+                                    <ng-template ngPluralCase="1">Dormitorio</ng-template>
+                                    <ng-template ngPluralCase="other">Dormitorios</ng-template>
+                                </div>
+                            </div>
+                            <div class="icon-f" *ngIf="obj.fields?.num_bathrooms">
+                                <i class="icon-bath"></i>
+                                <div [ngPlural]="obj.fields?.num_bathrooms">{{obj.fields?.num_bathrooms}}
+                                    <ng-template ngPluralCase="1">baño completo</ng-template>
+                                    <ng-template ngPluralCase="other">baños completos</ng-template>
+                                </div>
+                            </div>
+                            <div class="icon-f" *ngIf="obj.fields?.num_parking">
+                                <i class="icon-garage"></i>
+                                <div [ngPlural]="obj.fields?.num_parking">{{obj.fields?.num_parking}} 
+                                    <ng-template ngPluralCase="1">estacionamiento</ng-template>
+                                    <ng-template ngPluralCase="other">estacionamientos</ng-template>
+                                </div>
+                            </div>
+                            <div class="icon-f" *ngIf="obj.fields?.num_antiguaty">
+                                <i class="icon-calendar"></i>
+                                <div [ngPlural]="obj.fields?.num_antiguaty">{{obj.fields?.num_antiguaty}} 
+                                    <ng-template ngPluralCase="1">año de antigüedad</ng-template>
+                                    <ng-template ngPluralCase="other">años de antigüedad</ng-template>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="inmb-description">
+                        <div [innerHtml]="obj.description"></div>
+                    </div>
+                </div>
+                <div class="single-info-right">
+                    <div class="inmb-contact">
+                        <h4 class="form-title">Te interesa</h4>
+                        <div class="form-inmb-wrap form-req-wrap">
+                            <form #f="ngForm" (ngSubmit)="send(f)" [formGroup]="FormG">
+                                <div class="form-group">
+                                <p class="form-min-text">Completa tus datos y te contactaremos a la brevedad posible</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombre completo</label>
+                                    <mat-form-field appearance="outline">
+                                        <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                            matInput formControlName="names" type="text" maxlength="25"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group min">
+                                    <label>Apellido paterno</label>
+                                    <mat-form-field appearance="outline">
+                                        <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                            matInput formControlName="lastname1" type="text" maxlength="25" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group min">
+                                    <label>Apellido materno</label>
+                                    <mat-form-field appearance="outline">
+                                        <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                            matInput formControlName="lastname2" type="text" maxlength="25" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group min">
+                                    <label>Tipo de documento</label>
+                                    <mat-form-field class="wrap-mat-select" appearance="outline">
+                                        <mat-label>Selecciona</mat-label>
+                                        <mat-select formControlName="document_type">
+                                            <mat-option *ngFor="let item of utils.personDocuments" [value]="item"
+                                            >{{item.desDocumento}}</mat-option>                
+                                        </mat-select>
+                                    </mat-form-field>  
+                                </div>
+                                <div class="form-group min">
+                                    <label>Número de documento</label>
+                                    <mat-form-field appearance="outline">
+                                        <input placeholder="Ingrese"
+                                            matInput formControlName="document_number" type="text" maxlength="25"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group">
+                                    <label>Correo electrónico</label>
+                                    <mat-form-field appearance="outline">
+                                        <input placeholder="Ingrese"
+                                            matInput formControlName="email" type="text" maxlength="50"/>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group">
+                                    <label>Número de contacto</label>
+                                    <mat-form-field appearance="outline">
+                                        <input placeholder="Ingrese" (keypress)="hService.onlyNumbers($event)"
+                                            matInput formControlName="phone_number" type="text" maxlength="9" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group">
+                                    <label>Consulta</label>
+                                    <mat-form-field appearance="outline">
+                                        <textarea placeholder="Ingrese"
+                                            matInput formControlName="description" type="text" rows="4" maxlength="200"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="recaptcha-wrap">
+                                    <re-captcha formControlName="recaptcha">
+                                    </re-captcha>
+                                </div> 
+                                <span class="protection-policy">
+                                    <mat-checkbox formControlName="accept_privacy_policies">
+                                        <p>Acepto la <a href="/transparencia/politica-de-proteccion-de-datos-personales" target="_blank">
+                                            Política de protección de datos Personales</a>
+                                        </p>
+                                    </mat-checkbox>
+                                </span>
+                                <span class="term-conditions">
+                                    <mat-checkbox formControlName="accept_privacy_policies2">
+                                        <p>
+                                            He leído y acepto recibir información sobre los otros productos y servicios de Financiera ProEmpresa, y otras finalidades adicionales informadas.
+                                        </p>
+                                    </mat-checkbox>
+                                </span>
+                                <div class="wrap-button">
+                                    <div class="wrap-se-btn" [ngClass]="{'s-loading': isSending}">
+                                        <button class="btn gnrl" 
+                                            [disabled]="FormG.invalid">Enviar</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div *ngIf="respStatus" class="error">
+                                {{respStatus}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="inmb-single-map bg-gray" *ngIf="obj.fields?.location_map">
+        <div class="single-map-wrap container">
+            <h3>Conoce los alrededores del {{type == 'INMB' ? 'inmueble' : 'proyecto'}}</h3>
+            <div [innerHtml]="obj.fields?.location_map | safe:'html'"></div>
+        </div>
+    </section>
+</app-simple-layout>

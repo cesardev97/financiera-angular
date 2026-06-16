@@ -1,0 +1,51 @@
+@import "mixins";
+
+.faq_sct {
+    padding: 24px 0;
+    .title {
+        margin-bottom: 24px;
+    }
+    
+    @include mq-min($md) {
+        padding-top: 3.6rem;
+        padding-bottom: 6rem;
+        .title {
+            margin-bottom: 5rem;
+        }
+    }
+    @include mq-min($lg) {
+        .mat-tab-group {
+            flex-direction: row;
+            justify-content: space-between;
+            .mat-tab-header {
+                border: 0;
+            }
+            .mat-tab-body-wrapper {
+                width: 55%;
+            }
+            .mat-tab-labels {
+                flex-direction: column;
+                .mat-tab-label {
+                    justify-content: flex-start;
+                    &-active {
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            height: 100%;
+                            width: 2px;
+                            background: var(--color-pr-50);
+                        }
+                    }
+                    &-content {
+                        font-size: 2rem;
+                        font-weight: 600;
+                    }
+                }
+            }
+            .mat-ink-bar {
+                display: none;
+            }
+        }
+    }
+}

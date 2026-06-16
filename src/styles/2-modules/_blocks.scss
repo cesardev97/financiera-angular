@@ -1,0 +1,222 @@
+.blocks_small {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.block_link_wrap {
+    border-radius: 16px;
+    margin-bottom: 2.4rem;
+    width: 100%;
+    &.b-1 { //short
+        height: 138px;
+        position: relative;
+        .block_titles {
+            padding: 16px 24px;
+        }
+        .img_wrap {
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            margin-right: 24px;
+            img {
+                max-height: 70px;
+                @include  mq-min($sm) {
+                    max-height: 100px;
+                }
+            }
+        }
+        @include mq($sm) {
+            .block_titles {
+                max-width: 78vw;
+            }
+            .img_wrap {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+        }
+        @include mq-min($lg){
+            width: 49%;
+            height: 21.7rem;
+            padding: 0;
+            .block_titles {
+                padding: 1rem 1rem 0 4rem;
+            }
+            .img_wrap img {
+                max-height: 18rem;
+                max-width: 100%;
+            }
+        }
+    }
+    &.b-2 { //middle
+        padding: 24px;
+        .img_wrap img {
+            @include mq($md) {
+                margin-bottom: 48px;
+            }
+            @include mq($sm) {
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            @include mq-min($md) {
+                margin-right: 4.5rem;
+                max-height: 15.7rem;
+            }
+        }
+        
+        @include mq-min($lg) {
+            height: 20.5rem;
+        }
+       
+    }
+    &.b-3 { // faq
+        text-align: center;
+        .block_titles {
+            @include mq($sm) {
+                margin-top: 20px;
+            }
+            @include mq-min($sm) {
+                margin-right: 30px;
+                margin-left: 20px;
+                min-width: 220px;
+            }
+            @include mq-min($lg2) {
+                margin: 0 17rem 0 6rem;
+            }
+        }
+        @include mq($lg) {
+            .block_link_ctn {
+                align-items: center;
+            }
+        }
+        @include mq-min($lg) {
+            text-align: left;
+            padding: 1rem 2rem 1rem 9.2rem;
+        }
+    }
+    &.b-4 { // normal
+        background: #E3F7FF;
+        .block_titles {
+            @include mq($sm) {
+                text-align: center;
+                margin-top: 24px;
+            }
+        }
+        .img_wrap {
+            width: 25.6rem;
+            @include mq($md) {
+                margin: 0 auto;
+            }
+            img {
+                max-width: 25.6rem;
+            }
+        }
+        .btn {
+            width: 27.5rem;
+        }
+        @include mq-min($lg) {
+            padding: 1rem 4rem 1rem 4rem !important;
+            .block_link_ctn {
+                justify-content: flex-start !important;
+            }
+            .block_titles {
+                width: 40rem;
+                margin-left: 4.8rem;
+                margin-right: 13.4rem;
+            }
+        }
+    }
+    &.b-3, &.b-4 {
+        padding: 24px;
+        .img_wrap img {
+            max-width: 170px;
+            max-height: 87px;
+            @include mq-min($md) {
+                max-height: 150px;
+            }
+            @include mq-min($lg) {
+                max-height: 15.7rem;
+            }
+        }
+        @include mq-min($lg) {
+            height: 18rem;
+        }
+        
+    }
+
+    &.bg-1 {
+        background: #FFC52F;
+    }
+    &.bg-2 {
+        background: #F5CD64;
+    }
+    .block_link_ctn {
+        border-radius: 16px;
+        display: flex;
+        height: 100%;
+        justify-content: space-between;
+        .img_wrap {
+            display: flex;
+            justify-content: center;
+        }
+        .btn {
+            margin-top: 24px;
+            @include mq($md) {
+                width: 100%;
+            }
+            @include mq($sm){
+                font-size: 14px;
+            }
+        }
+        div {
+            p {
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 1.2;
+                text-align: center;
+                @include mq-min($md) {
+                    text-align: left;
+                    font-size: 2.8rem;
+                }
+            }
+            strong {
+                font-size: 1.28em;
+                font-weight: 700;
+            }
+        }
+        @include mq($sm) {
+            flex-direction: column;
+        }
+        @include mq-min($lg) {
+            justify-content: center;
+            align-items: center;
+            .btn {
+                margin-top: 1.6rem;
+            }
+        }
+    }
+}
+
+.block_titles {
+    color: var(--color-light);
+    h2 {
+        font-size: 16px;
+        line-height: 1;
+        font-weight: 700;
+        margin-bottom: 1.3rem;
+        color: var(--color-light);
+    }
+    span {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: -0.6px;
+        color: var(--color-light);
+    }
+    @include mq-min($sm){
+        h2 {
+            font-size: 3.6rem;
+        }
+    }
+}

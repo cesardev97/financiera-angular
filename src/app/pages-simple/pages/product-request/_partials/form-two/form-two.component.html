@@ -1,0 +1,13 @@
+
+<div class="titles">
+    <h2 class="title">Aclaramos tus dudas</h2>
+    <p>Si tienes dudas sobre este proceso, completa el formulario y nos comunicaremos contigo para darte todos los detalles</p>
+</div>
+
+<app-taxpayer-tabs
+    [productService]="requestForm.product"
+    btnLabel="Solicitar"
+    (emailOutput)="emailSent($event)"
+    (responseOutput)="responseSent($event)"
+>
+</app-taxpayer-tabs>

@@ -1,0 +1,147 @@
+@import "mixins";
+
+.inmb-single-info {
+    padding-top: 4rem;
+    @include mq($lg) {
+        .single-info-wrap {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+    @include mq-min($lg) {
+        padding-bottom: 7.6rem;
+    }
+}
+
+.inmb-single-map {
+    padding-bottom: 8.5rem;
+    .single-map-wrap {
+        margin: 0 auto;
+        max-width: 108rem;
+        h3 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #227743;
+            margin-bottom: 4.2rem;
+            @include mq($md) {
+                padding: 0 var(--padding-ctn);
+                font-size: 20px;
+            }
+        }
+        @include mq($sm) {
+            padding: 0 !important;
+        }
+    }
+    @include mq-min($md) {
+        padding-top: 5.5rem;
+    }
+}
+
+
+.single-info-left {
+    .inmb-details2 {
+        padding-top: 2.4rem;
+    }
+    .inmb-details3 {
+        padding-top: 2.4rem;
+        h3 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #686868;
+            padding-bottom: 1.7rem;
+            border-bottom: 0.5px solid #C2C2C2;
+        }
+        .inmb-serv {
+            margin-top: 0;
+            padding-top: 1.6rem;
+            padding-bottom: 1.4rem;
+            
+        }
+    }
+    .inmb-description {
+        padding-top: 16px;
+        p {
+            font-size: 14px;
+            font-family: var(--f-secondary);
+            color: #686868;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+        }
+    }
+    @include mq($lg) {
+        padding-left: var(--padding-ctn);
+        padding-right: var(--padding-ctn);
+    }
+    @include mq($md) {
+        padding-bottom: 24px;
+        .icon-f {
+            display: flex;
+        }
+    }
+    @include mq-min($lg) {
+        width: 62%;
+        .post-card-body {
+            padding-top: 1.8rem;
+            padding-bottom: 2.4rem;
+        }
+        .inmb-details2 { 
+            display: flex;
+            align-items: center;
+            &>div {
+                width: 30%;
+                margin-right: 2.5rem;
+            }
+        }
+        .inmb-details3 .inmb-serv {
+            border-bottom: 0.5px solid #C2C2C2;
+        }
+        .inmb-description {
+            padding-top: 2.4rem;            
+        }
+
+        .post-card-body {
+            position: relative;
+            .btn {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+        }
+    }
+}
+.single-info-right {
+    @include mq($md) {
+        background: #F9F9F9;
+        padding-top: 8px;
+        padding-bottom: 32px;
+    }
+    @include mq-min($lg) {
+        width: 36%;
+    }
+}
+
+.inmb-contact {
+    border-radius: 8px;
+    background: #FFFFFF;
+    border: 2px solid #F1F1F1;
+    box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+    .form-inmb-wrap {
+        padding: 0 var(--padding-ctn);
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .wrap-button {
+            width: 100%;
+            justify-content: flex-end;
+            margin-top: 2px;
+        }
+        .form-min-text {
+            font-size: 13px;
+        }
+        @include mq-min($lg) {
+            padding: 0 26px;
+        }
+    }
+}

@@ -1,0 +1,132 @@
+<div class="home_banner_slider swiper-container">
+    <swiper
+        [config]="configBanner" *ngIf="acf.slider_main_banner"
+    >
+        <ng-template swiperSlide class="swiper-slide" *ngFor="let item of acf.slider_main_banner">
+            <div class="h_banner_item banner">
+                <div class="banner_description">
+                    <div class="line-cover">
+                        <h4 class="line">{{item.subtitle_top}}</h4>
+                    </div>
+                    <div class="line-cover">
+                        <h1 class="line" [innerHtml]="item.title">
+                        </h1>
+                    </div>
+                    <div class="line-cover">
+                        <h4 class="line">{{item.subtitle_bottom}}</h4>
+                    </div>
+                    <div class="line-cover">
+                        <app-link
+                            classUrl="btn yllw line"
+                            [labelBtn]="acf.btn_request_banner"
+                            [typeUrl]="item.type_url"
+                            [urls]="[item.hb_int_url,item.hb_ext_url]"
+                        >
+                        </app-link>
+                    </div>
+                </div>
+                <figure class="banner_figure">
+                    <picture>
+                        <source media="(min-width: 800px)" [srcset]="item.image">
+                        <img [src]="item.image_mobile || item.image" alt="Banner">
+                    </picture>
+                </figure>
+            </div>
+        </ng-template>
+    </swiper>
+    <div class="btns-slider-group">
+        <div class="h-prev swiper-navigation icon-left-arrow"></div>
+        <div class="h_banner_pagination swiper-pagination"></div>
+        <div class="h-next swiper-navigation icon-right-arrow"></div>
+    </div>
+</div>
+
+<section class="h_products" [ngClass]="{'bg-gray': acf.has_middle_slider}">
+    <div class="container max ">
+        <div class="titles center">
+            <h2 class="title">{{acf.title_products}}</h2>
+            <h4 class="subtitle">{{acf.subtitle_products}}</h4>
+        </div>
+        <div class="h_products_slider">
+            <div class="swiper-card swp-2">
+                <swiper [config]="configProducts" *ngIf="acf.list_products">
+                    <ng-template swiperSlide *ngFor="let item of acf.list_products">
+                        <a [routerLink]="item.url | safe" class="product_item card card-1 box-1">
+                            <span class="type">{{item.status}}</span>
+                            <div class="card-body">
+                                <div class="card-figure min">
+                                    <img [src]="item.image" alt="">
+                                </div>
+                                <h4 class="card-title">{{item.title}}</h4>
+                            </div>
+                        </a>
+                    </ng-template>    
+                </swiper>
+            </div>
+            <div class="h-prod-pagination swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<section class="h_middle" *ngIf="acf.has_middle_slider">
+    <div class="container h_middle_slider">
+        <swiper [config]="configMiddle">
+            <ng-template swiperSlide *ngFor="let item of acf.middle_slider">
+                <div class="shortcute_item">
+                    <app-image className="h-middle-img" [imageUrl]="item.image">
+                    </app-image>
+                  
+                    <div class="shortcute_info">
+                        <h5>{{item.subtitle}}</h5>
+                        <div class="titles">
+                            <h2 class="title">{{item.title}}</h2>
+                            <h4 class="subtitle_2">{{item.description}}</h4>
+                        </div>
+                        <a class="btn gnrl" [routerLink]="item.url">Conocer más</a>
+                    </div>
+                </div>
+            </ng-template>    
+        </swiper>
+        <div class="btns-slider-group gnrl">
+            <div class="h-md-prev swiper-navigation icon-left-arrow"></div>
+            <div class="h-md-pagination swiper-pagination"></div>
+            <div class="h-md-next swiper-navigation icon-right-arrow"></div>
+        </div>
+    </div>
+</section>
+
+<app-links-interest *ngIf="acf.interest_links"
+    className="t-1"
+    [titleLinks]="acf.title_links"
+    [subtitle]="acf.subtitle_links"
+    [listLinks]="acf.interest_links"
+>
+</app-links-interest>
+
+<section class="h_blocks_links mb-3">
+    <div class="blocks_small container max">
+        <a *ngFor="let item of acf.blocks"
+            [routerLink]="item.url_block" class="block_link_wrap b-1"
+            [ngStyle]="{ 'background-color': item.color }">
+            <div class="block_link_ctn">
+                <div class="block_titles">
+                    <h2>{{item.title_block}}</h2>
+                    <span>{{item.subtitle_block}}</span>
+                </div>
+                <span class="img_wrap">
+                    <img [src]="item.image_block" alt="">
+                </span>    
+            </div>
+        </a>
+        <div class="block_link_wrap b-3 bg-1">
+            <app-block-url
+                [titleBloq]="acf.faq_title || opt.faq_title"
+                [subtitleBlock]="acf.faq_subtitle || opt.faq_subtitle"
+                [imageBlock]="acf.faq_image || opt.faq_image"
+                [textBtnBlock]="acf.faq_btn_txt || opt.faq_btn_txt"
+                [urlBlock]="acf.faq_url || opt.faq_url"
+            ></app-block-url>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,97 @@
+@import "mixins";
+
+.tabs_sect {
+    padding-top: 24px;
+    padding-bottom: 40px;
+    .title {
+        margin-bottom: 3.2rem;
+    }
+    .tab_item {
+        display: flex;
+    }
+    .tab_item_img {
+        max-height: 34rem;
+        max-width: 47rem;
+        display: none;
+        @include mq-min($lg) {
+            display: block;
+        }
+        &.image-1 {
+            margin-right: 7.8rem;
+
+        }
+        &.image-2 {
+            margin-right: 15.2rem;
+        }
+    } 
+    .btns-slider-group {
+        margin-top: 1.2rem;
+    }
+    @include mq-min($md) {
+        padding-top: 5.4rem;
+        padding-bottom: 18rem;
+    }
+}
+
+.tabs_wrap {
+    .tab_column_info {
+        padding: 8px;
+    }
+    .tab_titles {
+        display: flex;
+        margin-bottom: 5rem;
+        border-bottom: 1px solid #C4C4C4;
+        a {
+            cursor: pointer;
+        }
+        .tab_title {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            &::before{
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 0;
+                height: 2px;
+                border-radius: 7px;
+                background: var(--color-sec-50);
+                transition: width .3s ease-in-out linear;
+            }
+            &.active {
+                color: var(--color-pr-100);
+                &::before {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .tab_item {
+        .tab_column_info {
+            width: 100%;
+            .paragraph blockquote p {
+                color: #9A9A9A;
+                margin-top: 1.6rem;
+            }
+            .table-wrap {
+                margin-top: 3.3rem;
+                table tbody td:first-child {
+                    min-width: 34rem;
+                }
+                table thead tr th:first-child, 
+                table tbody tr td:first-child  {
+                    width: 50%;
+                }
+            }
+        }
+        .title_description {
+            font-weight: 600;
+            font-size: 2rem;
+            color: var(--color-pr-100);
+            margin-bottom: 4rem;
+        }
+    }
+    
+}

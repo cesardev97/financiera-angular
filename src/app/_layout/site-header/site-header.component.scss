@@ -1,0 +1,134 @@
+@import "mixins";
+
+.header_nav_wrap{
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 8rem;
+    justify-content: space-between;
+    padding: 0 var(--padding-ctn);
+    box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+    .header_nav {
+        display: flex;
+        width: 100%;
+        .header_menu {
+            width: 100%;
+            @include mq-min($lg2){
+                width: 52%;
+            }
+        }
+        .header_aditional {
+            display: flex;
+            justify-content: space-between;
+            width: 70%;
+            width: 230px;
+            @include mq-min($lg) {
+                align-items: center;
+                width: 330px;
+            }
+            @include mq-min($lg2) {
+                width: 70%;
+            }
+        }
+        .search{
+            padding: 4px;
+            cursor: pointer;
+            &::before{
+                font-size: 2.7rem;
+                display: block;
+                transition: transform .4s ease-in-out;
+                color: var(--color-pr-50);
+            }
+            &:hover::before{
+                transform: rotate(90deg);
+            }
+            @include mq-min($md){
+                margin-left: 3rem;
+            }
+        }
+        @include mq-min($sm) {
+            width: 380px;
+            align-items: center;
+        }
+        @include mq-min($lg) {
+            width: 100%;
+        }
+    }
+    .link_bank_wrap a {
+        padding-left: 4.4rem;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        &::before {
+            content: "\e952";
+            font-family: 'icomoon';
+            position: absolute;
+            left: 2rem;
+            color: currentColor;
+            font-size: 2rem;
+            font-weight: 400;
+        }
+    }
+}
+
+.header_nav {
+    height: 8rem;
+    background-color: var(--color-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include mq($lg) {
+        padding-top: 110px;
+        padding-bottom: 80px;
+        height: 100%;
+        position: fixed;
+        visibility: hidden;
+        z-index: 20;
+        top: 0;
+        right: 0;
+        padding-top: 10vh;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        transform: translateX(100%);
+        transition: transform .3s ease-in-out;
+        &.opened {
+            transform: translateX(0);
+            visibility: visible;
+        }
+        .header_menu {
+            overflow: auto;
+            max-height: 90vh;
+            margin-bottom: 24px;
+        }
+        .header_aditional {
+            align-items: flex-start;
+            flex-direction: column;
+            padding-left: 24px;
+            .search::before {
+                font-size: 30px;
+            }
+            .link_bank_wrap {
+                margin-top: 32px;
+            }
+        }
+    }
+    @include mq($md) {
+        padding-top: 52px;
+        padding-bottom: 40px;
+    }
+}
+
+
+.overlay-menu {
+    position: fixed;
+    z-index: 15;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.32);
+    left: 0;
+    top: 0;
+    &.active {
+        opacity: 1;
+    }
+}

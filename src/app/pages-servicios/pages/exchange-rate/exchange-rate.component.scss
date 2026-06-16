@@ -1,0 +1,216 @@
+@import "mixins";
+
+.exchange_information {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    @include mq-min($md) {
+        margin-top: 4.8rem;
+        margin-bottom: 7.2rem;
+    }
+    @include mq-min($lg) {
+        .container {
+            justify-content: space-between;
+        }
+        .exchange_definition {
+            width: 48%;
+        }
+        .exchange_form_wrap {
+            width: 40%;
+        }
+    }
+    @include mq-min($lg2){
+        .container {
+            margin: 0 auto;
+            max-width: 75%;
+        }
+    }
+}
+
+.exchange_block {
+    @include mq-min($lg2) {
+        .container {
+            margin: 0 auto;
+            max-width: 78%;
+        }
+    }
+}
+
+
+.exchange_definition {
+    .title {
+        margin-bottom: 24px;
+        @include mq-min($md) {
+            margin-bottom: 4rem;
+        }
+    }
+    .paragraph {
+        h4 {
+            margin-bottom: 2.4rem;
+        }
+        ol li {
+            margin-top: 1.6rem;
+        }
+    }
+}
+
+.exchange_form_wrap {
+    h4 {
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1.6rem;
+    }
+    .exchange_values {
+        margin-bottom: 2.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+            color: #686868;
+            font-size: 1.2rem;
+            letter-spacing: -0.6px;
+            font-weight: 600;
+            line-height: 1.1;
+            display: inline-block;
+            &:first-child {
+                margin-right: 1.6rem;
+                padding-right: 1.6rem;
+                border-right: 1px solid #D8A900;
+            }
+        }
+        bdi {
+            font-weight: 500;
+            font-size: 1.6rem;
+            color: #000000;
+            margin-left: 4px;
+        }
+    }
+    .btn-exchange {
+        width: 100%;
+        padding: 1.4rem 0;
+        margin-top: 3.2rem;
+    }
+    @include mq($md) {
+        background: #F9F9F9;
+        border-radius: 16px;
+        padding: 24px 16px;
+        margin-top: 24px;
+    }
+}
+
+.exchange-items {
+    position: relative;
+    .switcher {
+        position: absolute;
+        top: 50%;
+        left: 12.7rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        width: 8.64rem;
+        height: 8.64rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--color-pr-50);
+        border: 4.8px solid #F1F1F1;
+        &.rotate img {
+            transform: rotate(180deg);
+        }
+        img {
+            user-select: none;
+            max-width: 46%;
+            transition: transform .3s ease-in-out;
+        }
+        @include mq($sm){
+            width: 52px;
+            height: 52px;
+            left: 24px;
+        } 
+    }
+}
+
+.exchange-group {
+    background: #FFFFFF;
+    box-shadow: 0px 8px 22px -6px rgba(24, 39, 75, 0.12), 0px 14px 64px -4px rgba(24, 39, 75, 0.12);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.6rem;
+    padding: 2.4rem;
+    .type {
+        display: flex;
+        align-items: center;
+        span {
+            font-weight: 500;
+            letter-spacing: -0.6px;
+        }
+        .code {
+            margin-right: 9px;
+        }
+        .symbol {
+            font-weight: 700;
+            font-size: 3.6rem;
+        }
+    }
+    .input-group {
+        width: 60%;
+        text-align: right;
+    }
+    .title-amount {
+        font-weight: 500;
+        letter-spacing: -0.6px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        img {
+            max-height: 1.6rem;
+            margin-left: 8px;
+        }
+    }
+    .amount input{
+        font-weight: 700;
+        font-size: 3.6rem;
+        letter-spacing: -0.6px;
+        width: 100%;
+        text-align: right;
+        line-height: 1.35;
+        font-family: inherit;
+    }
+}
+
+.faq-single {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .faq-image-wrap {
+        width: 38%;
+        .faq-image {
+            max-height: 25rem;
+            @include mq-min($lg){
+                max-height: 34.34rem;
+            }
+        }
+    }
+    .faq-accordion {
+        .title {
+            margin-bottom: 4rem;
+        }
+    }
+    @include mq($md) {
+        background: #F9F9F9;
+        .faq-image-wrap {
+            display: none;
+        }
+    }
+    @include mq-min($md){
+        padding-top: 12rem;
+        padding-bottom: 25rem;
+        .faq-accordion {
+            width: 50%;
+
+        }
+    }
+}

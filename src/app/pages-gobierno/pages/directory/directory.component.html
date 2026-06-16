@@ -1,0 +1,202 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="leaders directory">
+    <div class="container max">
+        <h2 class="title">{{acf.title_leaders}}</h2>
+
+        <div class="tabs_wrap">
+            <mat-tab-group>
+                <mat-tab [label]="acf.tabs_leaders?.tab_directory.tab_title">
+                    <ng-template matTabContent>
+                        <swiper [config]="configLeaders">
+                            <ng-template swiperSlide 
+                                *ngFor="let item of acf.tabs_leaders?.tab_directory.tab_items">
+                                <div class="member_item">
+                                    <h4 class="member_name">{{item.name}}</h4>
+                                    <div class="positions">
+                                        <span *ngIf="item.position_1" class="pos_1">{{item.position_1}}</span>
+                                        <span *ngIf="item.position_2" class="pos_2">{{item.position_2}}</span>
+                                    </div>
+                                    <span class="btn gnrl" *ngIf="item.description || item.image"
+                                        (click)="openDialog(
+                                            acf.tabs_leaders?.tab_directory.tab_title, 
+                                            item.name, item.image, item.description,
+                                            item.position_1, item.position_2
+                                        )"
+                                    >
+                                        {{acf.button_items}}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </swiper>
+                        <div class="btns-slider-group gnrl">
+                            <div class="dir-prev swiper-navigation icon-left-arrow"></div>
+                            <div class="dir-pagination swiper-pagination"></div>
+                            <div class="dir-next swiper-navigation icon-right-arrow"></div>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+           
+    
+        </div>
+    </div>
+</section>
+
+<section class="committees directory bg-gray">
+    <div class="container max">
+        <h2 class="title">{{acf.title_committees}}</h2>
+
+        <div class="tabs_wrap">
+            <mat-tab-group>
+                <mat-tab [label]="acf.tabs_committees?.tab_1?.tab_title">
+                    <ng-template matTabContent>
+                        <swiper [config]="configCommittee1">
+                            <ng-template swiperSlide *ngFor="let item of acf.tabs_committees?.tab_1?.tab_items">
+                                <div class="member_item">
+                                    <h4 class="tab_item member_name">{{item.name}}</h4>
+                                    <div class="positions">
+                                        <span *ngIf="item.position_1" class="pos_1">{{item.position_1}}</span>
+                                        <span *ngIf="item.position_2" class="pos_2">{{item.position_2}}</span>
+                                    </div>
+                                    <span class="btn gnrl" *ngIf="item.description || item.image"
+                                        (click)="openDialog(
+                                            acf.tabs_committees?.tab_1?.tab_title, 
+                                            item.name, item.image, item.description,
+                                            item.position_1, item.position_2
+                                        )"
+                                    >
+                                        {{acf.button_items}}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </swiper>
+                        <div class="btns-slider-group gnrl">
+                            <div class="comm-prev-1 swiper-navigation icon-left-arrow"></div>
+                            <div class="comm-pagination-1 swiper-pagination"></div>
+                            <div class="comm-next-1 swiper-navigation icon-right-arrow"></div>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab [label]="acf.tabs_committees?.tab_2?.tab_title">
+                    <ng-template matTabContent>
+                        <swiper [config]="configCommittee2">
+                            <ng-template swiperSlide *ngFor="let item of acf.tabs_committees.tab_2.tab_items">
+                                <div class="member_item">
+                                    <h4 class="member_name">{{item.name}}</h4>
+                                    <div class="positions">
+                                        <span *ngIf="item.position_1" class="pos_1">{{item.position_1}}</span>
+                                        <span *ngIf="item.position_2" class="pos_2">{{item.position_2}}</span>
+                                    </div>
+                                    <span class="btn gnrl" *ngIf="item.description || item.image"
+                                        (click)="openDialog(
+                                            acf.tabs_committees?.tab_2?.tab_title, 
+                                            item.name, item.image, item.description,
+                                            item.position_1, item.position_2
+                                        )"
+                                    >
+                                        {{acf.button_items}}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </swiper>
+                        <div class="btns-slider-group gnrl">
+                            <div class="comm-prev-2 swiper-navigation icon-left-arrow"></div>
+                            <div class="comm-pagination-2 swiper-pagination"></div>
+                            <div class="comm-next-2 swiper-navigation icon-right-arrow"></div>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab [label]="acf.tabs_committees?.tab_3?.tab_title">
+                    <ng-template matTabContent>
+                        <swiper [config]="configCommittee3">
+                            <ng-template swiperSlide *ngFor="let item of acf.tabs_committees.tab_3.tab_items">
+                                <div class="member_item">
+                                    <h4 class="member_name">{{item.name}}</h4>
+                                    <div class="positions">
+                                        <span *ngIf="item.position_1" class="pos_1">{{item.position_1}}</span>
+                                        <span *ngIf="item.position_2" class="pos_2">{{item.position_2}}</span>
+                                    </div>
+                                    <span class="btn gnrl" *ngIf="item.description || item.image"
+                                        (click)="openDialog(
+                                            acf.tabs_committees?.tab_3?.tab_title, 
+                                            item.name, item.image, item.description,
+                                            item.position_1, item.position_2
+                                        )"
+                                    >
+                                        {{acf.button_items}}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </swiper>
+                        <div class="btns-slider-group gnrl">
+                            <div class="comm-prev-3 swiper-navigation icon-left-arrow"></div>
+                            <div class="comm-pagination-3 swiper-pagination"></div>
+                            <div class="comm-next-3 swiper-navigation icon-right-arrow"></div>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab [label]="acf.tabs_committees?.tab_4?.tab_title">
+                    <ng-template matTabContent>
+                        <swiper [config]="configCommittee4">
+                            <ng-template swiperSlide *ngFor="let item of acf.tabs_committees.tab_4.tab_items">
+                                <div class="member_item">
+                                    <h4 class="member_name">{{item.name}}</h4>
+                                    <div class="positions">
+                                        <span *ngIf="item.position_1" class="pos_1">{{item.position_1}}</span>
+                                        <span *ngIf="item.position_2" class="pos_2">{{item.position_2}}</span>
+                                    </div>
+                                    <span class="btn gnrl" *ngIf="item.description || item.image"
+                                        (click)="openDialog(
+                                            acf.tabs_committees?.tab_4?.tab_title, 
+                                            item.name, item.image, item.description,
+                                            item.position_1, item.position_2
+                                        )"
+                                    >
+                                        {{acf.button_items}}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </swiper>
+                        <div class="btns-slider-group gnrl">
+                            <div class="comm-prev-4 swiper-navigation icon-left-arrow"></div>
+                            <div class="comm-pagination-4 swiper-pagination"></div>
+                            <div class="comm-next-4 swiper-navigation icon-right-arrow"></div>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab [label]="acf.tabs_committees?.tab_5?.tab_title">
+                    <ng-template matTabContent>
+                        <swiper [config]="configCommittee5">
+                            <ng-template swiperSlide *ngFor="let item of acf.tabs_committees.tab_5.tab_items">
+                                <div class="member_item">
+                                    <h4 class="member_name">{{item.name}}</h4>
+                                    <div class="positions">
+                                        <span *ngIf="item.position_1" class="pos_1">{{item.position_1}}</span>
+                                        <span *ngIf="item.position_2" class="pos_2">{{item.position_2}}</span>
+                                    </div>
+                                    <span class="btn gnrl" *ngIf="item.description || item.image"
+                                        (click)="openDialog(
+                                            acf.tabs_committees?.tab_5?.tab_title, 
+                                            item.name, item.image, item.description,
+                                            item.position_1, item.position_2
+                                        )"
+                                    >
+                                        {{acf.button_items}}
+                                    </span>
+                                </div>
+                            </ng-template>
+                        </swiper>
+                        <div class="btns-slider-group gnrl">
+                            <div class="comm-prev-5 swiper-navigation icon-left-arrow"></div>
+                            <div class="comm-pagination-5 swiper-pagination"></div>
+                            <div class="comm-next-5 swiper-navigation icon-right-arrow"></div>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>    
+    </div>
+</section>

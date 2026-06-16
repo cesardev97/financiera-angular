@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  proempresa-landing-web:
+    image: my-angular-app
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    ports:
+      - 4200:4200
+    networks:
+      - webnet
+networks:
+  webnet:

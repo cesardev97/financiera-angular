@@ -1,0 +1,80 @@
+@import "mixins";
+
+.why_join_section {
+    margin-top: 35px;
+    margin-bottom: 66px;
+    .title {
+        margin-bottom: 24px;
+        @include mq-min($md) {
+            margin-bottom: 5.3rem;
+        }
+    }
+    .paragraph_wrap {
+        .paragraph ol li {
+            font-weight: 500;
+        }
+        .btn {
+            margin-top: 4rem;
+        }
+    }
+    @include mq-min($md){
+        margin-top: 4rem;
+        margin-bottom: 5.4rem;
+    }
+    @include mq-min($lg) {
+        .paragraph_wrap {
+            width: 60%;
+            margin-left: 7.2rem;
+        }
+    }
+}
+
+.experience_section {
+    background: #FAFAFA;
+    padding: 32px 0;
+    .title {
+        margin-bottom: 24px;
+    }
+    .experience_item {
+        .card-text {
+            min-height: 74px;
+        }
+    }
+    @include mq-min($md) {
+        padding: 5.6rem 0;
+        .title {
+            margin-bottom: 4.8rem;
+        }
+    }
+    @include mq-min($lg2){
+        .container {
+            max-width: 76%;
+            margin: 0 auto;
+        }
+    }
+}
+
+.join_section {
+    margin: 32px 0;
+    .titles {
+        margin-bottom: 24px;
+        @include mq-min($md) {
+            margin-bottom: 4rem;
+        }
+    }
+    .join_slider {
+        .join_item .btn {
+            width: fit-content !important;
+        }
+    }
+    @include mq-min($md) {
+        margin-top: 5rem;
+        margin-bottom: 12rem;
+    }
+    @include mq-min($lg2){
+        .container {
+            max-width: 76%;
+            margin: 0 auto;
+        }
+    }
+}

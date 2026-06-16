@@ -1,0 +1,78 @@
+.modal-ctn {
+    position: relative;
+    .title {
+        margin-bottom: 3rem;
+    }
+    .return {
+        margin-top: 2.4rem;
+    }
+    .modal-video {
+        margin: 20px 0px;
+        display: flex;
+        height: 46vw;
+    }
+    .icon-close {
+        right: 3rem;
+        top: 2.7rem;
+        color: #BBB9B9;
+        &::before {
+            font-size: 25px;
+            color: currentColor;
+        }
+    }
+    .modal-body {
+        border-radius: 8px;
+        padding: 2rem 24px;
+        position: relative;
+        overflow: auto;
+        width: 100%;
+        max-width: 94rem !important;
+    }
+    @include mq($md) {
+        margin-bottom: 6rem;
+        margin-top: 10px;
+    }
+    @include mq-min($md) {
+        .modal-video {
+            margin-top: 3rem;
+            height: 42rem;
+        }
+        .modal-body {
+            padding: 3.5rem 5rem;
+            max-height: calc(100vh - 8rem);
+            overflow: hidden;
+            width: 64vw;
+        }
+    }
+}
+
+.cdk-overlay-pane {
+    @include mq($md) {
+        .icon-close {
+            position: unset;
+            float: right;
+            margin-bottom: 15px;
+            margin-right: 10px;
+            color: #FFFFFF;
+        }
+    }
+    @include mq($sm) {
+        max-width: 90vw !important;
+    }
+}
+
+.icon-close {
+    position: absolute;
+    z-index: 1;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    &.border {
+        border-radius: 50%;
+        border: 3px solid #BBB9B9;
+        padding: 1.2rem;
+    }
+}

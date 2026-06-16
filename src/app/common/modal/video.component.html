@@ -1,0 +1,10 @@
+<div class="modal-ctn">
+    <span class="icon-close" (click)="onNoClick()"></span>
+    <div class="modal-body">
+        <div *ngIf="data.video" class="modal-video">
+            <iframe width="100%" height="100%" 
+                [src]="data.video | media:'video'" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>

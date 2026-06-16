@@ -1,0 +1,19 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="info_portal_smv bg-gray">
+    <div class="container">
+        <h2 class="title center">{{acf.title_portal}}</h2>
+        <div class="c-flex r-reverse">
+            <div class="figure">
+                <img [src]="acf.image_portal" [alt]="acf.title_portal">
+            </div>
+            <div class="paragraph_wrap">
+                <div class="paragraph" [innerHTML]="acf.description">
+                </div>
+                <a class="btn gnrl" [href]="acf.button_portal_url" target="_blank">{{acf.button_portal_text}}</a>
+            </div>
+        </div>
+    </div>
+</section>

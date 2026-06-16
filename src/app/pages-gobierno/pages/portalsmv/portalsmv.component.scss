@@ -1,0 +1,54 @@
+@import "mixins";
+
+.info_portal_smv {
+    padding-top: 32px;
+    padding-bottom: 74px;
+    .title {
+        margin-bottom: 28px;
+    }
+    .paragraph_wrap {
+        padding-top: 24px;
+        h4 {
+            margin-bottom: 2.5rem;
+            display: none;
+            @include mq-min($lg) {
+                display: block;
+            }
+        }
+        .btn {
+            margin-top: 28px;
+        }
+    }
+    .figure {
+        text-align: center;
+        img {
+            width: 68%;
+            max-width: 30rem;
+        }
+    }
+    @include mq-min($md) {
+        padding-top: 6.2rem;
+        padding-bottom: 14.4rem;
+        .container {
+            max-width: 78%;
+            margin: 0 auto;
+        }
+        .paragraph_wrap {
+            width: 52%;
+            margin-right: 7.5rem;
+            padding-top: 3.5rem;
+            .btn {
+                margin-top: 1.5rem;
+            }
+        }
+        .figure img {
+            width: 38.3rem;
+            max-width: 100%;
+        }
+    }
+    @include mq-min($lg) {
+        .title {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<figure [class]="className" *ngIf="imageUrl; else noImage">
+    <img [src]="imageUrl">
+</figure>
+
+<ng-template #noImage>
+    <div class="no-image" [class]="className">
+        <img src="assets/images/utils/no-image.png">
+    </div>
+</ng-template>

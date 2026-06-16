@@ -1,0 +1,189 @@
+
+@import "mixins";
+
+.payment-top-rightitem {
+    color: var(--color-gray-200);
+    font-family: var(--f-secondary);
+    font-size: 14px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    span{
+        margin-right: 15px;
+    }       
+    
+    &:last-child{
+        margin-bottom: 0;
+    }
+    @include mq($sm) {
+        display: flex;
+        flex-direction: column;
+    }
+    @include mq-min($md) {
+        margin-bottom: 10px; 
+        &.space{
+            span{
+                padding-right: 15px;
+                border-right: 1px solid var( --color-gray-200);
+                margin-right: 10px;
+            }
+            
+        }
+    }
+}
+
+.payment-modal {
+    .payment-wrap-main {
+        width: 100%;
+        border-radius: 8px;
+        padding: 2rem 24px;
+        background-color: #fff;
+        max-width: 1131px;
+        @include mq($md){
+            overflow: auto;
+        }
+        @include mq-min($lg2) {
+            padding-left: 40px;
+            padding-top: 58px;
+        }
+    }
+}
+
+.payment-title{
+    color: var(--color-pr-50);
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-family: var(--f-primary);
+    font-weight: 600;
+    line-height: 1.2;
+    @include mq-min($lg) {
+        font-size: 24px;
+    }
+}
+.payment-top{
+    background-color:var(--color-light-50);
+    padding: 16px;
+    margin-bottom: 30px;
+    @include mq-min($lg) {
+        padding: 30px;
+    }
+}
+.payment-top-inner{
+    max-width: 900px;
+    margin: 0 auto;
+    @include mq-min($lg) {
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row wrap;
+        .payment-top-left {
+            width: 35%;
+        }
+        .payment-top-right {
+            width: 63.5%;
+        }
+    }
+    @include mq($sm) {
+        .payment-top-left {
+            text-align: center;
+        }
+        .payment-top-right {
+            margin-top: 20px;
+        }
+    }
+}
+
+.payment-table{
+    margin-bottom: 16px;
+    overflow: auto;
+    table{
+        width: 100%;
+    }
+    thead{
+        th{
+            font-size: 14px;
+            font-family: var(--f-secondary);
+            text-align: center;
+            color: var(--color-pr-100);
+            padding: 0 6px 12px 6px;
+            min-width: 70px;
+        }
+    }
+    tbody{
+        tr{
+           height: 40px; 
+           text-align: center;
+           &:nth-child(odd){
+            background-color: #f6fef6;
+           }
+        }
+        td{
+            font-size: 12px;
+            text-align: center;
+            font-family: var(--f-secondary);
+            color: #000000;
+        }
+    }
+    tfoot{
+        background-color: var(--color-light-50);
+        tr{
+            height: 44px;
+            text-align: center;
+        }
+        td{
+            font-size: 12px;
+            font-family: var(--f-primary);
+            text-align: center;
+            font-weight: 600;
+            color: #000000;
+        }
+    }
+    @include mq($sm){
+        overflow: auto;
+    }
+}
+.payment-down{
+    background-color: #fff7d9;
+    padding: 16px;
+    border-radius: 8px;
+    ul{
+        li{
+            list-style: none;
+            position: relative;
+            padding-left: 10px;
+            line-height: 21px;
+            font-size: 14px;
+            color: #000000;
+            &:after{
+                content: "";
+                left: 0;
+                top: 7px;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background-color: #000000;
+                position: absolute;
+            }
+        }
+    }
+    @include mq-min($lg){
+        padding-left: 50px;
+    }
+}
+.payment-wrap-boton{
+    padding: 16px 0;
+    text-align: center;
+    .payment-btn{
+        display: inline-block;
+        text-align: center;
+        padding: 0 10px;
+        border-radius: 35px;
+        background-color: var(--color-pr-50);
+        color: var(--color-light);
+        width: 224px;
+        height: 40px;
+        font-weight: 700;
+        line-height: 40px;
+        cursor: pointer;
+    }
+}
+

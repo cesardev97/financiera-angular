@@ -1,0 +1,30 @@
+<section class="maintenance page-estate">
+    <div class="container max c-flex">
+        <div class="description">
+            <div class="titles">
+                <h1 class="title">{{acf.title_banner}}</h1>
+
+                <div class="figure img_mobile">
+                    <ng-container *ngTemplateOutlet="imagesState"></ng-container>
+                </div>
+
+                <h5 class="subtitle" [innerHtml]="acf.subtitle_banner"></h5>
+            </div>
+            <a routerLink="" class="btn gnrl">{{acf.button_banner_text}}</a>
+        </div>
+        <div class="figure img_desktop">
+            <ng-container *ngTemplateOutlet="imagesState"></ng-container>
+        </div>
+    </div>
+</section>      
+
+<ng-template #imagesState>
+    <picture>
+        <source media="(min-width: 860px)" [srcset]="acf.image_banner">
+        <img [src]="acf.image_mob_banner" *ngIf="acf.image_mob_banner; else imageElse">
+        <ng-template #imageElse>
+            <img [src]="acf.image_banner">
+        </ng-template>
+    </picture>
+</ng-template>
+

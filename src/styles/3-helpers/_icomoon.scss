@@ -1,0 +1,464 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('~/src/assets/icons/icomoon.eot?taizzj');
+  src:  url('~/src/assets/icons/icomoon.eot?taizzj#iefix') format('embedded-opentype'),
+    url('~/src/assets/icons/icomoon.ttf?taizzj') format('truetype'),
+    url('~/src/assets/icons/icomoon.woff?taizzj') format('woff'),
+    url('~/src/assets/icons/icomoon.svg?taizzj#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shop_money .path1:before {
+  content: "\e900";
+  color: rgb(0, 0, 0);
+}
+.icon-shop_money .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+}
+.icon-shop_money .path3:before {
+  content: "\e902";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-off:before {
+  content: "\e903";
+  color: #000;
+}
+.icon-on:before {
+  content: "\e904";
+  color: #000;
+}
+.icon-add:before {
+  content: "\e905";
+  color: #000;
+}
+.icon-add-mail:before {
+  content: "\e906";
+  color: #000;
+}
+.icon-add-circle:before {
+  content: "\e907";
+  color: #000;
+}
+.icon-adobe:before {
+  content: "\e908";
+  color: #000;
+}
+.icon-agency:before {
+  content: "\e909";
+  color: #000;
+}
+.icon-alert-mail:before {
+  content: "\e90a";
+  color: #000;
+}
+.icon-ambulance:before {
+  content: "\e90b";
+  color: #000;
+}
+.icon-approved-mail:before {
+  content: "\e90c";
+  color: #000;
+}
+.icon-calculation:before {
+  content: "\e90d";
+  color: #000;
+}
+.icon-calif-riesgo:before {
+  content: "\e90e";
+  color: #000;
+}
+.icon-call:before {
+  content: "\e90f";
+  color: #000;
+}
+.icon-call-cancel:before {
+  content: "\e910";
+  color: #000;
+}
+.icon-canales-pago:before {
+  content: "\e911";
+  color: #000;
+}
+.icon-cancel-mail:before {
+  content: "\e912";
+  color: #000;
+}
+.icon-capital:before {
+  content: "\e913";
+  color: #000;
+}
+.icon-check:before {
+  content: "\e914";
+  color: #000;
+}
+.icon-chevrone-down:before {
+  content: "\e915";
+  color: #000;
+}
+.icon-chevrone-right:before {
+  content: "\e916";
+  color: #000;
+}
+.icon-cliente:before {
+  content: "\e917";
+  color: #000;
+}
+.icon-close:before {
+  content: "\e918";
+  color: #000;
+}
+.icon-close-2:before {
+  content: "\e919";
+  color: #000;
+}
+.icon-close-small:before {
+  content: "\e91a";
+  color: #000;
+}
+.icon-colaboradores:before {
+  content: "\e91b";
+  color: #000;
+}
+.icon-consultas-reclamos:before {
+  content: "\e91c";
+  color: #000;
+}
+.icon-credit-card:before {
+  content: "\e91d";
+  color: #000;
+}
+.icon-date:before {
+  content: "\e91e";
+  color: #000;
+}
+.icon-descount:before {
+  content: "\e91f";
+  color: #000;
+}
+.icon-dinero-exterior:before {
+  content: "\e920";
+  color: #000;
+}
+.icon-discount:before {
+  content: "\e921";
+  color: #000;
+}
+.icon-document-add:before {
+  content: "\e922";
+  color: #000;
+}
+.icon-dolar:before {
+  content: "\e923";
+  color: #000;
+}
+.icon-dollar:before {
+  content: "\e924";
+  color: #000;
+}
+.icon-down-arrow:before {
+  content: "\e925";
+  color: #000;
+}
+.icon-download:before {
+  content: "\e926";
+  color: #000;
+}
+.icon-locat-1:before {
+  content: "\e927";
+  color: #000;
+}
+.icon-encuentra-edn:before {
+  content: "\e928";
+  color: #000;
+}
+.icon-enlaces:before {
+  content: "\e929";
+  color: #000;
+}
+.icon-error:before {
+  content: "\e92a";
+  color: #000;
+}
+.icon-facebook:before {
+  content: "\e92b";
+  color: #000;
+}
+.icon-gift:before {
+  content: "\e92c";
+  color: #000;
+}
+.icon-health:before {
+  content: "\e92d";
+  color: #000;
+}
+.icon-help:before {
+  content: "\e92e";
+  color: #000;
+}
+.icon-home:before {
+  content: "\e92f";
+  color: #000;
+}
+.icon-home_money .path1:before {
+  content: "\e930";
+  color: rgb(0, 0, 0);
+}
+.icon-home_money .path2:before {
+  content: "\e931";
+  margin-left: -1em;
+}
+.icon-home_money .path3:before {
+  content: "\e932";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-instagram:before {
+  content: "\e933";
+  color: #000;
+}
+.icon-keyboard:before {
+  content: "\e934";
+  color: #000;
+}
+.icon-left-arrow:before {
+  content: "\e935";
+  color: #000;
+}
+.icon-like:before {
+  content: "\e936";
+  color: #000;
+}
+.icon-link:before {
+  content: "\e937";
+  color: #000;
+}
+.icon-link2:before {
+  content: "\e938";
+  color: #000;
+}
+.icon-locat-2:before {
+  content: "\e939";
+  color: #000;
+}
+.icon-maleta:before {
+  content: "\e93a";
+  color: #000;
+}
+.icon-message:before {
+  content: "\e93b";
+  color: #000;
+}
+.icon-messages:before {
+  content: "\e93c";
+  color: #000;
+}
+.icon-mi-ubicacion:before {
+  content: "\e93d";
+  color: #000;
+}
+.icon-mobile:before {
+  content: "\e93e";
+  color: #000;
+}
+.icon-money:before {
+  content: "\e93f";
+  color: #000;
+}
+.icon-pen:before {
+  content: "\e940";
+  color: #000;
+}
+.icon-pencil:before {
+  content: "\e941";
+  color: #000;
+}
+.icon-people:before {
+  content: "\e942";
+  color: #000;
+}
+.icon-people-safe:before {
+  content: "\e943";
+  color: #000;
+}
+.icon-portal:before {
+  content: "\e944";
+  color: #000;
+}
+.icon-faq:before {
+  content: "\e945";
+  color: #000;
+}
+.icon-proveedores:before {
+  content: "\e946";
+  color: #000;
+}
+.icon-rapidito:before {
+  content: "\e947";
+  color: #000;
+}
+.icon-dinero-interior:before {
+  content: "\e948";
+  color: #000;
+}
+.icon-pecibo:before {
+  content: "\e949";
+  color: #000;
+}
+.icon-recibo-dolar:before {
+  content: "\e94a";
+  color: #000;
+}
+.icon-remesas:before {
+  content: "\e94b";
+  color: #000;
+}
+.icon-reprogramacion .path1:before {
+  content: "\e94c";
+  color: rgb(0, 0, 0);
+}
+.icon-reprogramacion .path2:before {
+  content: "\e94d";
+  margin-left: -1em;
+}
+.icon-reprogramacion .path3:before {
+  content: "\e94e";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-retirar-dinero:before {
+  content: "\e94f";
+  color: #000;
+}
+.icon-right-arrow:before {
+  content: "\e950";
+  color: #000;
+}
+.icon-search:before {
+  content: "\e951";
+  color: #000;
+}
+.icon-seguridad:before {
+  content: "\e952";
+  color: #000;
+}
+.icon-seguridad-asegurada:before {
+  content: "\e953";
+  color: #000;
+}
+.icon-send:before {
+  content: "\e954";
+  color: #000;
+}
+.icon-recaudacion:before {
+  content: "\e955";
+  color: #000;
+}
+.icon-shop:before {
+  content: "\e956";
+  color: #000;
+}
+.icon-soat:before {
+  content: "\e957";
+  color: #000;
+}
+.icon-solicitud-derecho-arco:before {
+  content: "\e958";
+  color: #000;
+}
+.icon-success:before {
+  content: "\e959";
+  color: #000;
+}
+.icon-tipo-de-cambio:before {
+  content: "\e95a";
+  color: #000;
+}
+.icon-trash:before {
+  content: "\e95b";
+  color: #000;
+}
+.icon-twitter:before {
+  content: "\e95c";
+  color: #000;
+}
+.icon-up-arrow:before {
+  content: "\e95d";
+  color: #000;
+}
+.icon-upload:before {
+  content: "\e95e";
+  color: #000;
+}
+.icon-warning:before {
+  content: "\e95f";
+  color: #000;
+}
+.icon-wsp .path1:before {
+  content: "\e960";
+  color: rgb(0, 0, 0);
+}
+.icon-wsp .path2:before {
+  content: "\e961";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-wu:before {
+  content: "\e962";
+  color: #000;
+}
+.icon-youtube:before {
+  content: "\e963";
+  color: #000;
+}
+.icon-call-1:before {
+  content: "\e964";
+  color: #000;
+}
+.icon-call-2:before {
+  content: "\e965";
+  color: #000;
+}
+.icon-play:before {
+  content: "\e966";
+  color: #000;
+}
+.icon-square:before {
+  content: "\e967";
+}
+.icon-ruler:before {
+  content: "\e968";
+}
+.icon-bed:before {
+  content: "\e969";
+}
+.icon-bath:before {
+  content: "\e96a";
+}
+.icon-garage:before {
+  content: "\e96b";
+}
+.icon-calendar:before {
+  content: "\e96c";
+}
+.icon-eye:before {
+  content: "\e96d";
+}

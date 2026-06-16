@@ -1,0 +1,245 @@
+<div class="form-req-wrap">
+    <h3 class="form-title">Ingresa el monto a simular</h3>
+    <div class="form-simulator-wrap">
+        <form #form="ngForm" [formGroup]="formG" (ngSubmit)="onSave(form)" autocomplete="off">
+            <div class="form-group min">
+                <label>DNI</label>
+                <mat-form-field  appearance="outline">
+                    <input type="text" matInput (keypress)="hpServ.onlyNumbers($event)" 
+                        placeholder="Ingresa" formControlName="dni" minlength="8" maxlength="8" 
+                    />
+                </mat-form-field>
+            </div>
+            <div class="form-group min">
+                <label>Número de contacto</label>
+                <mat-form-field  appearance="outline">
+                    <input type="text" matInput (keypress)="hpServ.onlyNumbers($event)" 
+                        placeholder="Ingresa" formControlName="phone" maxlength="9"
+                    />
+                </mat-form-field>            
+            </div>
+            <div class="simulator-divider"></div>
+            <div class="form-group currencies">
+                <mat-radio-group  formControlName="currency" (change)="onChangeCurrency($event.value)">
+                    <mat-radio-button *ngFor="let curr of simulator.currencies"
+                        [value]="curr.value">{{curr.label}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="form-group" [class]="amountClass">
+                <label *ngIf="simulator.has_apertura">Monto de apertura</label>
+                <label *ngIf="(!simulator.has_apertura && (!simulator.min_amount || simulator.periodicity?.length))">
+                    Monto
+                </label>
+                <label *ngIf="simulator.type=='other'">Monto neto de tu(s) factura (s)</label>
+                <mat-form-field appearance="outline">
+                    <input type="number" matInput 
+                        (input)="onInputAmount($event)"
+                        oninput="this.value = Math.abs(this.value) || ''"
+                        placeholder="{{simulator.min_amount ? 'Monto mínimo ' + currencySymbol + MinAmount  : 'Ingrese'}}" 
+                        formControlName="amount" [min]="MinAmount"  
+                        step="100"
+                    />
+                    <mat-icon class="icon-prefix" matPrefix *ngIf="showPrefixAmount && formG.value['amount']">
+                        {{currencySymbol}}
+                    </mat-icon>
+                </mat-form-field>
+            </div>  
+            <div class="form-group min" *ngIf="simulator.has_apertura">
+                <label>Monto de cuota</label>
+                <mat-form-field appearance="outline">
+                    <input type="number" matInput 
+                        (input)="onInputAmount($event)"
+                        oninput="this.value = Math.abs(this.value) || ''"
+                        placeholder="{{simulator.min_fee_amount ? 'Monto mínimo ' + currencySymbol + simulator.min_fee_amount : 'Ingrese'}}" 
+                        formControlName="fee_amount" [min]="this.simulator.min_fee_amount || 1"  
+                        step=".01"
+                    />
+                    <mat-icon class="icon-prefix" matPrefix *ngIf="showPrefixAmount && formG.value['fee_amount']">
+                        {{currencySymbol}}
+                    </mat-icon>
+                </mat-form-field>
+            </div>  
+            <ng-container *ngIf="simulator.type=='credit'">
+                <div class="form-group sm">
+                    <label class="form-label-icon label-notice-wrap">TEA
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" 
+                            (mouseenter)="toggleNotice()" (mouseleave)="toggleNotice()">
+                            <path d="M7.00017 6.33334C6.82336 6.33334 6.65379 6.40358 6.52876 6.52861C6.40374 6.65363 6.3335 6.8232 6.3335 7.00001V9.66668C6.3335 9.84349 6.40374 10.0131 6.52876 10.1381C6.65379 10.2631 6.82336 10.3333 7.00017 10.3333C7.17698 10.3333 7.34655 10.2631 7.47157 10.1381C7.59659 10.0131 7.66683 9.84349 7.66683 9.66668V7.00001C7.66683 6.8232 7.59659 6.65363 7.47157 6.52861C7.34655 6.40358 7.17698 6.33334 7.00017 6.33334ZM7.2535 3.72001C7.09119 3.65333 6.90914 3.65333 6.74683 3.72001C6.665 3.75174 6.59024 3.79932 6.52683 3.86001C6.46795 3.92481 6.42059 3.99922 6.38683 4.08001C6.34951 4.15913 6.33125 4.24589 6.3335 4.33334C6.33299 4.42108 6.34981 4.50806 6.38299 4.58928C6.41616 4.67051 6.46504 4.74438 6.52683 4.80668C6.59163 4.86556 6.66604 4.91292 6.74683 4.94668C6.84783 4.98817 6.95748 5.00422 7.06613 4.99342C7.17479 4.98262 7.27912 4.94529 7.36997 4.88472C7.46083 4.82416 7.53541 4.7422 7.58717 4.64606C7.63893 4.54992 7.66629 4.44253 7.66683 4.33334C7.66438 4.15683 7.59532 3.98777 7.4735 3.86001C7.4101 3.79932 7.33533 3.75174 7.2535 3.72001ZM7.00017 0.333344C5.68162 0.333344 4.39269 0.724337 3.29636 1.45688C2.20004 2.18942 1.34555 3.23061 0.840969 4.44879C0.336385 5.66696 0.204362 7.00741 0.461597 8.30061C0.718832 9.59382 1.35377 10.7817 2.28612 11.7141C3.21847 12.6464 4.40636 13.2813 5.69956 13.5386C6.99277 13.7958 8.33322 13.6638 9.55139 13.1592C10.7696 12.6546 11.8108 11.8001 12.5433 10.7038C13.2758 9.60748 13.6668 8.31855 13.6668 7.00001C13.6668 6.12453 13.4944 5.25762 13.1594 4.44879C12.8243 3.63995 12.3333 2.90502 11.7142 2.28596C11.0952 1.66691 10.3602 1.17584 9.55139 0.840813C8.74255 0.505782 7.87565 0.333344 7.00017 0.333344ZM7.00017 12.3333C5.94533 12.3333 4.91419 12.0205 4.03712 11.4345C3.16006 10.8485 2.47648 10.0155 2.07281 9.04099C1.66914 8.06645 1.56352 6.99409 1.76931 5.95953C1.9751 4.92496 2.48305 3.97465 3.22893 3.22877C3.97481 2.48289 4.92512 1.97494 5.95968 1.76916C6.99425 1.56337 8.06661 1.66899 9.04114 2.07265C10.0157 2.47632 10.8486 3.15991 11.4347 4.03697C12.0207 4.91403 12.3335 5.94518 12.3335 7.00001C12.3335 8.4145 11.7716 9.77105 10.7714 10.7712C9.77121 11.7714 8.41465 12.3333 7.00017 12.3333Z" fill="#C2C2C2"/>
+                        </svg>
+                        <div class="notice" *ngIf="isShowNotice">
+                            <div class="notice-ctn" [innerHtml]="textTEA">
+                            </div>
+                        </div>
+                    </label>
+                    <mat-form-field  appearance="outline">
+                        <input type="number" matInput formControlName="tea"
+                            placeholder="Ingresa"
+                            [min]="TEAMin" [max]="TEAMax"
+                            step=".01"
+                        />
+                        <mat-icon class="icon-suffix"  matSuffix>%</mat-icon>
+                    </mat-form-field>
+                </div>          
+                <div class="form-group sm">
+                    <label>Número de cuotas</label>
+                    <mat-form-field class="wrap-mat-select" appearance="outline">
+                        <mat-label>Selecciona</mat-label>
+                        <input type="number" matInput formControlName="installments" (keypress)="hpServ.onlyInteger($event)"
+                            placeholder="Ingresa" [min]="simulator.cuotas?.cuota_min || 1" [max]="simulator.cuotas?.cuota_max"
+                        />
+                    </mat-form-field>        
+                </div>
+                <div class="form-group sm">
+                    <label>Fecha de desembolso</label>
+                    <mat-form-field class="wrap-datepicker" appearance="outline">
+                        <input formControlName="disbursement_date" matInput [matDatepicker]="dateFromPicker_email"
+                            [min]="minDate" placeholder="Ingresa" />
+                        <mat-datepicker #dateFromPicker_email></mat-datepicker>
+                        <mat-datepicker-toggle matSuffix [for]="dateFromPicker_email">
+                        </mat-datepicker-toggle>
+                    </mat-form-field>            
+                </div>
+                <div class="form-group min">
+                    <label>Seguro de desgravamen</label>
+                    <mat-radio-group formControlName="desgravamen">
+                        <mat-radio-button value="01">SI</mat-radio-button>
+                        <mat-radio-button value="00">NO</mat-radio-button>
+                    </mat-radio-group>
+                </div>    
+                <div class="form-group min">
+                    <label>Seguro opcional</label>
+                    <mat-form-field class="wrap-mat-select" appearance="outline">
+                        <mat-label>Selecciona</mat-label>
+                        <mat-select formControlName="insurance">
+                            <mat-option>Ninguno</mat-option>
+                            <mat-option *ngFor="let item of utilsSimul.seguros" 
+                                [value]="item.codOtrosSeguros"
+                            >{{item.descripcion}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>        
+                </div>
+            </ng-container>
+            
+            <div class="form-group min" *ngIf="simulator.has_apertura">
+                <label>Fecha de apertura</label>
+                <mat-form-field class="wrap-datepicker" appearance="outline">
+                    <input formControlName="fee_date" matInput [matDatepicker]="dateFromPicker_fee"
+                        [min]="minDate" placeholder="Ingresa" />
+                    <mat-datepicker #dateFromPicker_fee></mat-datepicker>
+                    <mat-datepicker-toggle matSuffix [for]="dateFromPicker_fee">
+                    </mat-datepicker-toggle>
+                </mat-form-field>  
+            </div>
+            <div class="form-group min" *ngIf="simulator.periodicity?.length">
+                <label>Periodicidad</label>
+                <mat-form-field class="wrap-mat-select" appearance="outline">
+                    <mat-label>Selecciona</mat-label>
+                    <mat-select formControlName="periodicity" (selectionChange)="onChangePeriodicity()">
+                        <mat-option *ngFor="let item of simulator?.periodicity" [value]="item.value">
+                            {{item.value}} - {{item.label}}
+                        </mat-option>        
+                    </mat-select>
+                </mat-form-field>        
+            </div>
+            <div class="form-group min" *ngIf="simulator.has_apertura">
+                <label>Cantidad de cuotas</label>
+                <mat-form-field  appearance="outline">
+                    <input  type="number" matInput (keypress)="hpServ.onlyNumbers($event)" 
+                        [placeholder]="'Min.'+cuotasMin+'-Max.'+cuotasMax" formControlName="cant_fees" [min]="cuotasMin" [max]="cuotasMax" 
+                    />
+                </mat-form-field>
+            </div>
+            <div class="form-group" [ngClass]="{'min': simulator.periodicity?.length}" 
+                *ngIf="simulator.type=='saving' && !simulator.has_apertura">
+                <label>Plazo en días</label>
+                <mat-form-field  appearance="outline">
+                    <input  type="number" matInput (keypress)="hpServ.onlyNumbers($event)" 
+                        [placeholder]="placeholderDeadline" formControlName="deadline_day" [min]="simulator.deadline_day  || 31"
+                        [step]="formG.value['periodicity'] || 1"
+                    />
+                </mat-form-field>
+            </div> 
+            <div class="form-group min" *ngIf="simulator.type=='other'">
+                <label class="form-label-icon label-notice-wrap">Fecha de vencimiento
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" 
+                        (mouseenter)="toggleNotice()" (mouseleave)="toggleNotice()">
+                        <path d="M7.00017 6.33334C6.82336 6.33334 6.65379 6.40358 6.52876 6.52861C6.40374 6.65363 6.3335 6.8232 6.3335 7.00001V9.66668C6.3335 9.84349 6.40374 10.0131 6.52876 10.1381C6.65379 10.2631 6.82336 10.3333 7.00017 10.3333C7.17698 10.3333 7.34655 10.2631 7.47157 10.1381C7.59659 10.0131 7.66683 9.84349 7.66683 9.66668V7.00001C7.66683 6.8232 7.59659 6.65363 7.47157 6.52861C7.34655 6.40358 7.17698 6.33334 7.00017 6.33334ZM7.2535 3.72001C7.09119 3.65333 6.90914 3.65333 6.74683 3.72001C6.665 3.75174 6.59024 3.79932 6.52683 3.86001C6.46795 3.92481 6.42059 3.99922 6.38683 4.08001C6.34951 4.15913 6.33125 4.24589 6.3335 4.33334C6.33299 4.42108 6.34981 4.50806 6.38299 4.58928C6.41616 4.67051 6.46504 4.74438 6.52683 4.80668C6.59163 4.86556 6.66604 4.91292 6.74683 4.94668C6.84783 4.98817 6.95748 5.00422 7.06613 4.99342C7.17479 4.98262 7.27912 4.94529 7.36997 4.88472C7.46083 4.82416 7.53541 4.7422 7.58717 4.64606C7.63893 4.54992 7.66629 4.44253 7.66683 4.33334C7.66438 4.15683 7.59532 3.98777 7.4735 3.86001C7.4101 3.79932 7.33533 3.75174 7.2535 3.72001ZM7.00017 0.333344C5.68162 0.333344 4.39269 0.724337 3.29636 1.45688C2.20004 2.18942 1.34555 3.23061 0.840969 4.44879C0.336385 5.66696 0.204362 7.00741 0.461597 8.30061C0.718832 9.59382 1.35377 10.7817 2.28612 11.7141C3.21847 12.6464 4.40636 13.2813 5.69956 13.5386C6.99277 13.7958 8.33322 13.6638 9.55139 13.1592C10.7696 12.6546 11.8108 11.8001 12.5433 10.7038C13.2758 9.60748 13.6668 8.31855 13.6668 7.00001C13.6668 6.12453 13.4944 5.25762 13.1594 4.44879C12.8243 3.63995 12.3333 2.90502 11.7142 2.28596C11.0952 1.66691 10.3602 1.17584 9.55139 0.840813C8.74255 0.505782 7.87565 0.333344 7.00017 0.333344ZM7.00017 12.3333C5.94533 12.3333 4.91419 12.0205 4.03712 11.4345C3.16006 10.8485 2.47648 10.0155 2.07281 9.04099C1.66914 8.06645 1.56352 6.99409 1.76931 5.95953C1.9751 4.92496 2.48305 3.97465 3.22893 3.22877C3.97481 2.48289 4.92512 1.97494 5.95968 1.76916C6.99425 1.56337 8.06661 1.66899 9.04114 2.07265C10.0157 2.47632 10.8486 3.15991 11.4347 4.03697C12.0207 4.91403 12.3335 5.94518 12.3335 7.00001C12.3335 8.4145 11.7716 9.77105 10.7714 10.7712C9.77121 11.7714 8.41465 12.3333 7.00017 12.3333Z" fill="#C2C2C2"/>
+                    </svg>
+                    <div class="notice" *ngIf="isShowNotice">
+                        <div class="notice-ctn">
+                            <span>Selecciona la fecha en la que tu cliente te pagara la factura</span>
+                        </div>
+                    </div> 
+                </label>
+                <mat-form-field class="wrap-datepicker" appearance="outline">
+                    <input formControlName="expiration_date" matInput [matDatepicker]="dateFromPicker_expt"
+                        [min]="minDate" placeholder="Ingresa" />
+                    <mat-datepicker #dateFromPicker_expt></mat-datepicker>
+                    <mat-datepicker-toggle matSuffix [for]="dateFromPicker_expt">
+                    </mat-datepicker-toggle>
+                </mat-form-field>
+                 
+            </div> 
+            <div class="form-group min" *ngIf="simulator.type=='other'">
+                <label>RUC de tu cliente</label>
+                <mat-form-field  appearance="outline">
+                    <input type="text" matInput (keypress)="hpServ.onlyNumbers($event)"
+                        placeholder="Ingrese" formControlName="ruc" minlength="11" maxlength="11"
+                    />
+                </mat-form-field>            
+            </div>
+            <span class="protection-policy">
+                <mat-checkbox formControlName="accept_policies">
+                    <p>Acepto la <a href="/transparencia/politica-de-proteccion-de-datos-personales" target="_blank">
+                        Política de protección de datos Personales</a>
+                    </p>
+                </mat-checkbox> 
+            </span>
+            <div class="wrap-button center">
+                <button type="submit" class="btn border" [disabled]="formG.invalid">
+                    {{!showResults ? 'Simular' : 'Volver a simular' }}
+                </button>
+            </div>
+            
+        </form>
+    </div>
+
+    <simulator-results [results]="results" *ngIf="showResults">
+    </simulator-results>
+</div>
+
+<div class="additional_results_wrap" *ngIf="simulator.type=='saving' && showResults">
+    <h2>También puede interesar</h2>
+    <div class="aditional_results">
+        <div class="additional_item card-1 box-2">
+            <h3>{{results.ws.decProductoRef_1}}</h3>
+            <div class="ending_balance">
+                Tu saldo final en {{results.ws.diasSugerenciaRef_1}} días
+                <strong>sería {{results.currSymb}}
+                    {{hpServ.suma([results.ws.montoSugerenciaRef_1, results.ws.interesesCalculadoSugRef_1])}}
+                </strong>
+            </div>  
+            <div class="calculations c-flex j-between">
+                <div>Monto incial: <span>{{results.currSymb}}{{results.ws.montoSugerenciaRef_1}}</span></div>
+                <div>Interés ganado: <span>{{results.currSymb}}{{hpServ.toFloat(results.ws.interesesCalculadoSugRef_1)}}</span></div>
+            </div>
+            <a class="btn gnrl" routerLink="/solicitud-de-producto/{{hpServ.slugify(results.ws.decProductoRef_1)}}">Me interesa</a>
+        </div>
+        <div class="additional_item card-1 box-2">
+            <h3>{{results.ws.decProductoRef_2}}</h3>
+            <div class="ending_balance">
+                Tu saldo final en {{results.ws.diasSugerenciaRef_2}} días
+                <strong>sería {{results.currSymb}}
+                    {{hpServ.suma([results.ws.montoSugerenciaRef_2, results.ws.interesesCalculadoSugRef_2])}}
+                </strong>
+            </div>  
+            <div class="calculations c-flex j-between">
+                <div>Monto incial: <span>{{results.currSymb}}{{results.ws.montoSugerenciaRef_2}}</span></div>
+                <div>Interés ganado: <span>{{results.currSymb}}{{hpServ.toFloat(results.ws.interesesCalculadoSugRef_2)}}</span></div>
+            </div>
+            <a class="btn gnrl" routerLink="/solicitud-de-producto/{{hpServ.slugify(results.ws.decProductoRef_2)}}">Me interesa</a>
+        </div>
+    </div>
+</div>

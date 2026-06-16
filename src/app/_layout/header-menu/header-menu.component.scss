@@ -1,0 +1,232 @@
+@import "mixins";
+
+.header-menu-wrap {
+    margin-left: 3rem;
+    .h_fisrt_menu {
+        display: flex;
+        li a {
+            color: #000000;
+            letter-spacing: -0.6px;
+            transition: all .3s ease-in-out;
+        }
+        &__item {
+            display: inline-block;
+            padding: 0 20px;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+            &--link {
+                font-weight: 600;
+                font-size: 1.6rem;
+                position: relative;
+                padding-right: 3.2rem;
+                pointer-events: none;
+                height: 8rem;
+                line-height: 8rem;
+                display: block;
+                white-space: nowrap;
+                &::before{
+                    content: "\e915";
+                    font-family: 'icomoon';
+                    font-size: 1.8rem;
+                    color: currentColor;
+                    position: absolute;
+                    right: 0;
+                    transition: transform .3s ease-in-out;
+                }
+                &::after {
+                    cursor: default;
+                    content: '';
+                    position: absolute;
+                    z-index: 2;
+                    top: calc(100% + 8px);
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0px 12px 17px 12px;
+                    border-color: transparent transparent #fff transparent;
+                    transform: translateX(-50%);
+                    opacity: 0;
+                }
+            }
+            &.open-submenu{
+                &::before {
+                    content: '';
+                    cursor: initial;
+                    position: absolute;
+                    top: 100%;
+                    left: var(--padding-ctn);
+                    right: var(--padding-ctn);
+                    height: 2.2rem;
+                    z-index: 5;
+                }
+                .h_fisrt_menu__item--link {
+                    pointer-events: visible;
+                    color: var(--color-pr-50);
+                    &::before{
+                        transform: rotate(180deg);
+                    }
+                    &::after {
+                        opacity: 1;
+                    }
+                    
+                }
+            }
+            @include mq-min($lg2) {
+                padding: 0 3rem;
+            }
+        }
+    }
+    .h_second_menu {
+        display: flex;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        left: var(--padding-ctn);
+        right: var(--padding-ctn);
+        top: calc(100% + 2.2rem);
+        z-index: 5;
+        border-radius: 16px;
+        padding: 0 1.2rem;
+        background: var(--color-light);
+        opacity: 0;
+        cursor: initial;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        flex-wrap: wrap;
+        li {
+            display: block;
+        }
+        &__item {
+            &--link {
+                &.is-link {
+                    cursor: pointer;
+                }
+                font-weight: 700;
+                font-size: 1.6rem;
+                text-align: center;
+                height: 100%;
+                width: 17.72rem;
+                padding: 3.2rem 2rem;
+                display: flex;
+                flex-direction: column;
+                .link-image {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 3.2rem;
+                    margin-bottom: 8px;
+                }
+                img {
+                    max-height: 100%;
+                    max-width: 100%;
+                    display: block;
+                    margin: 7px auto 1.5rem auto;
+                }
+            }
+        }
+        &.inactive {
+            pointer-events: none;
+        }
+    }
+    .h_third_menu {
+        display: flex;
+        padding: 2rem 3.2rem 4.8rem 3.2rem;
+        position: absolute;
+        left: 0;
+        top: calc(100% - 2rem);
+        width: 100%;
+        border-radius: 0 0 16px 16px;
+        background: var(--color-light);
+        opacity: 0;
+        visibility: hidden;
+        li {
+            margin-top: 1.6rem;
+        }
+        &__item {
+            width: 16rem;
+            &:not(:last-child){
+                margin-right: 3.6rem;
+            }
+            &--link{
+                font-weight: 600;
+                font-size: 2rem;
+                letter-spacing: -0.6px;
+            }
+        }
+    }
+    .h_last_menu {
+        a {
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #686868 !important;
+        }
+    }
+    @include mq($sm) {
+        display: none;
+    }
+}
+
+.h_fisrt_menu {
+    &__item.open-submenu{
+        .h_second_menu {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
+            overflow: visible;
+        }
+    }
+}
+
+.h_second_menu {
+    &:hover{
+        .h_second_menu__item--link {
+            color: #9A9A9A !important;
+        }
+        img {
+            filter: grayscale(1);
+            opacity: 0.7;
+        }
+        .h_second_menu__item {
+            &:hover {
+                .h_second_menu__item--link {
+                    color: #000000 !important;
+                }
+                img {
+                    filter: grayscale(0);
+                    opacity: 1;
+                }
+                .h_third_menu {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}
+
+.header-menu-mob {
+    .menu-mob-child {
+        .mat-expansion-panel {
+            margin-bottom: 0;
+        }
+    }
+    .menu-mob-child2 {
+        .sub-links + .sub-links {
+            border-top: 1px solid #C2C2C2;
+        }
+    }
+    .link-image {
+        display: inline-flex;
+        margin-right: 10px;
+        max-width: 24px;
+        img {
+            max-width: 100%;
+        }
+        @include mq-min($md){
+            max-width: 32px;
+        }
+    }
+}

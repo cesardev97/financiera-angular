@@ -1,0 +1,92 @@
+
+<div class="payment-modal modal-ctn">
+    <span class="icon-close" (click)="closeDialog()"></span>
+    <div class="payment-wrap-main">
+        <h3 class="payment-title">Simulador del cronograma de pagos</h3>
+        <mat-dialog-content>
+            <div class="payment-top">
+                <div class="payment-top-inner">
+                    <div class="payment-top-left">
+                        <h4 class="payment-title-cuota">Cuota mensual
+                            <div>
+                                <strong>{{data.currency}}{{data.cuota_mensual | number:'1.2-2'}}</strong><sub>(*)</sub>
+                            </div>
+                        </h4>
+                        <div class="payment-description-cuota">(*)La cuota mostrada es referencial</div>
+                    </div>
+                    <div class="payment-top-right cuota-mensual-grid col-2">
+                        <span>Monto crédito: {{data.currency}}{{data.amount | number:'1.2-2'}}</span>
+                        <span>Plazo del credito: {{data.installments}} meses</span>
+                        <span>TEA (Tasa efectiva anual): {{data.tea}}%</span>
+                        <span>TCEA (Tasa de costo efectivo anual): {{hService.toFloat(data.tcea)}}%</span>
+                        <span>Fecha de desembolso: {{data.disbursement_date | date: 'dd/MM/yyyy'}}</span>
+                    </div>            
+                </div>
+            </div>  
+            <div class="payment-table" #TABLE>
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Cuota</th>
+                            <th>Fecha de vencimiento</th>
+                            <th>Saldo capital</th>
+                            <th>Capital</th>
+                            <th>Interés</th>
+                            <th>Comisiones</th>
+                            <th>Seg. Desgravamen</th>
+                            <th>ITF</th>
+                            <th>Seguro opcional</th>
+                            <th>Cuota</th>
+                        </tr>                
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data.cronograma; index as ind">
+                            <td>{{item.numCuota}}</td>
+                            <td>{{item.fecVencimiento|date:'dd-MM-yy'}}</td>
+                            <td>{{item.impSalAmortiCrg}}</td>
+                            <td>{{item.impAmortizacion}}</td>
+                            <td>{{item.impInteres}}</td>
+                            <td>0</td>
+                            <td>{{item.impSegDes}}</td>
+                            <td>{{item.impItf}}</td>
+                            <td>{{item.impMicroSeg}}</td>
+                            <td>{{item.impCuotaCrg}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>Total:</td>
+                            <td>{{sumTotals('impSalAmortiCrg')}}</td>
+                            <td>{{sumTotals('impAmortizacion')}}</td>
+                            <td>{{sumTotals('impInteres')}}</td>
+                            <td>0</td>
+                            <td>{{sumTotals('impSegDes')}}</td>
+                            <td>{{sumTotals('impItf')}}</td>
+                            <td>{{sumTotals('impMicroSeg')}}</td>
+                            <td>{{sumTotals('impCuotaCrg')}}</td>
+                        </tr>                
+                    </tfoot>
+                </table>
+            </div> 
+            <div class="payment-down">
+                <ul>
+                    <li>
+                        El cronograma de cuotas del simulador es referencial y el cálculo se ha efectuado en base a la información ingresada.
+                    </li>
+                    <li>
+                        El seguro de desgravamen es un requisito para el otorgamiento del préstamo, el cliente podrá adquirir el seguro de desgravamen con la Financiera o contratarlo directamente y endosarlo a favor de la Financiera por el monto adeudado.
+                    </li>
+                    <li>
+                        La simulación no significa la aprobación del credito, la cual está sujeta a evaluación crediticia.
+                    </li>
+                </ul>
+            </div>        
+            <div class="payment-wrap-boton">
+                <a class="payment-btn" (click)="exportExcel()">Descargar cronograma</a>
+            </div>
+        </mat-dialog-content>
+    </div>
+
+
+</div>

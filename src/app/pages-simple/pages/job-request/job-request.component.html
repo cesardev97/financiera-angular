@@ -1,0 +1,130 @@
+<app-simple-layout [titlePage]="acf.title_page" [showMenuMob]="true">
+    <section class="job_request" *ngIf="!successSubmit; else successForm">
+        <div class="form-content container max">
+            <h2 class="title center t_mobile">{{acf.title_page}}</h2>
+            <div class="form-image">
+                <img [src]="acf.form_image" alt="Job">
+            </div>
+            <div class="form-req-wrap min">
+                <form (ngSubmit)="send(f)" [formGroup]="formJob" #f="ngForm" [ngClass]="{'sending': isSending}" enctype="multipart/form-data">
+                    <h4 class="label-form-2">{{acf.title_form}}</h4>
+                    <div class="form-group">
+                        <label>Nombre completo</label>
+                        <mat-form-field appearance="outline">
+                            <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                matInput formControlName="names" type="text" maxlength="25" />
+                        </mat-form-field>
+                        <span class="field-feedback" *ngIf="isValid('names')">Campo requerido</span>
+                    </div>
+                    <div class="form-group min">
+                        <label>Apellido paterno</label>
+                        <mat-form-field appearance="outline">
+                            <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                matInput formControlName="lastname1" type="text" maxlength="25" />
+                        </mat-form-field>
+                        <span class="field-feedback" *ngIf="isValid('lastname1')">Campo requerido</span>
+                    </div>
+                    <div class="form-group min">
+                        <label>Apellido materno</label>
+                        <mat-form-field appearance="outline">
+                            <input placeholder="Ingrese" (keypress)="hService.onlyString($event)"
+                                matInput formControlName="lastname2" type="text" maxlength="25" />
+                        </mat-form-field>
+                        <span class="field-feedback" *ngIf="isValid('lastname2')">Campo requerido</span>
+                    </div>
+                    <div class="form-group min">
+                        <label>Tipo de documento</label>
+                        <mat-form-field class="wrap-mat-select" appearance="outline">
+                            <mat-label>Seleccione</mat-label>
+                            <mat-select formControlName="typedocument">
+                                <mat-option *ngFor="let item of utils.personDocuments" [value]="item"
+                                >{{item.desDocumento}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>  
+                        <span class="field-feedback" *ngIf="isValid('typedocument')">Campo requerido</span>
+                    </div>      
+                    <div class="form-group min">
+                        <label>Número documento</label>
+                        <mat-form-field appearance="outline">
+                            <input placeholder="Ingrese" (keypress)="hService.onlyNumbers($event)" 
+                                matInput formControlName="document" type="text" maxlength="25" />
+                        </mat-form-field>
+                        <span class="field-feedback" *ngIf="isValid('document')">Campo requerido</span>
+                    </div>
+                    <div class="form-group min">
+                        <label>Email</label>
+                        <mat-form-field  appearance="outline">
+                            <input placeholder="Ingrese" matInput formControlName="email" type="email" maxlength="50" />
+                        </mat-form-field>
+                        <span class="field-feedback" *ngIf="isValid('email')">Correo inválido</span>
+                    </div>
+                    <div class="form-group min">
+                        <label>Número teléfonico</label>
+                        <mat-form-field  appearance="outline">
+                            <input placeholder="Ingrese" (keypress)="hService.onlyNumbers($event)"
+                                matInput formControlName="phone" type="tel" maxlength="9" />
+                        </mat-form-field>
+                        <span class="field-feedback" *ngIf="isValid('phone')">Campo requerido</span>
+                    </div>
+                    <div class="form-group min">
+                        <label>Carrera</label>
+                        <mat-form-field class="wrap-mat-select" appearance="outline">
+                            <mat-label>Seleccione</mat-label>
+                            <mat-select formControlName="career">
+                                <mat-option *ngFor="let item of jobService.profesiones" [value]="item">
+                                    {{item.desProfesion}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>  
+                        <span class="field-feedback" *ngIf="isValid('career')">Campo requerido</span>
+                    </div>
+                    <div class="form-group min">
+                        <label>Campo de experiencia</label>
+                        <mat-form-field class="wrap-mat-select" appearance="outline">
+                            <mat-label>Seleccione</mat-label>
+                            <mat-select formControlName="experience">
+                                <mat-option *ngFor="let item of jobService.experiencias" [value]="item"
+                                >{{item.desExperiencia}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>  
+                        <span class="field-feedback" *ngIf="isValid('experience')">Campo requerido</span>
+                    </div>
+    
+                    <span class="title-field">Adjunta tu CV actualizado</span>
+                    <div class="drop-file">
+                        <app-dropzone (outFiles)="selectFile($event)" [acceptFiles]="['application/pdf']">
+                        </app-dropzone>
+                        <span class="field-feedback" *ngIf="isValid('filecv')">Campo requerido</span>
+                    </div>
+                    <div class="recaptcha-wrap">
+                        <re-captcha formControlName="recaptcha">
+                        </re-captcha>
+                        <span class="field-feedback" *ngIf="isValid('recaptcha')">Campo requerido</span>
+                    </div>
+                    <div class="protection-policy">
+                        <mat-checkbox formControlName="policies">
+                            <p>Acepto la <a href="/transparencia/politica-de-proteccion-de-datos-personales" target="_blank">
+                                Política de protección de datos Personales</a>
+                            </p>
+                        </mat-checkbox>
+                    </div>
+                    <button class="btn gnrl form-btn"
+                        [disabled]="formJob.invalid || !isLoaded">Enviar Solicitud</button>
+                </form>
+                <div *ngIf="respStatus" class="error">
+                    {{respStatus}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <ng-template #successForm>
+        <app-success-form
+            type="job"
+            [image]="acf.success_image"
+            [title]="acf.success_title"
+            [description]="acf.success_text"
+        >
+        </app-success-form>
+    </ng-template>
+</app-simple-layout>
+

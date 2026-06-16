@@ -1,0 +1,144 @@
+@import "mixins";
+
+.product_definition {
+    text-align: center;
+}
+
+.product_benefits {
+    padding-top: 3.6rem;
+    padding-bottom: 5.2rem;
+    .title {
+        margin-bottom: 24px;
+        @include mq-min($lg) {
+            margin-bottom: 4.8rem;
+        }
+    }
+    @include mq-min($md) {
+        .paragraph_wrap {
+            margin-left: 6.5rem;
+        }
+    }
+    @include mq-min($lg){
+        .container {
+            margin: 0 auto;
+            max-width: 72%;
+        }
+    }
+}
+
+.product_characteristic {
+    padding-top: 24px;
+    padding-bottom: 54px;
+    .container {
+        justify-content: space-between;
+    }
+    .title {
+        max-width: 45rem;
+        margin-bottom: 3rem;
+    }
+    @include mq-min($lg) {
+        padding: 8.1rem 0;
+        margin-left: 16%;
+        .container {
+            padding-right: 17.8rem;
+        }
+        .paragraph_wrap {
+            margin-right: 11rem;
+        }
+    }
+}
+
+.product_carrousel {
+    padding: 5rem 0;
+    .titles {
+        margin-bottom: 5rem;
+    }
+    .product_carrousel_item {
+        padding-top: 5.5rem;
+        img {
+            max-height: 14.2rem;
+        }
+        .card-title {
+            margin: 3.4rem 0;
+        }
+        .text {
+            padding: 0 8px;
+        }
+    }
+}
+
+.product_table {
+    padding: 24px 0;
+    .titles {
+        margin-bottom: 38px;
+        .title {
+            margin-bottom: 1.2rem;
+        }
+        @include mq($md) {
+            padding: 0 var(--padding-ctn);
+        }
+    }
+    @include mq-min($lg) {
+        padding: 11rem 0;
+        .titles {
+            max-width: 55%;
+            margin: 0 auto 7.2rem auto;
+        }
+        .table-wrap {
+            margin: 0 auto;
+            max-width: 76%;
+        }
+    }
+}
+
+.product_video {
+    padding-top: 7rem;
+    padding-bottom: 8.2rem;
+    .title {
+        padding-bottom: 5rem;
+    }
+}
+
+.product_benefits, .product_characteristic {
+    .paragraph_wrap .btn{
+        margin-top: 40px;
+        @include mq-min($md) {
+            margin-left: 3.2rem;
+        }
+    }
+}
+
+.product_simulator {
+    padding-top: 38px;
+    .titles {
+        margin-bottom: 4rem;
+        padding-left: var(--padding-ctn);
+        padding-right: var(--padding-ctn);
+    }
+    @include mq-min($lg) {
+        padding-top: 5rem;
+        padding-bottom: 10rem;
+    }
+}
+
+
+.product_types {
+    padding: 24px 0;
+    .btn {
+        margin-top: 5rem;
+    }
+    .tab_item {
+        align-items: center;
+    }
+    .tab_item_img {
+        margin-left: 7.4rem;
+    }
+    @include mq-min($lg) {
+        padding: 11rem 0;
+    }
+}
+
+
+.faq_link_product {
+    margin-bottom: 5rem;
+}

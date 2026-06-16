@@ -1,0 +1,44 @@
+<section class="map_find_us">
+    <div class="form_map_search">
+        <form #f="ngForm" (ngSubmit)="filterAgencias(f)" [formGroup]="formG">
+            <div class="form-group">
+                <label>Elija un departamento</label>
+                <mat-form-field class="wrap-mat-select" appearance="outline">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="department" (selectionChange)="onSelectDepartment()">
+                        <mat-option *ngFor="let item of departments" [value]="item.cod_DEPARTAMENTO">
+                            {{item.departamento}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>  
+            </div> 
+            <div class="form-group">
+                <label>Elija una provincia</label>
+                <mat-form-field class="wrap-mat-select" appearance="outline">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="province" (selectionChange)="onSelectProvince()">
+                        <mat-option *ngFor="let item of provinces" [value]="item.cod_PROVINCIA">
+                            {{item.provincia}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>  
+            </div> 
+            <div class="form-group">
+                <label>Elija un distrito</label>
+                <mat-form-field class="wrap-mat-select" appearance="outline">
+                    <mat-label>Seleccione</mat-label>
+                    <mat-select formControlName="district">
+                        <mat-option *ngFor="let item of districts" [value]="item.cod_DISTRITO">
+                            {{item.distrito}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>  
+            </div> 
+            <button class="btn gnrl" [disabled]="formG.invalid">Buscar</button>
+        </form>
+        <div class="title_form"><img src="assets/images/utils/icono-agencia.svg">Nuestras agencias</div>
+    </div>
+    <div class="map_wrap">
+        <div id="map" style="width:100%;height:100%"></div>
+    </div>
+</section>

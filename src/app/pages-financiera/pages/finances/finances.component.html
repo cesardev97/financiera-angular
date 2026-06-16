@@ -1,0 +1,59 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="learn_section">
+    <div class="container">
+        <h2 class="title center">{{acf.title_learn}}</h2>
+        <div class="learn_slider">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="configLearn">
+                    <ng-template swiperSlide *ngFor="let item of acf.list_learn">
+                        <app-link
+                            [isContent]="true"
+                            classUrl="card card-1 box-1"
+                            [typeUrl]="item.type_url"
+                            [urls]="[item.internal_url,item.external_url]"
+                        >
+                            <figure>
+                                <img [src]="item.image" alt="">
+                            </figure>
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                                <div class="text"><p>{{item.text}}</p></div>
+                                <span class="card-label-arrow">{{item.button_text}}</span>
+                            </div>
+                        </app-link>
+                        
+                    </ng-template>
+                </swiper> 
+                
+            </div>
+            <div class="btns-slider-group gnrl">
+                <div class="lear-prev swiper-navigation icon-left-arrow"></div>
+                <div class="learn-pagination swiper-pagination"></div>
+                <div class="lear-next swiper-navigation icon-right-arrow"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="videos_section bg-gray" *ngIf="numVideos > 0">
+    <div class="container">
+        <article *ngFor="let item of acf.list_videos" 
+            class="video_item_cnt">
+            <app-video
+                [videoImage]="item.video_img"
+                [videoUrl]="item.video_url"
+            ></app-video>
+            <div class="description">
+                <h2 class="title">{{item.title}}</h2>
+                <p class="text">{{item.text}}</p>
+                <div class="btn gnrl" *ngIf="item.video_url" (click)="openVideo(item.video_url)">
+                    {{item.button_text}}
+                </div>
+            </div>
+        </article>
+    </div>
+</section>

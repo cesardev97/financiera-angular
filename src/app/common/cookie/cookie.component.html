@@ -1,0 +1,15 @@
+<div id="bloque-storage" class="cookie-blocks-wrap" *ngIf="text && showCookieElement">
+    <div class="cookie-blocks">
+        <div class="container max">    
+            <div class="cookie-blocks__inner">
+                <div class="textos_acept" [innerHtml]="text">
+                </div>
+    
+                <div class="botones-aceptacion">
+                    <button class="btn white line" (click)="setCookie()">Aceptar Cookies</button>
+                    <button class="btn white line" (click)="deleteCookie()">Rechazar Cookies</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

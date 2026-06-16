@@ -1,0 +1,64 @@
+@import "mixins";
+
+.ttc_documents {
+    margin-top: 24px;
+    margin-bottom: 52px;
+    .title {
+        margin-bottom: 3.2rem;
+    }
+    .ttc-image {
+        height: 38.4rem;
+        width: 38.4rem;
+        margin-left: 12rem;
+    }
+    @include mq($md) {
+        .ttc-image-wrap {
+            display: none;
+        }
+    }
+    @include mq-min($md) {
+        margin-top: 5.6rem;
+        margin-bottom: 17.2rem;
+    }
+}
+
+.ttc_tabs_wrap {
+    .list_products li {
+        &:not(:last-child) a {
+            border-bottom: 1px solid #C2C2C2;
+        }
+        a {
+            font-family: var(--f-secondary);
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.6rem 0;
+            line-height: 1.5;
+        }
+        .product-title {
+            color: #000000;
+            margin-right: 24px;
+            @include mq($sm) {
+                width: 40%;
+            }
+        }
+        .link {
+            color: var(--color-pr-50);
+            padding-right: 2.8rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            &::before{
+                content: "\e950";
+                font-family: 'icomoon';
+                font-size: 2rem;
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+    @include mq-min($lg) {
+        width: 52%;
+    }
+}

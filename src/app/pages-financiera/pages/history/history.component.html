@@ -1,0 +1,115 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="about_company definition">
+    <div class="description center container">
+        <h2 class="title center">{{acf.title_about_company}}</h2>
+        <div>
+            <p>{{acf.text_about_company}}</p>
+        </div>
+    </div>
+</section>
+
+<section class="about_pilars">
+    <div class="about_pilars_content">
+        <div class="pilar_item">
+            <h4>{{acf.title_vision}}</h4>
+            <div class="description">
+                <p>{{acf.text_vision}}</p>
+            </div>
+        </div>
+        <div class="pilar_item">
+            <h4>{{acf.title_mission}}</h4>
+            <div class="description">
+                <p>{{acf.text_mission}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about_video">
+    <div class="container">
+        <h2 class="title center">{{acf.video_title}}</h2>
+        <app-video
+            [videoImage]="acf.video_image"
+            [videoUrl]="acf.video_url"
+        ></app-video>
+    </div>
+</section>
+
+<section class="our_principles">
+    <div class="container">
+        <div class="titles center">
+            <h2 class="title center">{{acf.title_principles}}</h2>
+            <h5 class="subtitle_2">{{acf.text_principles}}</h5>
+        </div>
+        <div class="principles_slider">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="configPrinciples">
+                    <ng-template swiperSlide *ngFor="let item of acf.list_principles">
+                        <div class="card card-2">
+                            <img class="card-img-1" [src]="item.image" [alt]="item.title">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                                <div><p>{{item.description}}</p></div>
+                            </div>
+                        </div>
+                    </ng-template> 
+                </swiper>  
+                <div class="btns-slider-group gnrl">
+                    <div class="principles-prev swiper-navigation icon-left-arrow"></div>
+                    <div class="principles-pagination swiper-pagination"></div>
+                    <div class="principles-next swiper-navigation icon-right-arrow"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="our_history bg-gray">
+    <div class="container max">
+        <h2 class="title_history title center">{{acf.title_history}}</h2>
+        <div class="c-flex j-end">
+            <div class="img-wrap">
+                <img class="decorated-img" [src]="acf.image_history" [alt]="acf.title_history">
+            </div>
+            <div class="paragraph_wrap gnrl">
+                <app-short-text
+                    [title]="acf.title_history"
+                    [paragraph]="acf.text_history"
+                    [labelButton]="acf.button_text_hisory"
+                    [style]="2"
+                ></app-short-text>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="our_awards">
+    <h2 class="title center">{{acf.title_awards}}</h2>
+    <div class="container max c-flex r-reverse">
+        <div class="img-wrap">
+            <img class="decorated-img" [src]="acf.image_awards" alt="">
+        </div>
+        <div class="list_awards">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="configAwards">
+                    <ng-template swiperSlide *ngFor="let item of acf.list_awards">
+                        <div class="award_item card card-1 box-1">
+                            <div class="award_item__circle">
+                                <img [src]="item.image" alt="">
+                            </div>
+                            <div class="award_item__info">
+                                <h4>{{item.title}}</h4>
+                                <span>{{item.description}}</span>
+                            </div>
+                        </div>   
+                    </ng-template> 
+                </swiper> 
+            </div>
+        </div>
+    </div>
+</section>
+
+

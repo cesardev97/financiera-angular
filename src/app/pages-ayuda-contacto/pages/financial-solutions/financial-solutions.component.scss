@@ -1,0 +1,44 @@
+@import "mixins";
+
+.requirements {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    .title {
+        margin-bottom: 24px;
+    }
+    @include mq-min($md) {
+        margin-bottom: 6rem;
+        padding: 10rem 0;
+
+    }
+    @include mq-min($lg){
+        .container {
+            margin: 0 auto;
+            max-width: 78%;
+        }
+    }
+}
+
+.process {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    .titles {
+        margin-bottom: 24px;
+    }
+    @include mq-min($md) {
+        padding-top: 4.6rem;
+        padding-bottom: 10rem;
+    }
+    @include mq-min($lg) {
+        .titles {
+            margin-bottom: 4rem;
+        }
+    }
+    @include mq-min($lg2){
+        .container {
+            margin: 0 auto;
+            max-width: 84%;
+        }
+    }
+}
+

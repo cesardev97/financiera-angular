@@ -1,0 +1,71 @@
+<app-banner-page [bannerFields]="acf" [internalUrl]="formUrl"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="archs_definition bg-gray">
+    <div class="definition container">
+        <h2 class="title center">{{acf.about_title}}</h2>
+        <div [innerHtml]="acf.about_description"></div>
+    </div>
+</section>
+
+<section class="archs_list"> 
+    <div class="container">
+        <h2 class="title center">{{acf.rights_title}}</h2>
+        <div class="archs_slider">
+            <div class="swiper-card swiper-height-auto">
+                <swiper [config]="archsSwiper">
+                    <ng-template swiperSlide *ngFor="let item of acf.rights_list">
+                        <div class="card card-2">
+                            <img class="card-img-1" [src]="item.image" [alt]="item.title">
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.title}}</h4>
+                                <div class="card-text">
+                                    <p>{{item.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="btns-slider-group gnrl">
+                <div class="arch-prev swiper-navigation icon-left-arrow"></div>
+                <div class="arch-pagination swiper-pagination"></div>
+                <div class="arch-next swiper-navigation icon-right-arrow"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="archs_req bg-gray">
+    <div class="archs_req_wrap container">
+        <h2 class="title">{{acf.req_title}}</h2>
+        <div class="c-flex r-reverse">
+            <div class="img-wrap">
+                <img class="decorated-img" [src]="acf.req_image">
+            </div>
+            <div class="description">
+                <div class="paragraph" [innerHtml]="acf.req_description"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tabs_sect">
+    <app-tabs
+        [listTabs]="acf.information_tabs"
+    ></app-tabs>
+</section>
+
+<div class="container max mb-6">
+    <div class="block_link_wrap b-3 bg-1">
+        <app-block-url
+            [titleBloq]="acf.faq_title || opt.faq_title"
+            [subtitleBlock]="acf.faq_subtitle || opt.faq_subtitle"
+            [imageBlock]="acf.faq_image || opt.faq_image"
+            [textBtnBlock]="acf.faq_btn_txt || opt.faq_btn_txt"
+            [urlBlock]="acf.faq_url || opt.faq_url"    
+        >
+        </app-block-url>    
+    </div>
+</div>

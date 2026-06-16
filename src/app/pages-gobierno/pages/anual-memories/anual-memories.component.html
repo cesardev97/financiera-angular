@@ -1,0 +1,38 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="memories">
+    <div class="container">
+        <div class="titles center">
+            <h2 class="title center">{{acf.title_memories}}</h2>
+            <h5 class="subtitle_2">{{acf.subtitle_memories}}</h5>
+        </div>
+        <div class="memories_slider">
+            <div class="swiper-card">
+                <swiper [config]="configMemories">
+                    <ng-template swiperSlide *ngFor="let item of acf.documents_memories">
+                        <div class="memories_item card card-download box-1">
+                            <app-image className="card-figure" [imageUrl]="item.image_preview">
+                            </app-image>
+                            
+                            <h4 class="card-title">{{item.file_name}}</h4>
+                            <div class="type-document" *ngIf="item.document.subtype == 'pdf'">
+                                <i class="icon icon-adobe"></i>
+                                Adobe PDF
+                            </div>
+                            <div class="download-link">
+                                <a class="btn" [href]="item.document.url" target="_blank">Descargar</a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="btns-slider-group gnrl">
+                <div class="memories-prev swiper-navigation icon-left-arrow"></div>
+                <div class="memories-pagination swiper-pagination"></div>
+                <div class="memories-next swiper-navigation icon-right-arrow"></div>
+            </div>
+        </div>
+    </div>
+</section>

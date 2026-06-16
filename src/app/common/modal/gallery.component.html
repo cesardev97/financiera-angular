@@ -1,0 +1,19 @@
+<div class="modal-ctn">
+    <span class="icon-close" (click)="onNoClick()"></span>
+    <div class="modal-body">
+        <h3 class="title min center">Fotos</h3>
+        <div *ngIf="data.gallery" class="modal-gallery">
+            <div class="swiper-gallery" *ngIf="data.gallery.length > 0">
+                <swiper [config]="gallerySwiper">
+                    <ng-template swiperSlide *ngFor="let image of data.gallery">
+                        <div class="gallery-item">
+                            <img [src]="image">
+                        </div>
+                    </ng-template>
+                </swiper>
+                <div class="gallery-prev swiper-navigation swiper-button-prev"></div>
+                <div class="gallery-next swiper-navigation swiper-button-next"></div>
+            </div>
+        </div>
+    </div>
+</div>

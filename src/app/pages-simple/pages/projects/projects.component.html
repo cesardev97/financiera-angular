@@ -1,0 +1,32 @@
+<app-simple-layout [titlePage]="acf.header_title" [showMenuMob]="true">
+    <app-banner-page [bannerFields]="acf" fragmentURL="proyectos"></app-banner-page>
+    <breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+    <section class="projects_list" #listTop id="proyectos">
+        <div class="posts-list-wrap container">
+            <h2 class="title">{{acf.list_title}}</h2>
+            <div class="projects_slider">
+                <div class="swiper-card">
+                    <swiper [config]="projectsSwiper" (slideChange)="onSlideChange(listTop)">
+                        <ng-template swiperSlide *ngFor="let list of projects">
+                            <ng-container *ngFor="let item of list">
+                                <app-card-inmb-project
+                                    type="PROJ"
+                                    [post]="item" 
+                                    [noImage]="acf.no_imagen" 
+                                    [labelBtn]="acf.project_label_btn"
+                                >
+                                </app-card-inmb-project>
+                            </ng-container>
+                        </ng-template>
+                    </swiper>
+                </div>
+                <div class="btns-slider-group gnrl">
+                    <div class="viewed-prev swiper-navigation icon-left-arrow"></div>
+                    <div class="viewed-pagination swiper-pagination"></div>
+                    <div class="viewed-next swiper-navigation icon-right-arrow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</app-simple-layout>

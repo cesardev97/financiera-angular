@@ -1,0 +1,14 @@
+@import "mixins";
+
+.information {
+    padding: 40px 0;
+    @include mq-min($md) {
+        padding: 6.4rem 0;
+    }
+}
+
+.information_first {
+    .title {
+        margin-bottom: 4rem;
+    }
+}

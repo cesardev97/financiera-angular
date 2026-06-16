@@ -1,0 +1,67 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="sales_definition bg-gray">
+    <div class="container">
+        <div class="definition">
+            <h2 class="title center">{{acf.definition_title}}</h2>
+            <div [innerHtml]="acf.definition_text"></div>
+        </div>
+    </div>
+</section>
+
+<section class="sales-benefits benefits">
+    <div class="container">
+        <h2 class="title center">{{acf.benefits_title}}</h2>
+        <div class="c-flex">
+            <div class="benefit_img_wrap">
+                <img class="benefit_img" [src]="acf.benefits_image" alt="">
+            </div>
+            <div>
+                <div class="paragraph" [innerHtml]="acf.benefits_text"></div>
+                <a class="btn gnrl" (click)="hService.goLink(search)">{{acf.benefits_btn}}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div #search></div>
+<section class="search_immb bg-gray">
+    <h2 class="title center">{{acf.title_search}}</h2>
+    <div class="inmb-form-wrap">
+        <app-form-search (foundInmbs)="foundInmbs($event)" [hasBtn]="true"
+            [noImage]="acf.no_image" [labelBtn]="acf.btn_label"
+        >
+        </app-form-search>
+    </div>
+    <span class="msg-empty" *ngIf="isFound">
+        ----- No se encontraron resultados -----
+    </span>
+</section>
+
+<section class="most_viewed" #listTop>
+    <div class="posts-list-wrap container">
+        <h2 class="title">{{acf.most_viewed_title}}</h2>
+        <div class="most_viewed_slider">
+            <div class="swiper-card">
+                <swiper [config]="mostViewedSwiper" (slideChange)="onSlideChange(listTop)">
+                    <ng-template swiperSlide *ngFor="let list of mostViewed">
+                        <ng-container *ngFor="let item of list">
+                            <app-card-inmb-project
+                                [post]="item" 
+                                [noImage]="acf.no_image" 
+                                [labelBtn]="acf.btn_label">
+                            </app-card-inmb-project>
+                        </ng-container>
+                    </ng-template>
+                </swiper>
+            </div>
+            <div class="btns-slider-group gnrl">
+                <div class="viewed-prev swiper-navigation icon-left-arrow"></div>
+                <div class="viewed-pagination swiper-pagination"></div>
+                <div class="viewed-next swiper-navigation icon-right-arrow"></div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,80 @@
+<div class="container max">
+    <h2 class="title">{{title || opt2.title_information_know}}</h2>
+    <div class="tabs_wrap">
+        <mat-tab-group [(selectedIndex)]="tabActive" #tabsgroup>
+            <mat-tab *ngFor="let tab of listTabs"
+                [label]="tab.tab_title" [aria-label]="tab.content_type">
+                <ng-template matTabContent>
+                    <div class="tab_item">
+                        <div *ngIf="tab.is_img_default; else noDefault">
+                            <img class="tab_item_img image-1" [src]="opt.tab_image_text" *ngIf="tab.content_type == 'text'">
+                            <img class="tab_item_img image-1" [src]="opt.tab_image_table" *ngIf="tab.content_type == 'table'">
+                            <img class="tab_item_img image-2" [src]="opt.tab_image_documents" *ngIf="tab.content_type == 'document'">
+                            <img class="tab_item_img image-2" [src]="opt.tab_image_faq" *ngIf="tab.content_type == 'accordion'">
+                        </div>
+                        <ng-template #noDefault>
+                            <div class="no-default">
+                                <img class="tab_item_img image-1" [src]="tab.tab_image">
+                            </div>
+                        </ng-template>
+                            
+                        <div class="tab_column_info">
+                            <h3 class="title_description" *ngIf="tab.content_title">
+                                {{tab.content_title}}
+                            </h3>
+
+                            <!-- Text -->
+                            <div class="paragraph_wrap">
+                                <div class="paragraph" *ngIf="tab.content_type == 'text'"
+                                [innerHtml]="tab.tab_text"></div>
+                            </div>
+                            
+                            <!-- Table-->
+                            <div class="" *ngIf="tab.content_type == 'table'">
+                                <div class="paragraph" [innerHtml]="tab.text_table"></div>
+                                <div class="table-wrap">
+                                    <table class="table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th *ngFor="let head of tab.table.header">{{head.c}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let row of tab.table.body">
+                                                <td *ngFor="let item of row">{{item.c}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Documents-->
+                            <div class="tab_items documents" *ngIf="tab.content_type == 'document'">
+                                <a *ngFor="let doc of tab.documents"
+                                    class="document_item" [href]="doc.document.url" target="_blank"
+                                >
+                                    <h5 class="document_title">{{doc.title}}</h5>
+                                    <div class="type-document" *ngIf="doc.document.subtype == 'pdf'">
+                                        <i class="icon icon-adobe"></i>Adobe PDF
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Acorddion-->
+                            <mat-accordion *ngIf="tab.content_type == 'accordion'">
+                                <mat-expansion-panel *ngFor="let acc of tab.items_acordeon">
+                                    <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        {{acc.title}}
+                                    </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div  [innerHtml]="acc.text"></div>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </div>
+                    </div>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

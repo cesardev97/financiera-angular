@@ -1,0 +1,34 @@
+<div *ngIf="trackingCode">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe [src]="urlGTMframe | safe : 'src'"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+</div>
+
+<div class="header_modules {{activeModule==2 ? 'm_negocios' : ''}}">
+    <div class="header_modules_ctn c-flex">
+        <a routerLink="/negocios" class="module-link" [ngClass]="{'active': activeModule===2}">Negocios</a>
+        <a routerLink="/" class="module-link" [ngClass]="{'active': activeModule===1}">Personas</a>
+    </div>
+</div>
+
+<app-site-header *ngIf="headerMenu"
+    [menu]="headerMenu" 
+    [options]="options"
+    [linkHome]="linkHome"
+>
+</app-site-header>
+
+<div [@routeAnimations]="getRouteAnimationData()">
+    <router-outlet></router-outlet>
+</div>
+
+<app-site-footer [menu]="footerMenu" [options]="options"></app-site-footer>
+
+<div class="btn-to-top" [ngClass]="{'show': isShow}" (click)="gotoTop()">
+    <span class="icon-up-arrow"></span>
+</div>
+
+<a class="btn-whatsapp" (click)="goWSP()">
+    <img src="../assets/images/utils/wsp-white.svg">
+</a>

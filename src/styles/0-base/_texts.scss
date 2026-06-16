@@ -1,0 +1,276 @@
+@import "mixins";
+
+.titles {
+    &.center {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @include mq($sm) {
+        text-align: center;
+    }
+}
+
+.title {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.6px;
+    line-height: 1.3;
+    color: var(--color-pr-100);
+    &.light {
+        color: var(--color-light);
+    }
+    &.center {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &.t_mobile {
+        margin-bottom: 24px;
+    }
+    @include mq($md) {
+        text-align: center;
+    }
+    @include mq-min($lg) {
+        &:not(&.min){
+            font-size: 3.6rem;
+        }
+        &.t_mobile {
+            display: none;
+        }
+    }
+}
+
+.subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.6px;
+    margin-top: 1.6rem;
+    color: var(--color-gray-200);
+    @include mq-min($lg) {
+        font-size: 2.4rem;
+    }
+}
+
+.subtitle_2 {
+    font-family: var(--f-secondary);
+    display: block;
+    margin-top: 16px;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: #000000;
+    line-height: 1.4;
+    a {
+        color: var(--color-pr-50);
+    }
+    @include mq-min($md) {
+        margin-top: 3rem;
+    }
+}
+
+.title-info {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    @include mq-min($md) {
+        font-size: 2rem;
+    }
+}
+
+.description {
+    &.center {
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+.paragraph_wrap {
+    &.gnrl {
+        padding: 0 12px;
+    }
+    .btn {
+        margin-top: 2.4rem;
+    }
+    @include mq-min($lg) {
+        
+        &.gnrl {
+            padding: 0 5.7rem;
+        }
+    }
+}
+
+.short-paragraph {
+    &.text-full {
+            .paragraph {
+            max-height: none !important;
+            overflow: initial;
+            height: auto !important;
+            -webkit-transition:max-height 2.5s ease-out;transition:max-height 2.5s ease-out;-webkit-transition:min-height 250ms ease-in-out;transition:min-height 250ms ease-in-out;
+            &.cover {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+        .btn {
+            display: none;
+        }        
+    }
+
+}
+
+.paragraph {
+    &.cover{
+        position: relative;
+        overflow: hidden;
+        max-height: 32rem;
+        &::before{
+            content: '';
+            position: absolute;
+            z-index: 5;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        &.t1::before {
+            background: linear-gradient(0deg, #FFFFFF -34.03%, rgba(255, 255, 255, 0) 100%);
+        }
+        &.t2::before {
+            background: linear-gradient(0deg, #F9F9F9 -34.03%, rgba(255, 255, 255, 0) 100%);
+        }
+    }
+    &.scroll {
+        overflow: auto;
+        padding-right: 16px;
+        margin-right: -16px;
+        @include mq-min($md) {
+            padding-right: 3rem;
+            margin-right: -3rem;
+        }
+    }
+    p {
+        font-family: var(--f-secondary);
+    }
+    h3 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--color-pr-100);
+        margin-bottom: 3rem;
+        &:not(:first-of-type) {
+            margin-top: 6rem;
+        }
+    }
+    h4 {
+        font-weight: 600;
+        font-size: 16px;
+        &:not(:first-child) {
+            margin-top: 3rem;
+        }
+        @include mq-min($md) {
+            font-size: 2rem; 
+        }
+    }
+    ol, ul {
+        list-style: none;
+        li {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.5;
+            @include mq-min ($md) {
+                font-size: 1.6rem;
+            }
+        }
+    }
+    ol {
+        >li{
+            margin-top: 2.4rem;
+            font-family: var(--f-primary);
+            a {
+                text-decoration: underline;
+            }
+            strong {
+                letter-spacing: -0.6px;
+                font-weight: 700;
+                a {
+                    text-decoration: none;
+                }
+            }
+        }
+        ul {
+            margin-left: -3.2rem;
+            margin-top: 1.6rem;
+            li {
+                font-weight: 400;
+                color: var(--color-gray-200);
+                font-family: var(--f-secondary);
+                position: relative;
+                padding-left: 2.8rem;
+                &::before {
+                    content: '';
+                    position: absolute;;
+                    width: 4px;
+                    height: 4px;
+                    background-color: currentColor;
+                    border-radius: 50%;
+                    left: 1rem;
+                    top: 1rem;
+                    background: currentColor;
+                }
+            }
+        }
+    }
+    a {
+        color: var(--color-pr-50);
+    }
+    p {
+        &:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+
+.paragraph ol>li, .text-check {
+    position: relative;
+    padding-left: 3.2rem;
+    &::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 4px;
+        width: 2rem;
+        height: 1.6rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='16' viewBox='0 0 20 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.5419 0.463017C19.4096 0.316303 19.2522 0.199852 19.0788 0.120383C18.9053 0.0409142 18.7193 0 18.5315 0C18.3436 0 18.1576 0.0409142 17.9842 0.120383C17.8108 0.199852 17.6534 0.316303 17.5211 0.463017L6.91899 12.1403L2.46469 7.22517C2.32733 7.07922 2.16518 6.96446 1.9875 6.88744C1.80982 6.81042 1.62009 6.77265 1.42914 6.77629C1.23819 6.77992 1.04975 6.82489 0.874602 6.90862C0.699449 6.99236 0.541006 7.11322 0.408318 7.2643C0.275631 7.41539 0.171298 7.59374 0.101276 7.78918C0.031254 7.98462 -0.00308605 8.19331 0.000217618 8.40335C0.00352129 8.61338 0.0444038 8.82064 0.12053 9.0133C0.196657 9.20596 0.306536 9.38023 0.443896 9.52618L5.90859 15.537C6.04088 15.6837 6.19828 15.8001 6.3717 15.8796C6.54512 15.9591 6.73112 16 6.91899 16C7.10685 16 7.29286 15.9591 7.46628 15.8796C7.6397 15.8001 7.79709 15.6837 7.92939 15.537L19.5419 2.76403C19.6863 2.61745 19.8016 2.43955 19.8804 2.24154C19.9593 2.04352 20 1.8297 20 1.61352C20 1.39735 19.9593 1.18352 19.8804 0.985509C19.8016 0.787497 19.6863 0.609597 19.5419 0.463017Z' fill='%23F8DC06'/%3E%3C/svg%3E%0A");
+    }
+} 
+
+
+p {
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: #000000;
+    line-height: 1.5;
+    @include mq($md) {
+        letter-spacing: -0.6px;
+    }
+}
+
+.textos_acept {
+    max-width: 862px;
+    margin-right: 4%;
+    width: 100%;    
+    p {
+        font-size: 1.4rem !important;
+        color: #fff !important;
+    }
+    a {
+        color: yellow !important;
+        font-weight: 700 !important;
+    }
+    
+    
+}

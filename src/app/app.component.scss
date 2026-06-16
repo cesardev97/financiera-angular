@@ -1,0 +1,42 @@
+@import "mixins";
+
+.header_modules {
+    background-color: var(--color-pr-50);
+    overflow: hidden;
+    &_ctn {
+        margin: 0 var(--padding-ctn);
+        position: relative;
+        overflow: hidden;
+        &::before {
+            content: '';
+            background: var(--color-sec-100);
+            position: absolute;
+            width: 100px;
+            top: 0;
+            left: 100px;
+            height: 3px;
+            z-index: 1;
+            transition: transform .15s ease-in-out;
+        }
+    }
+    &.m_negocios .header_modules_ctn::before {
+        transform: translateX(-100%);
+    }
+    .module-link {
+        font-weight: 700;
+        font-size: 1.6rem;
+        letter-spacing: -0.6px;
+        color: var(--color-light);
+        padding: 1.3rem 1.2rem 1rem 1.2rem;
+        cursor: pointer;
+        width: 100px;
+        text-align: center;
+        &.active{
+            background: var(--color-pr-light);
+        }
+    }
+    @include mq($md){
+        display: flex;
+        justify-content: center;
+    }
+}

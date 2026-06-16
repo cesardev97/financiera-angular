@@ -1,0 +1,59 @@
+@import "mixins";
+
+.breadcrumbs {
+    height: 5.6rem;
+    padding: 0 var(--padding-ctn);
+    ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        li {
+            position: relative;
+            span {
+                font-weight: 500;
+                font-size: 1.6rem;
+                letter-spacing: -0.6px;
+                display: block;
+                margin: 3px 0;
+            }
+            &:not(:last-child){
+                padding-right: 2.8rem;
+                margin-right: 4px;
+                span {
+                    color: #9A9A9A;
+                    &::before{
+                        content: "\e916";
+                        font-family: 'icomoon';
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        font-size: 2rem;
+                        color: currentColor;
+                    }
+                }
+                @include mq($md) {
+                    display: none;
+                }
+            }
+            &:last-child {
+                color: #FFC52F;
+                @include mq($md) {
+                    padding-left: 24px;
+                    &::before{
+                        content: "\e916";
+                        font-family: 'icomoon';
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%) rotate(180deg);
+                        font-size: 20px;
+                        color: currentColor;
+                    }
+                }
+            }
+        }
+        
+    }
+}

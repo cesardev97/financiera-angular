@@ -1,0 +1,69 @@
+.container {
+    @include mq($lg2){
+        padding-left: var(--padding-ctn);
+        padding-right: var(--padding-ctn);
+    }
+    @include min-max($lg, $xl){
+        &.max {
+            padding-left: 8.8rem;
+            padding-right: 8.8rem;
+        }
+        &.min {
+            padding-left: 7.4rem;
+            padding-right: 7.4rem;
+        }
+    }
+    @include mq-min($xl) {
+        max-width: 1280px !important;
+        margin: 0 auto;
+    }
+
+    &.c1 {
+        @include mq-min($lg) {
+            width: 76%;
+            margin: 0 auto;
+        }
+    }
+}
+
+.c-flex {
+    display: flex;
+    &.r-reverse {
+        flex-direction: row-reverse;
+    }
+    &.c-reverse {
+        flex-direction: column-reverse;
+    }
+    &.items-center {
+        align-items: center;
+    }
+    &.j-between {
+        justify-content: space-between;
+    }
+    &.j-start {
+        justify-content: flex-start;
+    }
+    &.j-end {
+        justify-content: flex-end;
+    }
+    &.wrap {
+        flex-wrap: wrap;
+    }
+}
+
+@include mq($md) {
+    section, article {
+        .c-flex {
+            flex-direction: column !important;
+            &.container {
+                max-width: 100% !important;
+                padding: 0 16px;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.swiper-container {
+    position: relative;
+}

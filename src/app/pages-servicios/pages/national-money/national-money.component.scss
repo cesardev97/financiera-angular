@@ -1,0 +1,10 @@
+@import "mixins";
+
+.national_benefits {
+    @include mq($sm) {
+        .benefit_img {
+            padding-top: 0 !important;
+            padding-bottom: 24px;
+        }
+    }
+}

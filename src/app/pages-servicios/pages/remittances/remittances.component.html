@@ -1,0 +1,63 @@
+<app-banner-page [bannerFields]="acf"></app-banner-page>
+
+<breadcrumbs [breadcrumbs]="acf.breadcrumb"></breadcrumbs>
+
+<section class="definition">
+    <h2 class="title center">{{acf.definition_title}}</h2>
+    <div [innerHtml]="acf.definition_text"></div>
+</section>
+
+<section class="benefits">
+    <div class="container">
+        <h2 class="title center">{{acf.benefits_title}}</h2>
+        <article class="benefits_wrap benefits_list no-swiper" *ngIf="acf?.benefits_list">
+            <div class="benefit_column left">
+                <ng-container *ngFor="let item of acf.benefits_list; index as ind">
+                    <div class="benefit_item text-check" *ngIf="ind < 2">
+                        <h4 *ngIf="acf.has_benefits_titles">{{item.title}}</h4>
+                        <p>{{item.text}}</p>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="benefit_column right">
+                <ng-container *ngFor="let item of acf.benefits_list; index as ind">
+                    <div class="benefit_item text-check" *ngIf="ind > 1 && ind < 4">
+                        <h4 *ngIf="acf.has_benefits_titles">{{item.title}}</h4>
+                        <p>{{item.text}}</p>
+                    </div>
+                </ng-container>  
+            </div>
+            <div class="benefit_column middle">
+                <div class="benefit_item text-check">
+                    <h4 *ngIf="acf.has_benefits_titles">{{acf?.benefits_list[4]?.title}}</h4>
+                    <p>{{acf?.benefits_list[4]?.text}}</p>
+                </div>
+                <img class="benefit_img" [src]="acf.benefits_image" alt="">
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="tabs_sect">
+    <app-tabs
+        [listTabs]="acf.information_tabs"
+    ></app-tabs>
+</section>
+
+
+<section class="remittances_blocks mb-6">
+    <div class="container max">
+        <div class="block_link_wrap b-4" *ngFor="let item of acf.block_list"
+            [ngStyle]="{ 'background-color': item.color }">
+            <app-block-url 
+                [titleBloq]="item.title"
+                [subtitleBlock]="item.subtitle"
+                [imageBlock]="item.image"
+                [textBtnBlock]="item.btn_text"
+                [urlBlock]="item.url"
+                [typeUrl]="item.url_type"  
+            >
+            </app-block-url>
+        </div>
+    </div>
+</section>

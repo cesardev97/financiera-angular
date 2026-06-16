@@ -1,0 +1,22 @@
+// Breakpoints
+$min: 20em; //320px
+$sm: 36em; //576px
+$md: 48em; //768px
+$lg: 62em; //992px
+$lg2: 75em; //1200px
+$xl: 89em; //1424px 
+$xxl: 106em; //1696px
+
+// Media Queries
+
+@mixin mq($breakpoint) {
+    @media (max-width: $breakpoint) { @content; }
+}
+
+@mixin mq-min($breakpoint) {
+    @media (min-width: $breakpoint) { @content; }
+}
+
+@mixin min-max($min, $max){
+    @media (min-width: $min) and (max-width: $max) { @content; }
+}

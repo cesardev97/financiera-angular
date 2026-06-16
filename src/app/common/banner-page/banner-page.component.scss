@@ -1,0 +1,73 @@
+@import "mixins";
+
+.banner_page {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    
+    position: relative;
+    .banner_description {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        color: var(--color-light);
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        h4 {
+            font-weight: 600;
+            font-size: 16px;
+            margin-top: 16px;
+        }
+        .btn {
+            margin-top: 24px;
+        }
+    }
+    @include mq($md) {
+        .banner_figure {
+            height: 45vw;
+            max-height: 300px;
+        }
+        .banner_description {
+            padding: 24px 16px 32px 16px;
+            background: var(--color-pr-50);
+        }
+    }
+    @include mq-min($md) {
+        height: 32rem;
+        &::before {
+            background-image: url('../../../assets/images/utils/banner-bg-2.svg');
+            width: 60%;
+        }
+
+        .banner_description {
+            position: absolute;
+            left: 0;
+            z-index: 2;
+            width: 50%;
+            padding: 3rem 4rem 1rem 8.8rem;
+            h1 {
+                font-size: 4.8rem;
+            }
+            h4 {
+                font-size: 2rem;
+                margin-top: 1.2rem;
+            }
+            .btn {
+                margin-top: 3.2rem;
+            }
+        }
+
+        .banner_figure {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            right: 0;
+            min-width: 50%;
+        }
+    }
+}
+
+

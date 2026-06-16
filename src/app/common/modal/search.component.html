@@ -1,0 +1,30 @@
+<div class="modal-search">
+    <span class="icon-close" (click)="closeModal()"></span>
+    <div class="form-search-wrap" autocomplete="off">
+        <form (ngSubmit)="buscar()" class="search-form" autocomplete="off">
+            <div class="search-wrap" [ngClass]="{'s-loading': isSearching}">
+                <input class="input-search"
+                (input)="pressKeyboard()" 
+                [(ngModel)]="search" name="search" type="text" 
+                placeholder="Buscar"
+                >
+            </div>
+            <button class="btn-search">
+                <i class="icon-search"></i>
+            </button>
+        </form>
+        <div class="suggestions-wrap" [ngClass]="{'empty': !showResults}">
+            <ul class="search-results" *ngIf="showResults; else noResults">
+                <li *ngFor="let item of linksResult">
+                    <a [routerLink]="item.url | safe" (click)="closeModal()">{{item.title}}</a>
+                </li>
+            </ul>
+            <ng-template #noResults>
+                <div>
+                    <img src="assets/images/utils/alert.svg">
+                    <span class="empty-text">No se encontraron resultados</span>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

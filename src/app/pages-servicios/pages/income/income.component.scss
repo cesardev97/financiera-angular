@@ -1,0 +1,183 @@
+@import "mixins";
+
+.icome_definition {
+    @include mq($sm) {
+        .btn {
+            font-size: 14px;
+        }
+    }
+}
+
+.income_benefits {
+    .benefits_wrap {
+        .benefit_column {
+            h3 {
+                font-weight: 600;
+                font-size: 20px;
+                margin-bottom: 24px;
+                text-align: center;
+                min-height: 50px;
+                align-items: center;
+                color: #000000;
+                margin-bottom: 24px;
+            }
+        }
+    }
+    @include mq-min($lg) {
+        .benefits_wrap {
+            .benefit_img {
+                position: absolute;
+                top: 4.8rem;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .swiper-wrapper {
+                justify-content: space-between;
+                .swiper-slide {
+                    max-width: 28.5rem;
+                }
+            }
+            .benefit_column {
+                &.left .benefit_item {
+                    &:first-of-type {
+                        margin-left: 7.5rem;
+                    }
+                    &:nth-of-type(2){
+                        margin: 7rem 0;
+                    }
+                    &:nth-of-type(3) {
+                        float: right;
+                        margin-right: -6rem;
+                    }
+                }
+                &.right .benefit_item {
+                    &:nth-of-type(2) {
+                        margin: 7rem 0 7rem 4rem;
+                    }
+                    &:nth-of-type(3) {
+                        float: left;
+                        margin-left: -2rem;
+                    }
+                }
+                h3 {
+                    font-size: 2.8rem;
+                    color: #227743;
+                    margin-bottom: 5rem;
+                    display: inline-flex;
+                    min-height: 7.2rem;
+                }
+            }
+        }
+    }
+    @include mq-min($lg2) {
+        .container {
+            max-width: 70%;
+            margin: 0 auto;
+        }
+    }
+}
+
+.clients {
+    padding: 24px 0;
+    .clients_ctn {
+        padding: 0 var(--padding-ctn);
+    }
+    .title {
+        margin-bottom: 24px;
+    }
+    .list_clients {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .client_item {
+            padding: 0 14px;
+            text-align: center;
+            width: 49%;
+            max-width: 25rem;
+            .client_img {
+                width: 40px;
+                height: 40px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                    max-width: 86%;
+                    max-height: 84%;
+                }
+            }
+            h4 {
+                margin-top: 33px;
+                font-size: 14px;
+                font-weight: 500;
+                min-height: 44px;
+            }
+        }
+    }
+    @include mq-min($md) {
+        padding-top: 4.8rem;
+        padding-bottom: 8rem;
+        .title {
+            margin-bottom: 9.4rem;
+        }
+        .list_clients {
+            .client_item {
+                padding: 0 4.8rem;
+                width: fit-content;
+                .client_img {
+                    width: 6.2rem;
+                    height: 6.2rem;
+                }
+                h4 {
+                    font-size: 2.4rem;
+                }
+            }
+        }
+    }
+}
+
+.income_characteristics {
+    padding-top: 24px;
+    padding-bottom: 75px;
+    .title {
+        margin-bottom: 3rem;
+    }
+    @include mq($sm) {
+        .description {
+            margin-top: 24px;
+        }
+    }
+    @include mq-min($lg) {
+        padding-top: 8.2rem;
+        padding-bottom: 10rem;
+        .container {
+            margin: 0 auto;
+            max-width: 78%;
+        }
+        .description {
+            width: 54%;
+            margin-right: 4.8rem;
+        }
+    }
+}
+
+.modalities {
+    padding: 32px 0;
+    .titles {
+        padding-bottom: 4.8rem;
+    }
+    @include mq-min($md) {
+        padding-top: 5rem;
+        padding-bottom: 12rem;
+    }
+    @include mq-min($lg) {
+        .titles {
+            margin: 0 auto;
+            max-width: 60%;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 78%;
+            flex-wrap: wrap;
+        }
+    }
+}

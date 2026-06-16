@@ -1,0 +1,8 @@
+<div class="video_wrap">
+    <img class="bg_video" [src]="videoImage">
+    <div class="btn_play_wrap" *ngIf="videoUrl"
+        (click)="openVideo(videoUrl)">
+        <div class="btn_play icon-play">
+        </div>
+    </div>
+</div>

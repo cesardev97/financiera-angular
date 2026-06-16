@@ -1,0 +1,30 @@
+<header class="header_nav_wrap" id="header">
+    <a [routerLink]="linkHome" class="logo">
+        <img src="{{logoImage}}" alt="ProEmpresa">
+    </a>
+    <div class="header_nav" [ngClass]="{'opened': openMenuMobile}">
+        <div class="header_menu">
+            <app-header-menu [menu]="menu"></app-header-menu>
+            <app-header-menu [menu]="menu" device="mobile" (onCloseMenuMob)="closeMenuMob()"></app-header-menu>
+        </div>
+        <div class="header_aditional">
+            <div class="search icon-search" (click)="openSearch()">
+            </div>
+            <div class="link_bank_wrap">
+                <a [href]="options.url_line_bank == '' ? '/pagina-en-mantenimiento' : options.url_line_bank" 
+                    target="_blank" class="btn gnrl"
+                    >{{options.text_line_bank}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="btn-toggle-menu" [ngClass]="{'open': openMenuMobile}" (click)="toggleMenuMobile()">
+        <div class="icon-hamburguer"><span></span></div>
+    </div>
+</header>
+
+<div class="overlay-menu" *ngIf="openMenuMobile"
+    (click)="closeMenuMob()">
+</div>
+
+<app-cookie [text]="options?.cookie_text"></app-cookie>

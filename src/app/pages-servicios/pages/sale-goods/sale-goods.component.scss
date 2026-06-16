@@ -1,0 +1,103 @@
+@import "mixins";
+
+.sales-benefits {
+    background: #FFFFFF;
+    @include mq-min($lg) {
+        .container {
+            margin: 0 auto;
+            max-width: 65%;
+            .benefit_img {
+                margin-right: 5rem;
+            }
+        }
+    }
+}
+
+
+.search_immb {
+    padding: 24px 0;
+    .msg-empty {
+        font-size: 1.5rem;
+        padding: 2rem;
+        color: rgb(185, 26, 26);
+        font-weight: 500;
+        display: block;
+        text-align: center;
+    }
+    .title {
+        margin-bottom: 16px;
+        padding: 0 16px;
+    }
+    @include mq-min($md) {
+        margin-bottom: 3.8rem;
+        padding-top: 5rem;
+        padding-bottom: 8.2rem;
+    }
+}
+
+.inmb-form-wrap {
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+    form {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .form-group {
+        margin-bottom: 0;
+        &.gray {
+            padding: 24px 16px;
+        }
+        @include mq($sm){
+            &:not(.gray) {
+                padding: 5px 16px;
+            }
+        }
+    }
+    .btn {
+        margin-top: 2rem;
+    }
+    @include mq($sm) {
+        padding-bottom: 24px;
+        .wrap-se-btn {
+            text-align: center;
+            .btn {
+                max-width: 90%;
+            }
+        }
+    }
+    @include mq-min($lg) {
+        margin: 0 auto;
+        max-width: 76%;
+        padding-right: 2rem;
+        .form-group {
+            padding-right: 1.6rem;
+            width: 22%;
+            padding: 4.2rem 1.6rem 4.8rem 0 !important;
+            &.gray {
+                margin-right: 1.6rem;
+                padding-left: 1.6rem !important;
+
+            }
+
+        }
+    }
+}
+
+.most_viewed {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    .title {
+        margin-bottom: 12px;
+    }
+    @include mq-min($md) {
+        padding-top: 8rem;
+        padding-bottom: 5rem;
+        .title {
+            margin-bottom: 6.6rem;
+        }
+    }
+}

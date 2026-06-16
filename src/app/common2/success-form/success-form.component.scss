@@ -1,0 +1,71 @@
+@import "mixins";
+
+.success-image-wrap {
+    margin: 60px 0;
+    .success-ctn {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        .img-wrap {
+            margin-left: 6rem;
+            img {
+                height: 31.3rem;
+            }
+            @include mq($sm) {
+                display: none;
+            }
+        }
+        .success-description {
+            text-align: center;
+            padding: 0 2rem;
+        }
+        @include mq-min($lg) {
+            margin: 0 auto;
+            max-width: 1200px;
+            .success-description {
+                width: 52%;
+            }
+        }
+    }
+    @include mq-min($lg) {
+        margin: 13rem 0;
+    }
+}
+
+.success-no-image-wrap {
+    @include mq-min($lg) {
+        margin: 60px 40px;
+    }
+}
+
+.success-description {
+    text-align: center;
+    .check-img {
+        width: 4.67rem;
+        height: 4.67rem;
+        margin-bottom: 2.7rem;
+    }
+    h2 {
+        font-weight: 600;
+        font-size: 2rem;
+        margin-bottom: 1.6rem;
+    }
+    p {
+        font-family: var(--f-secondary);
+        color: #686868;
+    }
+    .async-text {
+        margin-top: 4.8rem;
+        p {
+            margin-top: 5px;
+        }
+        a {
+            font-size: 13px;
+            font-family: var(--f-secondary);
+            color: var(--color-pr-50);
+            text-decoration: underline;
+            text-underline-offset: 2.5px;
+        }
+    }
+}

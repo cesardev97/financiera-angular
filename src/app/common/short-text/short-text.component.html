@@ -1,0 +1,18 @@
+<div class="short-paragraph">
+    <div class="paragraph cover" [ngClass]="style==1 ? 't1' : 't2'"
+        [innerHtml]="(paragraph)">
+    </div>
+    <a class="btn border downld" *ngIf="type=='download'; else normalBtn"
+        [href]="urlFile" target="_blank">
+        <i class="icon-download" *ngIf="type=='download'"></i>
+        {{labelButton}}
+    </a>
+    <ng-template #normalBtn>
+        <span class="btn border"
+            (click)="openText()">
+            {{ labelButton }}
+        </span>
+    </ng-template>
+    
+
+</div>
