@@ -37,65 +37,65 @@ A continuación se mostraran los servicios construidos desde el backend.
 
 - Servicio para obtener menu ( slug ):
 
-	<domain-backend>/wp-json/api/menu?name=<slug>
+	{domain-backend}/wp-json/api/menu?name={slug}
 
 - Servicio para obtener opciones de configuracion:
 
-	<domain-backend>/wp-json/api/options/<slug>
+	{domain-backend}/wp-json/api/options/{slug}
 
-	Ejemplo: slug => options-2
+	Ejemplo: slug =} options-2
 
 - Servicio para obtener campos de opciones de configuración ( campos )
 
-	<domain-backend>/wp-json/api/options/<slug>?fields=<campo_1>,<campo_2>,...
+	{domain-backend}/wp-json/api/options/{slug}?fields={campo_1},{campo_2},...
 
-	Ejemplo: campo => logo
+	Ejemplo: campo =} logo
 
 - Servicio para obtener campos dependiendo el tipo de página :
 
-	<domain-backend>/wp-json/api/pages/<tipo>/<slug>
+	{domain-backend}/wp-json/api/pages/{tipo}/{slug}
 
-	Tipos de pagina: tipo => page, producto
+	Tipos de pagina: tipo =} page, producto
 
-	Ejemplo: slug => consumo-directo
+	Ejemplo: slug =} consumo-directo
 
-	Ejepmlo 2: <domain-backend>/wp-json/api/pages/producto/consumo-directo
+	Ejepmlo 2: {domain-backend}/wp-json/api/pages/producto/consumo-directo
 
 - Servicio para enviar datos a formulario
 
-	<domain-backend>/wp-json/contact-form-7/v1/contact-forms/<id>/feedback
+	{domain-backend}/wp-json/contact-form-7/v1/contact-forms/{id}/feedback
 
-	Ejemplo: id => 9
+	Ejemplo: id =} 9
 
 - Servicio para obtener los proyectos conglomerados:
 
-	<domain-backend>/wp-json/api/projects
+	{domain-backend}/wp-json/api/projects
 
 - Servicio para obtener proyecto conglomerado por id:
 
-	<domain-backend>/wp-json/api/projects/<id>
+	{domain-backend}/wp-json/api/projects/{id}
 
-	Ejemplo: id => 2286
+	Ejemplo: id =} 2286
 
 - Servicio para obtener los inmuebles:
 
-	<domain-backend>/wp-json/api/inmuebles
+	{domain-backend}/wp-json/api/inmuebles
 
 - Servicio para obtener inmueble por id:
 
-	<domain-backend>/wp-json/api/inmuebles/<id>
+	{domain-backend}/wp-json/api/inmuebles/{id}
 
-	Ejemplo: id => 1787
+	Ejemplo: id =} 1787
 
 - Servicio para "Encuentra tu Ejecutivo de Negocios":
 
-	<domain-backend>/wp-json/api/encuentraedn/<dni>
+	{domain-backend}/wp-json/api/encuentraedn/{dni}
 
-	Ejemplo: dni => 87654321
+	Ejemplo: dni =} 87654321
  
  - Servicio para Busqueda de Paginas:
 
-	<domain-backend>/wp-json/api/search?s=<search>
+	{domain-backend}/wp-json/api/search?s={search}
 
-	Ejemplo: search => ahorro
+	Ejemplo: search =} ahorro
 	
